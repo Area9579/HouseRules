@@ -8,7 +8,12 @@ var matrix_test = [["00","01","02"],["10","11","12"],["20","21","22"]]
 var cards = [[null,null,null],[null,null,null],[null,null,null]]
 
 func _ready() -> void:
-	pass
+	cards[0][0] = Card.new(2)
+	cards[0][1] = Card.new(2)
+	cards[0][2] = Card.new(2)
+	update_board_column(0)
+	update_board_column(1)
+	update_board_column(2)
 
 func update_board_column(column : int):
 	#group up multipliers
