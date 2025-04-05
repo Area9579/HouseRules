@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://c27iw0ytkgcnm"]
+
+[ext_resource type="Script" uid="uid://hr1obdm6tnyv" path="res://Card Game/Scripts/board.gd" id="1_52vfp"]
+[ext_resource type="PackedScene" uid="uid://cbhk6m8pavkcx" path="res://Card Game/Scenes/card_position.tscn" id="1_bfgrx"]
+
+[node name="Board" type="Node3D"]
+script = ExtResource("1_52vfp")
+
+[node name="LadyCardOrganizer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77016, 0, -3.71007)
+
+[node name="TOPRIGHT" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
+
+[node name="BOTRIGHT" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.77696)
+
+[node name="BOTMID" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78631, 0, -8.77696)
+
+[node name="BOTLEFT" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.79485, 0, -8.77696)
+
+[node name="TOPMID" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72766, 0, 0)
+
+[node name="TOPLEFT" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.83768, 0, 0)
+
+[node name="MIDLEFT" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.83768, 0, -4.31738)
+
+[node name="MIDMID" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88639, 0, -4.31738)
+
+[node name="MIDRIGHT" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0321271, 0, -4.31738)
+
+[node name="PlayerCardOrganizer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77016, 0, 12.4428)
+
+[node name="BOTLEFT" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
+
+[node name="TOPLEFT" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.77696)
+
+[node name="TOPMID" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78631, 0, -8.77696)
+
+[node name="TOPRIGHT" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.79485, 0, -8.77696)
+
+[node name="BOTMID" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72766, 0, 0)
+
+[node name="BOTRIGHT" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.83768, 0, 0)
+
+[node name="MIDRIGHT" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.83768, 0, -4.31738)
+
+[node name="MIDMID" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88639, 0, -4.31738)
+
+[node name="MIDLEFT" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0321271, 0, -4.31738)
+
+[node name="DECK" parent="." instance=ExtResource("1_bfgrx")]
+transform = Transform3D(-0.00687658, 0, -0.999976, 0, 1, 0, 0.999976, 0, -0.00687658, 0.0340922, 0, 0)
