@@ -7,6 +7,7 @@ var has_mouse : bool
 
 signal placement_clicked( card_placement )
 
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("left") and has_mouse:
 		placement_clicked.emit( self )
