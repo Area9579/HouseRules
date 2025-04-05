@@ -1,5 +1,5 @@
 extends Node3D
-const PRELOAD_CARD = preload("res://Card Game/Scenes/card.tscn")
+const CARD = preload("res://Card Game/Scenes/card.tscn")
 @onready var lady_card_organizer: Node3D = $LadyCardOrganizer
 @onready var player_card_organizer: Node3D = $PlayerCardOrganizer
 @onready var card_generator: CardGenerator
@@ -16,10 +16,10 @@ func _ready() -> void:
 		card_position.connect("position_clicked", player_card_clicked)
 
 func lady_card_clicked( card_position : CardPosition ):
-	create_and_add_new_card( card_position )
+	place_card( card_position )
 
 func player_card_clicked( card_position : CardPosition ):
-	create_and_add_new_card( card_position )
+	place_card( card_position )
 
-func create_and_add_new_card( card_position ):
-	card_position.set_card(card_generator.get_new_card())
+func place_card( card_position ):
+	card_position.set_card( card_generator.get_new_card() )
