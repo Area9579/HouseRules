@@ -13,3 +13,11 @@ config_version=5
 config/name="House Rules"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://db0tp6ik46wk0"
+
+[file_customization]
+
+folder_colors={
+"res://Scenes/": "purple",
+"res://Scripts/": "teal",
+"res://raw_assets/": "red"
+}
