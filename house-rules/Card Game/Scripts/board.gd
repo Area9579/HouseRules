@@ -72,10 +72,16 @@ func clear_board():
 			card_placement.remove_card()
 
 func switch_cards( desired_placement ):
-	if selected_placement == null or desired_placement.card != null: 
+	if selected_placement == null or desired_placement.card != null or selected_placement.card == null: 
 		return
 	selected_placement.card.reparent( desired_placement, false)
 	desired_placement.set_card( selected_placement.card )
 	selected_placement.card = null
 	selected_placement.update_text()
 	selected_placement = null
+
+func update_row(amount : int, col : int, person : int):
+	if person == 0: #player
+		$PlayerColumnText.get_child(col).text = str(amount)
+	if person == 1:
+		$LadyColumnText.get_child(col).text = str(amount)

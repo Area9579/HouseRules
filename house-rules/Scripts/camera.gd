@@ -6,8 +6,8 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(_delta):
-	rotation_degrees.x = clamp(rotation_degrees.x, -50, 30)
-	rotation_degrees.y = clamp(rotation_degrees.y, -160, -20)
+	rotation_degrees.x = clamp(rotation_degrees.x, -70, -20)
+	rotation_degrees.y = clamp(rotation_degrees.y, -130, -50)
 	rotation_degrees.z = clamp(rotation_degrees.z, 0, 0)
 
 func _input(event: InputEvent) -> void:
