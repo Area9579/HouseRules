@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="PackedScene" uid="uid://3fqo0iphm067" path="res://raw_assets/Lady.blend" id="2_6l7je"]
 [ext_resource type="PackedScene" uid="uid://c27iw0ytkgcnm" path="res://Card Game/Scenes/Board.tscn" id="3_jv6wh"]
-[ext_resource type="PackedScene" uid="uid://cuah32gd4hyyy" path="res://Scenes/player_camera.tscn" id="4_x6ack"]
+[ext_resource type="PackedScene" path="res://Scenes/player_camera.tscn" id="4_x6ack"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_52fb6"]
 sky_top_color = Color(0.542308, 0.368438, 0.613554, 1)

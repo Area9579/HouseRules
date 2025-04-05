@@ -37,3 +37,9 @@ func deck_clicked( deck_position ):
 	for card_placement in player_card_organizer.get_children():
 		if card_placement.card != null:
 			card_placement.remove_card()
+
+func update_row(amount : int, col : int, person : int):
+	if person == 0: #player
+		$PlayerColumnText.get_child(col).text = str(amount)
+	if person == 1:
+		$LadyColumnText.get_child(col).text = str(amount)

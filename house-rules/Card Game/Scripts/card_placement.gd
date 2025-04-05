@@ -4,7 +4,7 @@ extends Node3D
 var has_mouse : bool
 @export var card : Card = null
 @onready var text: Label3D = $Label3D
-
+@onready var organizer = get_parent()
 signal placement_clicked( card_placement )
 
 func _process(delta: float) -> void:
@@ -17,6 +17,10 @@ func set_card( new_card : Card ):
 	self.add_child(card)
 	card.update_text()
 	text.text = ""
+	
+	organizer.place_card(card, int(String(name)[0]), int(String(name)[1]))
+	
+	
 
 func remove_card():
 	card.queue_free()
