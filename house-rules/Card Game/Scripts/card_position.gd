@@ -13,7 +13,9 @@ func _process(delta: float) -> void:
 
 func set_card( new_card : Card ):
 	card = new_card
+	card.position = self.global_position
 	self.add_child(card)
+	card.update_sprite()
 	text.text = ""
 
 func _on_area_3d_mouse_entered() -> void:

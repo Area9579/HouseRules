@@ -10,10 +10,12 @@ script = ExtResource("1_37sva")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, -3.0598e-08, 0.7, 0, -0.7, -3.0598e-08, 0, 0, -2.69211)
+visible = false
 texture = ExtResource("2_6hs5a")
 
 [node name="Sprite3D2" type="Sprite3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, -3.0598e-08, 0.7, 0, -0.7, -3.0598e-08, 0, 0, 2.82421)
+visible = false
 texture = ExtResource("3_5mwbu")
 
 [node name="Label3D" type="Label3D" parent="."]
