@@ -10,14 +10,16 @@ var color : String
 var suit : String
 var value_name : String
 
-func _ready() -> void:
-	new_card( 0, "", "", "")
 
-func new_card( value : int, color: String, suit: String, value_name : String):
+
+func initialize( value : int, color: String, suit: String, value_name : String, new_position : Vector3):
 	self.value = value
 	self.color = color
 	self.suit = suit
 	self.value_name = value_name
+	self.global_position = new_position
+	#print('initialized')
+	#update_sprite()
 
 func set_value( new_value : int ):
 	self.value = new_value

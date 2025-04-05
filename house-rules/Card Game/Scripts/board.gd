@@ -14,7 +14,12 @@ func _ready() -> void:
 		card_position.connect("position_clicked", player_card_clicked)
 
 func lady_card_clicked( card_position : CardPosition ):
-	print("lady clicked")
+	create_and_add_new_card( card_position )
 
 func player_card_clicked( card_position : CardPosition ):
-	print("player clicked")
+	create_and_add_new_card( card_position )
+
+func create_and_add_new_card( card_position ):
+	var _card = PRELOAD_CARD.instantiate()
+	card_position.set_card(_card)
+	_card.initialize(10, "red", "spade", "king", card_position.global_position)
