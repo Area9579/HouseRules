@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuah32gd4hyyy"]
+
+[ext_resource type="Script" uid="uid://chcir735ya4d4" path="res://Scripts/camera.gd" id="1_asj12"]
+
+[node name="PlayerCamera" type="Camera3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_asj12")
+mouseSensitivity = 1
