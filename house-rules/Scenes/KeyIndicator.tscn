@@ -9,3 +9,8 @@ key = "A"
 [node name="Label3D" type="Label3D" parent="."]
 visible = false
 text = "A"
+
+[node name="TimerLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.263725, 0)
+visible = false
+text = "0.0"
