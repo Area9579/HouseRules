@@ -22,10 +22,11 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_pressed():
-		Director.keyPressed.emit(char(event.keycode))
-	elif event is InputEventKey:
-		Director.keyReleased.emit(char(event.keycode))
+	if event is InputEventKey and event.is_pressed() and key == OS.get_keycode_string(event.get_keycode_with_modifiers()):
+		print(OS.get_keycode_string(event.get_keycode_with_modifiers()))
+		Director.keyPressed.emit(OS.get_keycode_string(event.get_keycode_with_modifiers()))
+	elif event is InputEventKey and key == OS.get_keycode_string(event.get_keycode_with_modifiers()):
+		Director.keyReleased.emit(OS.get_keycode_string(event.get_keycode_with_modifiers()))
 
 
 func keyIsVisible(signalKey):

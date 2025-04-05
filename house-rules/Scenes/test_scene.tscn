@@ -25,3 +25,7 @@ key = "D"
 [node name="KeyIndicator4" parent="." instance=ExtResource("2_50ct6")]
 transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, 0.0531857, 0.0188162, 0.155287)
 key = "F"
+
+[node name="KeyIndicator5" parent="." instance=ExtResource("2_50ct6")]
+transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, 0.103246, -0.0297271, 0.155287)
+key = "Space"
