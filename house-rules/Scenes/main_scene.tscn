@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxddpve567luf"]
+[gd_scene load_steps=9 format=3 uid="uid://cxddpve567luf"]
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="PackedScene" uid="uid://3fqo0iphm067" path="res://raw_assets/Lady.blend" id="2_6l7je"]
 [ext_resource type="PackedScene" uid="uid://c27iw0ytkgcnm" path="res://Card Game/Scenes/Board.tscn" id="3_jv6wh"]
 [ext_resource type="PackedScene" uid="uid://cuah32gd4hyyy" path="res://Scenes/player_camera.tscn" id="4_x6ack"]
+[ext_resource type="PackedScene" uid="uid://ixt67rkymll6" path="res://Scenes/test_scene.tscn" id="5_iacmt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_52fb6"]
 sky_top_color = Color(0.542308, 0.368438, 0.613554, 1)
@@ -55,4 +56,7 @@ transform = Transform3D(0.0374809, 0, -0.999297, 0, 1, 0, 0.999297, 0, 0.0374809
 transform = Transform3D(-0.000265723, 0, -0.034999, 0, -0.035, 0, 0.034999, 0, -0.000265723, 0.0308007, 1.00034, -2.64992)
 
 [node name="PlayerCamera" parent="." instance=ExtResource("4_x6ack")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.705103, 1.37092, -2.6695)
+transform = Transform3D(-4.37114e-08, 0.766044, -0.642788, 0, 0.642788, 0.766044, 1, 3.34849e-08, -2.80971e-08, -0.525124, 1.37092, -2.6695)
+
+[node name="TestScene" parent="PlayerCamera" instance=ExtResource("5_iacmt")]
+transform = Transform3D(0.906768, 0.100359, 0.409512, -0.106854, 0.99425, -0.00705795, -0.407866, -0.0373581, 0.912277, -0.191555, 0.00947949, -0.344307)

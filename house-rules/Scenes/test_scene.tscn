@@ -8,9 +8,6 @@
 [node name="Hand" parent="." instance=ExtResource("1_r5l72")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.242362, 0.123943)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.343704)
-
 [node name="KeyIndicator" parent="." instance=ExtResource("2_50ct6")]
 transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, -0.0727661, 0.0163754, 0.155287)
 
