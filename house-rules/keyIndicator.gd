@@ -3,12 +3,22 @@ extends Node3D
 @onready var keyLabel: Label3D = $Label3D
 
 @export var key: String
+@export_range(0,5,0.5) var mercyTimer: float
 
+var currentMercyTimer = 0
 
 func _ready() -> void:
 	Director.keyPressed.connect(keyIsVisible)
 	Director.keyReleased.connect(keyIsNotVisible)
 	keyLabel.text = key
+
+
+func _process(delta: float) -> void:
+	if currentMercyTimer > 0:
+		currentMercyTimer -= delta
+	else:
+		currentMercyTimer = mercyTimer
+
 
 
 func _input(event: InputEvent) -> void:
@@ -18,9 +28,11 @@ func _input(event: InputEvent) -> void:
 		Director.keyReleased.emit(char(event.keycode))
 
 
-func keyIsVisible(_key):
-	keyLabel.visible = true
+func keyIsVisible(signalKey):
+	if signalKey == key:
+		keyLabel.visible = true
 
 
-func keyIsNotVisible(_key):
-	keyLabel.visible = false
+func keyIsNotVisible(signalKey):
+	if signalKey == key:
+		keyLabel.visible = false

@@ -2,14 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cj6sgqhmyn8sq" path="res://keyIndicator.gd" id="1_fdoi5"]
 
-[node name="Node3D" type="Node3D"]
+[node name="KeyIndicator" type="Node3D"]
 script = ExtResource("1_fdoi5")
 key = "A"
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.343704)
-
 [node name="Label3D" type="Label3D" parent="."]
-visible = false
-billboard = 1
 text = "A"
