@@ -47,26 +47,26 @@ transform = Transform3D(0.0184679, -0.00971939, -0.0137648, -0.0165887, -0.00690
 
 [node name="KeyIndicators" type="Node3D" parent="."]
 
-[node name="KeyIndicator" parent="KeyIndicators" node_paths=PackedStringArray("card") instance=ExtResource("4_bg4pj")]
+[node name="KeyIndicator" parent="KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("4_bg4pj")]
 transform = Transform3D(0.126617, -0.0920454, 0.0663004, 0.112434, 0.0886423, -0.0916578, 0.0150569, 0.112117, 0.126898, -0.11784, 0.215026, 0.101407)
-card = NodePath("../../HandCardOrganizer/CardPosition")
+cardPlacement = NodePath("../../HandCardOrganizer/CardPosition")
 
-[node name="KeyIndicator2" parent="KeyIndicators" node_paths=PackedStringArray("card") instance=ExtResource("4_bg4pj")]
+[node name="KeyIndicator2" parent="KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("4_bg4pj")]
 transform = Transform3D(0.154839, -0.0575522, 0.0401579, 0.0696165, 0.113687, -0.105493, 0.00885839, 0.11253, 0.127116, -0.063726, 0.256446, 0.107148)
 key = "S"
-card = NodePath("../../HandCardOrganizer/CardPosition2")
+cardPlacement = NodePath("../../HandCardOrganizer/CardPosition2")
 
-[node name="KeyIndicator3" parent="KeyIndicators" node_paths=PackedStringArray("card") instance=ExtResource("4_bg4pj")]
+[node name="KeyIndicator3" parent="KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("4_bg4pj")]
 transform = Transform3D(0.169719, -0.00895983, -0.00389551, 0.00412107, 0.127109, -0.112811, 0.00885839, 0.11253, 0.127116, 0.00674344, 0.2813, 0.0943525)
 key = "D"
-card = NodePath("../../HandCardOrganizer/CardPosition3")
+cardPlacement = NodePath("../../HandCardOrganizer/CardPosition3")
 
-[node name="KeyIndicator4" parent="KeyIndicators" node_paths=PackedStringArray("card") instance=ExtResource("4_bg4pj")]
+[node name="KeyIndicator4" parent="KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("4_bg4pj")]
 transform = Transform3D(0.158652, 0.0435114, -0.0428513, -0.0580098, 0.144659, -0.0678873, 0.0190879, 0.0779781, 0.14985, 0.0762496, 0.256206, 0.0943525)
 key = "F"
-card = NodePath("../../HandCardOrganizer/CardPosition4")
+cardPlacement = NodePath("../../HandCardOrganizer/CardPosition4")
 
-[node name="KeyIndicator5" parent="KeyIndicators" node_paths=PackedStringArray("card") instance=ExtResource("4_bg4pj")]
+[node name="KeyIndicator5" parent="KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("4_bg4pj")]
 transform = Transform3D(0.13682, 0.0803188, -0.0610673, -0.100298, 0.119464, -0.0675909, 0.0109796, 0.0904278, 0.143535, 0.128919, 0.216262, 0.0943525)
 key = "Space"
-card = NodePath("../../HandCardOrganizer/CardPosition5")
+cardPlacement = NodePath("../../HandCardOrganizer/CardPosition5")

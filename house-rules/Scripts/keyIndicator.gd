@@ -6,7 +6,7 @@ extends Node3D
 
 @export var key: String
 @export_range(0, 5, 0.5) var mercyTimer: float = 0.5
-@export var card: CardPlacement
+@export var cardPlacement: CardPlacement
 
 var currentMercyTimer = 0
 var releasedKey: bool = true
@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 			currentMercyTimer -= delta
 		else:
 			setLabelsInvisible()
-			card.remove_card()
+			cardPlacement.remove_card()
 	
 	updateTimerLabel()
 
