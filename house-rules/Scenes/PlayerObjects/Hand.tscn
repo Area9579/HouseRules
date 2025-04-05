@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://i4dp08flh60h"]
+[gd_scene load_steps=5 format=3 uid="uid://i4dp08flh60h"]
 
 [ext_resource type="PackedScene" uid="uid://5yf0piy2h2c3" path="res://raw_assets/Hand.blend" id="1_qujy3"]
 [ext_resource type="Script" uid="uid://nwhuyg4mi4p" path="res://Scenes/PlayerObjects/hand.gd" id="1_uqd6h"]
 [ext_resource type="PackedScene" uid="uid://cbhk6m8pavkcx" path="res://Card Game/Scenes/card_position.tscn" id="2_nbfy1"]
+[ext_resource type="PackedScene" uid="uid://2dinqbum68si" path="res://Scenes/KeyIndicator.tscn" id="4_bg4pj"]
 
 [node name="Hand" type="Node3D"]
 script = ExtResource("1_uqd6h")
@@ -30,10 +31,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0990179, 0.177485, -0.00908
 transform = Transform3D(0.990235, -0.135769, 0.0316375, 0.139137, 0.976624, -0.163847, -0.00865277, 0.166649, 0.985978, 0.0168069, 0.0206628, -0.0269839)
 
 [node name="CardPosition" parent="HandCardOrganizer" instance=ExtResource("2_nbfy1")]
-transform = Transform3D(0.0207695, 0.00894985, 0.010655, 0.0137153, -0.00993452, -0.0183901, -0.00234947, 0.0211236, -0.0131634, -0.0764231, 0.188268, 0.0593501)
+transform = Transform3D(0.0207695, 0.00894986, 0.010655, 0.0137153, -0.00993451, -0.0183901, -0.00234947, 0.0211236, -0.0131634, -0.0764231, 0.188268, 0.0593501)
 
 [node name="CardPosition2" parent="HandCardOrganizer" instance=ExtResource("2_nbfy1")]
-transform = Transform3D(0.0238914, 0.00562636, 0.00474806, 0.00714544, -0.0138389, -0.0195557, -0.00177278, 0.0200456, -0.0148334, -0.0357123, 0.21556, 0.0571123)
+transform = Transform3D(0.0238914, 0.00562636, 0.00474806, 0.00714544, -0.0138389, -0.0195557, -0.00177279, 0.0200456, -0.0148334, -0.0357123, 0.21556, 0.0571123)
 
 [node name="CardPosition3" parent="HandCardOrganizer" instance=ExtResource("2_nbfy1")]
 transform = Transform3D(0.0248899, -0.000538908, -0.00228052, -0.00223432, -0.012792, -0.0213629, -0.000706392, 0.0214726, -0.0127838, 0.0198447, 0.218987, 0.0521822)
@@ -43,3 +44,24 @@ transform = Transform3D(0.0213833, -0.0100027, -0.00822796, -0.0119428, -0.00908
 
 [node name="CardPosition5" parent="HandCardOrganizer" instance=ExtResource("2_nbfy1")]
 transform = Transform3D(0.0184679, -0.00971939, -0.0137648, -0.0165887, -0.00690158, -0.0173835, 0.00295829, 0.021975, -0.0115476, 0.100763, 0.158365, 0.0672782)
+
+[node name="KeyIndicators" type="Node3D" parent="."]
+
+[node name="KeyIndicator" parent="KeyIndicators" instance=ExtResource("4_bg4pj")]
+transform = Transform3D(0.126617, -0.0920454, 0.0663004, 0.112434, 0.0886423, -0.0916578, 0.0150569, 0.112117, 0.126898, -0.11784, 0.215026, 0.101407)
+
+[node name="KeyIndicator2" parent="KeyIndicators" instance=ExtResource("4_bg4pj")]
+transform = Transform3D(0.154839, -0.0575522, 0.0401579, 0.0696165, 0.113687, -0.105493, 0.00885839, 0.11253, 0.127116, -0.063726, 0.256446, 0.107148)
+key = "S"
+
+[node name="KeyIndicator3" parent="KeyIndicators" instance=ExtResource("4_bg4pj")]
+transform = Transform3D(0.169719, -0.00895983, -0.00389551, 0.00412107, 0.127109, -0.112811, 0.00885839, 0.11253, 0.127116, 0.00674344, 0.2813, 0.0943525)
+key = "D"
+
+[node name="KeyIndicator4" parent="KeyIndicators" instance=ExtResource("4_bg4pj")]
+transform = Transform3D(0.158652, 0.0435114, -0.0428513, -0.0580098, 0.144659, -0.0678873, 0.0190879, 0.0779781, 0.14985, 0.0762496, 0.256206, 0.0943525)
+key = "F"
+
+[node name="KeyIndicator5" parent="KeyIndicators" instance=ExtResource("4_bg4pj")]
+transform = Transform3D(0.13682, 0.0803188, -0.0610673, -0.100298, 0.119464, -0.0675909, 0.0109796, 0.0904278, 0.143535, 0.128919, 0.216262, 0.0943525)
+key = "Space"

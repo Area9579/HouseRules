@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cj6sgqhmyn8sq" path="res://Scripts/keyIndicator.gd" id="1_fdoi5"]
 
 [node name="KeyIndicator" type="Node3D"]
+transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 0.17, 0, 0, 0)
 script = ExtResource("1_fdoi5")
 key = "A"
 
