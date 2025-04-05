@@ -79,3 +79,9 @@ func switch_cards( desired_placement ):
 	selected_placement.card = null
 	selected_placement.update_text()
 	selected_placement = null
+
+func update_row(amount : int, col : int, person : int):
+	if person == 0: #player
+		$PlayerColumnText.get_child(col).text = str(amount)
+	if person == 1:
+		$LadyColumnText.get_child(col).text = str(amount)
