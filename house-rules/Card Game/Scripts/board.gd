@@ -72,7 +72,7 @@ func clear_board():
 			card_placement.remove_card()
 
 func switch_cards( desired_placement ):
-	if selected_placement == null or desired_placement.card != null: 
+	if selected_placement == null or desired_placement.card != null or selected_placement.card == null: 
 		return
 	selected_placement.card.reparent( desired_placement, false)
 	desired_placement.set_card( selected_placement.card )
