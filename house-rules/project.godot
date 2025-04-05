@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="House Rules"
-run/main_scene="uid://d25ggaksqfq77"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
