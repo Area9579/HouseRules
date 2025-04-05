@@ -47,4 +47,4 @@ transform = Transform3D(0.817887, 0.575368, 0.00338627, -0.57489, 0.816938, 0.04
 size = Vector3(630.338, 5, 21)
 
 [node name="Lady" parent="Enviornment" instance=ExtResource("2_6l7je")]
-transform = Transform3D(0.0374809, 0, -0.999297, 0, 1, 0, 0.999297, 0, 0.0374809, 0.529384, 1.1214, -2.62871)
+transform = Transform3D(0.0374809, 0, -0.999297, 0, 1, 0, 0.999297, 0, 0.0374809, 0.944115, 1.1214, -2.62871)
