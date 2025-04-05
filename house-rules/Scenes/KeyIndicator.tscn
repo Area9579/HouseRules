@@ -1,10 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://dgwyosh1t3sp1"]
 
-[ext_resource type="Script" uid="uid://cj6sgqhmyn8sq" path="res://keyIndicator.gd" id="1_fdoi5"]
+[ext_resource type="Script" uid="uid://cj6sgqhmyn8sq" path="res://Scripts/keyIndicator.gd" id="1_fdoi5"]
 
 [node name="KeyIndicator" type="Node3D"]
 script = ExtResource("1_fdoi5")
 key = "A"
 
 [node name="Label3D" type="Label3D" parent="."]
+visible = false
 text = "A"

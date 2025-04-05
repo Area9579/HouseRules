@@ -17,7 +17,7 @@ config/icon="uid://db0tp6ik46wk0"
 
 [autoload]
 
-Director="*res://director.gd"
+Director="*res://Scripts/director.gd"
 
 [file_customization]
 
