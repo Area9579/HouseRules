@@ -11,9 +11,10 @@ var suit : String
 var value_name : String
 
 func _ready() -> void:
-	new_card( 0, "", "", "")
+	pass
+	#new_card( 0, "", "", "")
 
-func new_card( value : int, color: String, suit: String, value_name : String):
+func _init( value : int = 0, color: String = "red", suit: String = "spade", value_name : String = "basic_value"):
 	self.value = value
 	self.color = color
 	self.suit = suit
