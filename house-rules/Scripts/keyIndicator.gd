@@ -3,7 +3,7 @@ extends Node3D
 @onready var keyLabel: Label3D = $Label3D
 
 @export var key: String
-@export_range(0,5,0.5) var mercyTimer: float
+@export_range(0, 5, 0.5) var mercyTimer: float = 0.5
 
 var currentMercyTimer = 0
 
@@ -17,13 +17,12 @@ func _process(delta: float) -> void:
 	if currentMercyTimer > 0:
 		currentMercyTimer -= delta
 	else:
-		currentMercyTimer = mercyTimer
+		pass
 
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and key == OS.get_keycode_string(event.get_keycode_with_modifiers()):
-		print(OS.get_keycode_string(event.get_keycode_with_modifiers()))
 		Director.keyPressed.emit(OS.get_keycode_string(event.get_keycode_with_modifiers()))
 	elif event is InputEventKey and key == OS.get_keycode_string(event.get_keycode_with_modifiers()):
 		Director.keyReleased.emit(OS.get_keycode_string(event.get_keycode_with_modifiers()))
