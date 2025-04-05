@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="House Rules"
+run/main_scene="res://KeyIndicator.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Director="*res://director.gd"
