@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cbhk6m8pavkcx"]
 
-[ext_resource type="Script" uid="uid://dkfo1gfj06h7l" path="res://Card Game/Scripts/card_position.gd" id="1_rcdbo"]
+[ext_resource type="Script" uid="uid://dkfo1gfj06h7l" path="res://Card Game/Scripts/card_placement.gd" id="1_rcdbo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mxad6"]
 size = Vector3(2.28333, 0.195313, 3.46252)
