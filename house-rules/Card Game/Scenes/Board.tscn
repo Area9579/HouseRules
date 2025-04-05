@@ -106,6 +106,3 @@ text = "1"
 transform = Transform3D(8.59019, 0, 0, 0, 8.59019, 0, 0, 0, 8.59019, 3.85104, 0, 15.1786)
 text = "2
 "
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.845551, 0.533895, 0, -0.533895, 0.845551, 0, 10.982, 25.3753)

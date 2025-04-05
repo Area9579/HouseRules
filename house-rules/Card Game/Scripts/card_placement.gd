@@ -19,7 +19,7 @@ func set_card( new_card : Card ):
 	card.update_text()
 	text.text = ""
 	
-	organizer.place_card(card, int(String(name)[0]), int(String(name)[1]))
+	#organizer.place_card(card, int(String(name)[0]), int(String(name)[1]))
 	
 	
 
