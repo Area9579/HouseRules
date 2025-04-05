@@ -13,6 +13,7 @@ func _init() -> void:
 		var suit = "spades" if i % 4 == 0 else "diamonds" if i % 4 == 1 else "hearts" if i % 4 == 2 else "clubs"
 		var color = "red" if suit == "diamonds" else "red" if suit == "hearts" else "black"
 		var _card = CARD.instantiate()
+		_card.name = "Card"
 		_card.initialize( value, color, suit, value_name )
 		default_list.append( _card )
 	for card in default_list:
