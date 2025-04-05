@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="House Rules"
+run/main_scene="uid://b0rwlf5m20p45"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://db0tp6ik46wk0"
+
+[autoload]
+
+Director="*res://director.gd"
 
 [file_customization]
 
