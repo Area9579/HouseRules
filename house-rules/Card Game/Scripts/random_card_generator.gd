@@ -15,7 +15,8 @@ func _init() -> void:
 		var _card = CARD.instantiate()
 		_card.initialize( value, color, suit, value_name )
 		default_list.append( _card )
-	available_list.append_array(default_list)
+	for card in default_list:
+		available_list.append(card.duplicate())
 	available_list.shuffle()
 
 func get_new_card():
