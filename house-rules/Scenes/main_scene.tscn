@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxddpve567luf"]
+[gd_scene load_steps=8 format=3 uid="uid://cxddpve567luf"]
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="PackedScene" uid="uid://3fqo0iphm067" path="res://raw_assets/Lady.blend" id="2_6l7je"]
 [ext_resource type="PackedScene" uid="uid://c27iw0ytkgcnm" path="res://Card Game/Scenes/Board.tscn" id="3_jv6wh"]
+[ext_resource type="PackedScene" uid="uid://cuah32gd4hyyy" path="res://Scenes/player_camera.tscn" id="4_x6ack"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_52fb6"]
 sky_top_color = Color(0.542308, 0.368438, 0.613554, 1)
@@ -22,11 +23,6 @@ ambient_light_color = Color(0.741385, 0.741385, 0.741385, 1)
 ambient_light_energy = 0.68
 
 [node name="MainScene" type="Node3D"]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-2.94341e-08, 0.739302, -0.673374, 3.23159e-08, 0.673374, 0.739302, 1, 1.59253e-15, -4.37114e-08, -0.498698, 1.29934, -2.64075)
-current = true
-fov = 75.9375
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6l7je")
@@ -57,3 +53,6 @@ transform = Transform3D(0.0374809, 0, -0.999297, 0, 1, 0, 0.999297, 0, 0.0374809
 
 [node name="Board" parent="." instance=ExtResource("3_jv6wh")]
 transform = Transform3D(-0.000265723, 0, -0.034999, 0, -0.035, 0, 0.034999, 0, -0.000265723, 0.0308007, 1.00034, -2.64992)
+
+[node name="PlayerCamera" parent="." instance=ExtResource("4_x6ack")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.705103, 1.37092, -2.6695)
