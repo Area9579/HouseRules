@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6powey4vaj3o"]
+
+[ext_resource type="Script" uid="uid://cjdtysuku3src" path="res://Card Game/Scripts/random_card_generator.gd" id="1_bu0m7"]
+
+[node name="RandomCardGenerator" type="Node3D"]
+script = ExtResource("1_bu0m7")
