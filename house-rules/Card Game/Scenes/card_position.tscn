@@ -12,6 +12,7 @@ script = ExtResource("1_rcdbo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_mxad6")
+debug_color = Color(0, 0.6, 0.701961, 1)
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0216928, 0.999765, 0, -0.999765, 0.0216928, 0, 0.214684, 0)
