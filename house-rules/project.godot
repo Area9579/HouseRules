@@ -11,10 +11,13 @@ config_version=5
 [application]
 
 config/name="House Rules"
-run/main_scene="res://KeyIndicator.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://db0tp6ik46wk0"
 
-[autoload]
+[file_customization]
 
-Director="*res://director.gd"
+folder_colors={
+"res://Scenes/": "purple",
+"res://Scripts/": "teal",
+"res://raw_assets/": "red"
+}
