@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://3fqo0iphm067" path="res://raw_assets/Lady.blend" id="2_6l7je"]
 [ext_resource type="PackedScene" uid="uid://c27iw0ytkgcnm" path="res://Card Game/Scenes/Board.tscn" id="3_jv6wh"]
 [ext_resource type="PackedScene" uid="uid://cuah32gd4hyyy" path="res://Scenes/player_camera.tscn" id="4_x6ack"]
+[ext_resource type="PackedScene" uid="uid://i4dp08flh60h" path="res://Scenes/PlayerObjects/Hand.tscn" id="4_x6ack"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_52fb6"]
 sky_top_color = Color(0.542308, 0.368438, 0.613554, 1)
@@ -56,3 +57,5 @@ transform = Transform3D(-0.000265723, 0, -0.034999, 0, -0.035, 0, 0.034999, 0, -
 
 [node name="PlayerCamera" parent="." instance=ExtResource("4_x6ack")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.705103, 1.37092, -2.6695)
+[node name="Hand" parent="." instance=ExtResource("4_x6ack")]
+transform = Transform3D(0.36826, 0.923027, -0.111385, -0.278548, 0.223838, 0.933974, 0.887015, -0.312919, 0.339538, -0.42301, 1.00919, -2.90106)
