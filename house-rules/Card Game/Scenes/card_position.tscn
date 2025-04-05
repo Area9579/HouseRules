@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbhk6m8pavkcx"]
+
+[ext_resource type="Script" uid="uid://dkfo1gfj06h7l" path="res://Card Game/Scripts/card_placement.gd" id="1_rcdbo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mxad6"]
+size = Vector3(2.28333, 0.195313, 3.46252)
+
+[node name="CardPosition" type="Node3D"]
+script = ExtResource("1_rcdbo")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_mxad6")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0216928, 0.999765, 0, -0.999765, 0.0216928, 0, 0.214684, 0)
+pixel_size = 0.025
+text = "wiz"
+
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]

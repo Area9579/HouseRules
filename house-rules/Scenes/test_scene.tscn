@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0rwlf5m20p45"]
+[gd_scene load_steps=3 format=3 uid="uid://ixt67rkymll6"]
 
 [ext_resource type="PackedScene" uid="uid://i4dp08flh60h" path="res://Scenes/PlayerObjects/Hand.tscn" id="1_r5l72"]
-[ext_resource type="PackedScene" uid="uid://dgwyosh1t3sp1" path="res://Scenes/KeyIndicator.tscn" id="2_50ct6"]
+[ext_resource type="PackedScene" uid="uid://2dinqbum68si" path="res://Scenes/KeyIndicator.tscn" id="2_50ct6"]
 
 [node name="TestScene" type="Node3D"]
 

@@ -11,7 +11,7 @@ func _process(_delta):
 	rotation_degrees.z = clamp(rotation_degrees.z, 0, 0)
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_pressed("RightClick"):
+	if Input.is_action_pressed("right"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif event is InputEventMouseMotion:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
