@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpy2hau80uxx7"]
+
+[ext_resource type="Script" uid="uid://830qq56qgdng" path="res://Scripts/quickTimeIndicator.gd" id="1_rdsnp"]
+
+[node name="QuickTimeIndicator" type="Node3D"]
+script = ExtResource("1_rdsnp")
+key = "H"
+mercyTimer = 1.5
+
+[node name="Label3D" type="Label3D" parent="."]
+text = "~"
+
+[node name="TimerLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.263725, 0)
+text = "0.0"

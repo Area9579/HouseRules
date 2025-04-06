@@ -1,28 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://ixt67rkymll6"]
+[gd_scene load_steps=2 format=3 uid="uid://ixt67rkymll6"]
 
-[ext_resource type="PackedScene" uid="uid://i4dp08flh60h" path="res://Scenes/PlayerObjects/Hand.tscn" id="1_r5l72"]
-[ext_resource type="PackedScene" uid="uid://2dinqbum68si" path="res://Scenes/KeyIndicator.tscn" id="2_50ct6"]
+[ext_resource type="PackedScene" uid="uid://cpy2hau80uxx7" path="res://Scenes/quick_time_indicator.tscn" id="1_3dogw"]
 
 [node name="TestScene" type="Node3D"]
 
-[node name="Hand" parent="." instance=ExtResource("1_r5l72")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.242362, 0.123943)
+[node name="Camera3D" type="Camera3D" parent="."]
 
-[node name="KeyIndicator" parent="." instance=ExtResource("2_50ct6")]
-transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, -0.0727661, 0.0163754, 0.155287)
+[node name="QuickTimeIndicator" parent="." instance=ExtResource("1_3dogw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.515242, 0, -0.754468)
 
-[node name="KeyIndicator2" parent="." instance=ExtResource("2_50ct6")]
-transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, -0.0252189, 0.023843, 0.155287)
-key = "S"
+[node name="QuickTimeIndicator2" parent="." instance=ExtResource("1_3dogw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225673, 0, -0.754468)
+key = "J"
 
-[node name="KeyIndicator3" parent="." instance=ExtResource("2_50ct6")]
-transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, 0.00913525, 0.023843, 0.155287)
-key = "D"
+[node name="QuickTimeIndicator3" parent="." instance=ExtResource("1_3dogw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0353464, 0, -0.754468)
+key = "K"
 
-[node name="KeyIndicator4" parent="." instance=ExtResource("2_50ct6")]
-transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, 0.0531857, 0.0188162, 0.155287)
-key = "F"
+[node name="QuickTimeIndicator4" parent="." instance=ExtResource("1_3dogw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.299085, 0, -0.754468)
+key = "L"
 
-[node name="KeyIndicator5" parent="." instance=ExtResource("2_50ct6")]
-transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, 0.106582, -0.0336276, 0)
-key = "Space"
+[node name="QuickTimeIndicator5" parent="." instance=ExtResource("1_3dogw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.549228, 0, -0.754468)
+key = "N"

@@ -5,28 +5,33 @@ extends Node3D
 @onready var timerLabel: Label3D = $TimerLabel
 
 @export var key: String
-@export_range(0, 5, 0.5) var mercyTimer: float = 0.5
+@export_range(0, 5, 0.5) var mercyTimer: float
 
-var currentMercyTimer = 0
+var currentMercyTimer
 var releasedKey: bool = true
 
 
 func _ready() -> void:
+	currentMercyTimer = mercyTimer
 	#connect both of the signals for pressing and releasing keys
 	Director.keyPressed.connect(keyIsPressed)
 	Director.keyReleased.connect(keyIsReleased)
 	#both of these are setting the text for the indicators, this will prob be changed later
 	keyLabel.text = key
 	timerLabel.text = str(mercyTimer)
+	keyLabel.modulate.a = 0.5
 
 
 func _process(delta: float) -> void:
-	#if a key is released, then decrease the timer
-	if releasedKey:
-		if currentMercyTimer > 0:
-			currentMercyTimer -= delta
-		else:
-			setLabelsInvisible()
+	#decrease the timer until it hits 0
+	if currentMercyTimer > 0:
+		currentMercyTimer -= delta
+	elif currentMercyTimer <= 0 and releasedKey == false:
+		setLabelsInvisible()
+		self.queue_free()
+	else:
+		setLabelsInvisible()
+		get_tree().quit()
 	
 	updateTimerLabel()
 
@@ -43,10 +48,8 @@ func _input(event: InputEvent) -> void:
 func keyIsPressed(signalKey):
 	#resets the timer, and turns the labels to be visible when key is pressed
 	if signalKey == key:
-		currentMercyTimer = mercyTimer
 		releasedKey = false
-		keyLabel.visible = true
-		timerLabel.visible = true
+		keyLabel.modulate.a = 1
 
 
 func keyIsReleased(signalKey):
@@ -56,8 +59,8 @@ func keyIsReleased(signalKey):
 
 
 func setLabelsInvisible(): #ok this one is pretty self explanatory
-	keyLabel.visible = false
-	timerLabel.visible = false
+	keyLabel.modulate.a = 0.5
+	timerLabel.modulate.a = 0.5
 
 
 func updateTimerLabel(): #yeah I don't need to say much about this, just formatting

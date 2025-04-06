@@ -47,8 +47,8 @@ func keyIsPressed(signalKey):
 	if signalKey == key:
 		currentMercyTimer = mercyTimer
 		releasedKey = false
-		keyLabel.visible = true
-		timerLabel.visible = true
+		keyLabel.modulate.a = 1
+		timerLabel.modulate.a = 1
 
 
 func keyIsReleased(signalKey):
@@ -58,8 +58,8 @@ func keyIsReleased(signalKey):
 
 
 func setLabelsInvisible(): #ok this one is pretty self explanatory
-	keyLabel.visible = false
-	timerLabel.visible = false
+	keyLabel.modulate.a = 0.5
+	timerLabel.modulate.a = 0.5
 
 
 func updateTimerLabel(): #yeah I don't need to say much about this, just formatting
