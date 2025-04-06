@@ -229,6 +229,7 @@ func draw_card():
 			if new_card == null:
 				return
 			card_placement.set_card(new_card)
+			break
 			#card_placement.set_card_position()
 			
 	drawing = false

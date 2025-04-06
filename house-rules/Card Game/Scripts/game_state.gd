@@ -32,6 +32,12 @@ func _process(delta: float) -> void:
 			
 		States.player_main:
 			next_state = States.player_end
+			
+			for card_placement in board.left_hand.hand_card_organizer.get_children():
+				if card_placement.card == null and card_placement:
+					state = next_state
+					break
+			
 			ray_pickable_state = true
 			set_ray_pickable_on_card_placements(ray_pickable_state)
 			ray_pickable_state = false
