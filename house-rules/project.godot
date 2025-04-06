@@ -18,6 +18,7 @@ config/icon="uid://db0tp6ik46wk0"
 [autoload]
 
 Director="*res://Scripts/director.gd"
+GameState="*res://Card Game/Scripts/game_state.gd"
 
 [file_customization]
 

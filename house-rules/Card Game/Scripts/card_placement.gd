@@ -19,14 +19,16 @@ func set_card( new_card : Card ):
 	card.update_text()
 	text.text = ""
 	
-	#organizer.place_card(card, int(String(name)[0]), int(String(name)[1]))
 	
-	
+	if organizer is Organizer:
+		organizer.place_card(card, int(String(name)[0]), int(String(name)[1]))
 
 func set_card_position():
 	card.position = self.position
 
 func remove_card():
+	if organizer is Organizer:
+		organizer.remove_card(int(String(name)[0]), int(String(name)[1]))
 	if card != null:
 		card.queue_free()
 	card = null

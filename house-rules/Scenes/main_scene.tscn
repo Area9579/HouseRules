@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxddpve567luf"]
+[gd_scene load_steps=12 format=3 uid="uid://cxddpve567luf"]
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
+[ext_resource type="Script" uid="uid://bl1a3eiy7hgeh" path="res://Card Game/Scripts/game_state.gd" id="1_huasi"]
 [ext_resource type="PackedScene" uid="uid://3fqo0iphm067" path="res://raw_assets/Lady.blend" id="2_6l7je"]
 [ext_resource type="PackedScene" uid="uid://c27iw0ytkgcnm" path="res://Card Game/Scenes/Board.tscn" id="3_jv6wh"]
-[ext_resource type="PackedScene" uid="uid://i4dp08flh60h" path="res://Scenes/PlayerObjects/Hand.tscn" id="4_x6ack"]
+[ext_resource type="Script" uid="uid://nwhuyg4mi4p" path="res://Scenes/PlayerObjects/hand.gd" id="4_maf8m"]
+[ext_resource type="PackedScene" uid="uid://5yf0piy2h2c3" path="res://raw_assets/Hand.blend" id="5_huasi"]
 [ext_resource type="PackedScene" uid="uid://cuah32gd4hyyy" path="res://Scenes/player_camera.tscn" id="5_iacmt"]
+[ext_resource type="PackedScene" uid="uid://cbhk6m8pavkcx" path="res://Card Game/Scenes/card_position.tscn" id="6_m1efj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_52fb6"]
 sky_top_color = Color(0.542308, 0.368438, 0.613554, 1)
@@ -24,6 +27,7 @@ ambient_light_color = Color(0.741385, 0.741385, 0.741385, 1)
 ambient_light_energy = 0.68
 
 [node name="MainScene" type="Node3D"]
+script = ExtResource("1_huasi")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6l7je")
@@ -55,8 +59,69 @@ transform = Transform3D(0.0374809, 0, -0.999297, 0, 1, 0, 0.999297, 0, 0.0374809
 [node name="Board" parent="." instance=ExtResource("3_jv6wh")]
 transform = Transform3D(-0.000265723, 0, -0.034999, 0, -0.035, 0, 0.034999, 0, -0.000265723, 0.0762958, 1.00034, -2.64992)
 
-[node name="Hand" parent="." instance=ExtResource("4_x6ack")]
+[node name="HandLeft" type="Node3D" parent="."]
 transform = Transform3D(0.322769, 0.894662, 0.30887, -0.444129, -0.145012, 0.88415, 0.835805, -0.422554, 0.35054, -0.376629, 1.08132, -2.92225)
+script = ExtResource("4_maf8m")
+
+[node name="Mesh" parent="HandLeft" instance=ExtResource("5_huasi")]
+
+[node name="FingerPositions" type="Node3D" parent="HandLeft"]
+
+[node name="1" type="Marker3D" parent="HandLeft/FingerPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0817568, 0.245508, 0.0394814)
+
+[node name="2" type="Marker3D" parent="HandLeft/FingerPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028941, 0.248324, 0.0394814)
+
+[node name="3" type="Marker3D" parent="HandLeft/FingerPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0145642, 0.244885, 0.0394814)
+
+[node name="4" type="Marker3D" parent="HandLeft/FingerPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0549277, 0.23818, 0.0303932)
+
+[node name="5" type="Marker3D" parent="HandLeft/FingerPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0990179, 0.177485, -0.00908822)
+
+[node name="HandCardOrganizer" type="Node3D" parent="HandLeft"]
+transform = Transform3D(0.990235, -0.135769, 0.0316375, 0.139137, 0.976624, -0.163847, -0.00865277, 0.166649, 0.985978, 0.0168069, 0.0206628, -0.0269839)
+
+[node name="CardPosition" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
+transform = Transform3D(0.0207695, 0.00894985, 0.010655, 0.0137153, -0.00993452, -0.0183901, -0.00234947, 0.0211236, -0.0131634, -0.0764231, 0.188268, 0.0593501)
+
+[node name="CardPosition2" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
+transform = Transform3D(0.0238914, 0.00562636, 0.00474806, 0.00714544, -0.0138389, -0.0195557, -0.00177278, 0.0200456, -0.0148334, -0.0357123, 0.21556, 0.0571123)
+
+[node name="CardPosition3" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
+transform = Transform3D(0.0248899, -0.000538908, -0.00228052, -0.00223432, -0.012792, -0.0213629, -0.000706392, 0.0214726, -0.0127838, 0.0198447, 0.218987, 0.0521822)
+
+[node name="CardPosition4" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
+transform = Transform3D(0.0213833, -0.0100027, -0.00822796, -0.0119428, -0.00908112, -0.0199976, 0.00501246, 0.0210352, -0.0125458, 0.0726406, 0.196224, 0.062027)
+
+[node name="CardPosition5" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
+transform = Transform3D(0.0184679, -0.00971939, -0.0137648, -0.0165887, -0.00690158, -0.0173835, 0.00295829, 0.021975, -0.0115476, 0.100763, 0.158365, 0.0672782)
+
+[node name="HandRight" type="Node3D" parent="."]
+transform = Transform3D(-0.350176, 0.936302, 0.0267549, 0.471332, 0.15145, 0.868855, 0.809459, 0.316862, -0.494344, -0.461582, 1.08838, -2.36465)
+script = ExtResource("4_maf8m")
+
+[node name="Mesh" parent="HandRight" instance=ExtResource("5_huasi")]
+
+[node name="FingerPositions" type="Node3D" parent="HandRight"]
+
+[node name="1" type="Marker3D" parent="HandRight/FingerPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0817568, 0.245508, 0.0394814)
+
+[node name="2" type="Marker3D" parent="HandRight/FingerPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028941, 0.248324, 0.0394814)
+
+[node name="3" type="Marker3D" parent="HandRight/FingerPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0145642, 0.244885, 0.0394814)
+
+[node name="4" type="Marker3D" parent="HandRight/FingerPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0549277, 0.23818, 0.0303932)
+
+[node name="5" type="Marker3D" parent="HandRight/FingerPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0990179, 0.177485, -0.00908822)
 
 [node name="PlayerCamera" parent="." instance=ExtResource("5_iacmt")]
 transform = Transform3D(-4.37114e-08, 0.866026, -0.5, 0, 0.5, 0.866026, 1, 3.78552e-08, -2.18557e-08, -0.52708, 1.47022, -2.64495)
