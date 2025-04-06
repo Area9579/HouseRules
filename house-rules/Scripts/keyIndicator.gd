@@ -1,16 +1,9 @@
-class_name KeyIndicator
-extends Node3D
+extends BaseKeyIndicator
 
-@onready var keyLabel: Label3D = $Label3D
-@onready var timerLabel: Label3D = $TimerLabel
-
-@export var key: String
-@export_range(0, 5, 0.5) var mercyTimer: float = 0.5
 @export var cardPlacement: CardPlacement
 
-var currentMercyTimer = 0
-var releasedKey: bool = false
 var cardFalling: bool = false
+var keybindList: Array[Array] = [["Q","A","Z"],["W","S","X"],["E","D","C"],["R","F","V"]]
 
 
 func _ready() -> void:
@@ -23,12 +16,14 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("left"):
+		switchKeys()
 	#if a key is released, then decrease the timer
 	if releasedKey:
 		if currentMercyTimer > 0:
 			currentMercyTimer -= delta
 		else:
-			setLabelsInvisible()
+			labelHalfOpacity()
 			if cardPlacement.card != null and !cardFalling:
 				cardFalling = true
 				cardPlacement.card.launchCard()
@@ -37,15 +32,6 @@ func _process(delta: float) -> void:
 				cardPlacement.remove_card()
 	
 	updateTimerLabel()
-
-
-func _input(event: InputEvent) -> void:
-	#Check to see if the button you pressed is equivalent to the key variable, then send a signal to director
-	if event is InputEventKey and event.is_pressed() and key == OS.get_keycode_string(event.get_keycode_with_modifiers()):
-		Director.keyPressed.emit(OS.get_keycode_string(event.get_keycode_with_modifiers()))
-	#Check to see if the key you released is equivalent to the key variable, then send a signal to director
-	elif event is InputEventKey and key == OS.get_keycode_string(event.get_keycode_with_modifiers()):
-		Director.keyReleased.emit(OS.get_keycode_string(event.get_keycode_with_modifiers()))
 
 
 func keyIsPressed(signalKey):
@@ -63,10 +49,18 @@ func keyIsReleased(signalKey):
 		releasedKey = true
 
 
-func setLabelsInvisible(): #ok this one is pretty self explanatory
-	keyLabel.modulate.a = 0.5
-	timerLabel.modulate.a = 0.5
+func switchKeys():
+	for keybindRow in range(0,keybindList.size()):
+		for keyIndex in range(0,keybindList[keybindRow].size()):
+			if keybindList[keybindRow][keyIndex] == key:
+				var randInt: int = randi_range(0,2)
+				print(keybindList[keybindRow][randInt])
+				updateKey(keybindList[keybindRow][randInt])
+				
 
-
-func updateTimerLabel(): #yeah I don't need to say much about this, just formatting
-	timerLabel.text = str(int(currentMercyTimer * 100) / 100.0)
+func updateKey(newKey: String):
+	key = newKey
+	keyLabel.text = key
+	releasedKey = true
+	labelHalfOpacity()
+	currentMercyTimer = 8
