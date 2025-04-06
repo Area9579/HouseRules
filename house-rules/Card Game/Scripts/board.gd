@@ -6,12 +6,18 @@ const CARD = preload("res://Card Game/Scenes/card.tscn")
 @onready var player_card_organizer: Node3D = $PlayerCardOrganizer
 @onready var card_generator: CardGenerator
 @onready var deck: CardPlacement = $DECK
-@onready var hand = get_parent().get_node("Hand")
+@onready var hand = get_parent().get_node("HandLeft")
+@onready var drawing = false
+
 
 @export var selected_card = null
 @export var selected_placement = null
 
+signal turn_passed(card)
+
 func _ready() -> void:
+	GameState.board = self
+	
 	card_generator = CardGenerator.new()
 	
 	for card_placement in lady_card_organizer.get_children():
@@ -30,32 +36,15 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_released("reset"):
 		clear_board()
 
-func lady_card_clicked( card_placement : CardPlacement ):
-	pass
-	
 
-func player_card_clicked( card_placement : CardPlacement ):
-	switch_cards( card_placement )
 
-func player_hand_clicked( card_placement : CardPlacement ):
-	selected_card = card_placement.card
-	selected_placement = card_placement
 
+## moving around cards logic
 func place_card( card_placement : CardPlacement ):
 	var new_card = card_generator.get_new_card()
 	if new_card == null:
 		return
 	card_placement.set_card( new_card )
-
-func deck_clicked( deck_position ):
-	for card_placement in hand.hand_card_organizer.get_children():
-		if card_placement.card == null:
-			var new_card = card_generator.get_new_card()
-			if new_card == null:
-				return
-			card_placement.set_card(new_card)
-			card_placement.set_card_position()
-			return
 
 func clear_board():
 	card_generator.get_new_deck()
@@ -79,3 +68,39 @@ func switch_cards( desired_placement ):
 	selected_placement.card = null
 	selected_placement.update_text()
 	selected_placement = null
+	GameState.state = GameState.next_state
+	return desired_placement
+	
+
+
+
+
+## signals connect from lady's cards, player's cards, player's hands, and deck, respectively
+func lady_card_clicked( card_placement : CardPlacement ):
+	if selected_placement.card.value_name == "joker":
+		pass
+		# add code here to nuke all cards of same suit
+	
+
+func player_card_clicked( card_placement : CardPlacement ):
+	if selected_placement.card.value_name == "joker":
+		pass
+		# add code here to nuke all cards of same suit
+	switch_cards( card_placement )
+
+func player_hand_clicked( card_placement : CardPlacement ):
+	selected_card = card_placement.card
+	selected_placement = card_placement
+
+func deck_clicked( deck_position ):
+	drawing = true
+	for card_placement in hand.hand_card_organizer.get_children():
+		if card_placement.card == null:
+			var new_card = card_generator.get_new_card()
+			if new_card == null:
+				return
+			card_placement.set_card(new_card)
+			card_placement.set_card_position()
+			GameState.state = GameState.States.player_main
+			drawing = false
+			return
