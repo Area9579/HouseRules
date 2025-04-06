@@ -1,9 +1,10 @@
 extends BaseKeyIndicator
 
 var quicktimeKeyList : Array[String] = ["Y","H","N","U","J","M","I","K","I","K","O","L","P"]
-
+@onready var item_parent = get_parent().get_parent().get_parent()
 
 func _ready() -> void:
+	releasedKey = true
 	randomizeKey()
 	currentMercyTimer = mercyTimer
 	#connect both of the signals for pressing and releasing keys
@@ -19,12 +20,19 @@ func _process(delta: float) -> void:
 	#decrease the timer until it hits 0
 	if currentMercyTimer > 0:
 		currentMercyTimer -= delta
-	elif currentMercyTimer <= 0 and releasedKey == false: #if you hit the key in time
+	
+	## if you hit the key in time:
+	elif currentMercyTimer <= 0 and releasedKey == false: 
 		labelHalfOpacity()
+		if item_parent.name == "Item":
+			item_parent.state = item_parent.States.in_hand
 		self.queue_free()
-	else: #what happens when you miss the QTE
+	## if you dont hit the key in time:
+	else: 
 		labelHalfOpacity()
-		get_tree().quit() #replace this with death later
+		if item_parent.name == "Item":
+			item_parent.state = item_parent.States.falling
+		self.queue_free()
 	
 	updateTimerLabel()
 
@@ -39,7 +47,6 @@ func keyIsPressed(signalKey):
 func keyIsReleased(signalKey):
 	#change bool to state that a key has been released
 	if signalKey == key:
-		releasedKey = true
 		keyLabel.modulate.a = 0.5
 
 

@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var timer: Timer = $Timer
 @onready var new_item
-#@onready var 
+@onready var right_hand = get_parent().get_node("HandRight")
 
 const ITEM = preload("res://Items/Scenes/Item.tscn")
 
@@ -32,9 +32,11 @@ func spawn_item():
 	timer.start(10)
 
 func move_item_to_hand( item: Item ):
-	if item != null:
-		new_item = null
-	
+	if item == null:
+		return
+	item.reparent(right_hand, false)
+	new_item = null
+	return right_hand
 
 
 func _on_timer_timeout() -> void:

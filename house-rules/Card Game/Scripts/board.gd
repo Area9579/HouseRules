@@ -6,7 +6,8 @@ const CARD = preload("res://Card Game/Scenes/card.tscn")
 @onready var player_card_organizer: Node3D = $PlayerCardOrganizer
 @onready var card_generator: CardGenerator
 @onready var deck = $DECK
-@onready var hand = get_parent().get_node("HandLeft")
+@onready var left_hand = get_parent().get_node("HandLeft")
+@onready var right_hand = get_parent().get_node("HandRight")
 @onready var drawing = false
 
 
@@ -31,10 +32,15 @@ func _ready() -> void:
 	## ways around this but oops, this still works)
 	
 	deck.connect("placement_clicked", deck_clicked)
+	
+	right_hand.connect("item_clicked", item_clicked)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("reset"):
 		clear_board()
+
+func item_clicked( item : Item ):
+	print("item used")
 
 ## moving around cards logic
 func place_card( card_placement : CardPlacement ):
@@ -53,7 +59,7 @@ func clear_board():
 		if card_placement.card != null:
 			card_placement.remove_card()
 	
-	for card_placement in hand.hand_card_organizer.get_children():
+	for card_placement in left_hand.hand_card_organizer.get_children():
 		if card_placement.card != null:
 			card_placement.remove_card()
 
@@ -111,7 +117,7 @@ func player_hand_clicked( card_placement : CardPlacement ):
 
 func deck_clicked( deck_position ):
 	drawing = true
-	for card_placement in hand.hand_card_organizer.get_children():
+	for card_placement in left_hand.hand_card_organizer.get_children():
 		if card_placement.card == null:
 			var new_card = card_generator.get_new_card()
 			if new_card == null:

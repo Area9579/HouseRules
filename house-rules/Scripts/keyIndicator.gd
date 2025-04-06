@@ -54,7 +54,7 @@ func switchKeys():
 		for keyIndex in range(0,keybindList[keybindRow].size()):
 			if keybindList[keybindRow][keyIndex] == key:
 				var randInt: int = randi_range(0,2)
-				print(keybindList[keybindRow][randInt])
+				#print(keybindList[keybindRow][randInt])
 				updateKey(keybindList[keybindRow][randInt])
 				
 
