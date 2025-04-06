@@ -21,13 +21,14 @@ func _ready() -> void:
 func _turn_pass(): return true
 
 func _process(delta: float) -> void:
+	
 	if board == null or item_spawner == null:
 		return
 	match state:
 		States.player_draw:
 			next_state = States.player_main
 			if board.drawing == false:
-				board.deck_clicked(0)
+				board.draw_card()
 			
 		States.player_main:
 			next_state = States.player_end
