@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="Script" uid="uid://bl1a3eiy7hgeh" path="res://Card Game/Scripts/game_state.gd" id="1_huasi"]
-[ext_resource type="PackedScene" uid="uid://3fqo0iphm067" path="res://raw_assets/Lady.blend" id="2_6l7je"]
 [ext_resource type="PackedScene" uid="uid://c27iw0ytkgcnm" path="res://Card Game/Scenes/Board.tscn" id="3_jv6wh"]
+[ext_resource type="PackedScene" uid="uid://cgqj30855y5vj" path="res://raw_assets/BEUASTYYYYY.blend" id="3_m1efj"]
 [ext_resource type="Script" uid="uid://nwhuyg4mi4p" path="res://Scenes/PlayerObjects/hand.gd" id="4_maf8m"]
 [ext_resource type="PackedScene" uid="uid://5yf0piy2h2c3" path="res://raw_assets/Hand.blend" id="5_huasi"]
 [ext_resource type="PackedScene" uid="uid://cuah32gd4hyyy" path="res://Scenes/player_camera.tscn" id="5_iacmt"]
@@ -55,11 +55,11 @@ size = Vector3(53, 5, 21)
 transform = Transform3D(0.817887, 0.575368, 0.00338627, -0.57489, 0.816938, 0.0459615, 0.0236784, -0.0395381, 0.998937, 280.624, -184.935, 7.3366)
 size = Vector3(630.338, 5, 21)
 
-[node name="Lady" parent="Enviornment" instance=ExtResource("2_6l7je")]
-transform = Transform3D(0.0374809, 0, -0.999297, 0, 1, 0, 0.999297, 0, 0.0374809, 0.944115, 1.1214, -2.62871)
+[node name="BEUASTYYYYY" parent="Enviornment" instance=ExtResource("3_m1efj")]
+transform = Transform3D(0.315749, 0, 0.0105296, 0, 0.315924, 0, -0.0105296, 0, 0.315749, 1.16608, 1.44492, -2.65791)
 
 [node name="Board" parent="." instance=ExtResource("3_jv6wh")]
-transform = Transform3D(-0.000265723, 0, -0.034999, 0, -0.035, 0, 0.034999, 0, -0.000265723, 0.0762958, 1.00034, -2.64992)
+transform = Transform3D(-0.000261839, 0, -0.0344872, 0, 0.0344882, 0, 0.0344872, 0, -0.000261839, 0.129947, 1.02408, -2.61904)
 
 [node name="HandLeft" type="Node3D" parent="."]
 transform = Transform3D(0.322769, 0.894662, 0.30887, -0.444129, -0.145012, 0.88415, 0.835805, -0.422554, 0.35054, -0.376629, 1.08132, -2.92225)
