@@ -97,32 +97,40 @@ text = "wiz"
 [node name="LadyColumnText" type="Node3D" parent="."]
 
 [node name="0" type="Label3D" parent="LadyColumnText"]
-transform = Transform3D(8.18991, 0, 0, 0, 8.18991, 0, 0, 0, 8.18991, -3.04406, 0, -12.8919)
+transform = Transform3D(8.18988, -0.0193953, 0.00879082, 0.0193957, 8.18989, -0.000386126, -0.00878987, 0.000407043, 8.1899, -3.04689, 1.22926, -12.8892)
 text = "0"
 
 [node name="1" type="Label3D" parent="LadyColumnText"]
-transform = Transform3D(8.18991, 0, 0, 0, 8.18991, 0, 0, 0, 8.18991, 2.04576, 0, -12.8919)
+transform = Transform3D(8.18988, -0.0193953, 0.00879082, 0.0193957, 8.18989, -0.000386126, -0.00878987, 0.000407043, 8.1899, 2.04291, 1.24132, -12.8946)
 text = "1
 "
 
 [node name="2" type="Label3D" parent="LadyColumnText"]
-transform = Transform3D(8.18991, 0, 0, 0, 8.18991, 0, 0, 0, 8.18991, 5.85234, 0, -12.8919)
+transform = Transform3D(8.18988, -0.0193953, 0.00879082, 0.0193957, 8.18989, -0.000386126, -0.00878987, 0.000407043, 8.1899, 5.84948, 1.25033, -12.8987)
 text = "2"
+
+[node name="FinalScore" type="Label3D" parent="LadyColumnText"]
+transform = Transform3D(6.20806, -0.0147019, 0.00666358, 0.0147022, 6.20807, -0.00029269, -0.00666287, 0.000308545, 6.20808, 8.62085, 1.21972, -2.30752)
+text = "lady"
 
 [node name="PlayerColumnText" type="Node3D" parent="."]
 
 [node name="0" type="Label3D" parent="PlayerColumnText"]
-transform = Transform3D(8.59019, 0, 0, 0, 8.59019, 0, 0, 0, 8.59019, -3.33814, 0, 14.7144)
+transform = Transform3D(8.59019, 0, 0, 0, 6.64382, 5.44527, 0, -5.44527, 6.64382, -3.33814, 1.12896, 13.553)
 text = "0"
 
 [node name="1" type="Label3D" parent="PlayerColumnText"]
-transform = Transform3D(8.59019, 0, 0, 0, 8.59019, 0, 0, 0, 8.59019, 0, 0, 15.5226)
+transform = Transform3D(8.59019, 0, 0, 0, 6.64382, 5.44527, 0, -5.44527, 6.64382, 0, 1.15331, 13.5827)
 text = "1"
 
 [node name="2" type="Label3D" parent="PlayerColumnText"]
-transform = Transform3D(8.59019, 0, 0, 0, 8.59019, 0, 0, 0, 8.59019, 3.85104, 0, 15.1786)
+transform = Transform3D(8.59019, 0, 0, 0, 6.64382, 5.44527, 0, -5.44527, 6.64382, 3.85104, 1.42321, 13.912)
 text = "2
 "
+
+[node name="FinalScore" type="Label3D" parent="PlayerColumnText"]
+transform = Transform3D(6.1644, 0, 0, 0, 6.1644, 0, 0, 0, 6.1644, 8.61231, 0.718102, 5.69199)
+text = "player"
 
 [connection signal="mouse_entered" from="DECK/Area3D" to="DECK" method="_on_area_3d_mouse_entered"]
 [connection signal="mouse_exited" from="DECK/Area3D" to="DECK" method="_on_area_3d_mouse_exited"]

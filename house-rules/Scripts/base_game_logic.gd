@@ -7,7 +7,6 @@ var list_1 = []
 var list_2 = []
 var list_3 = []
 
-
 @export var enemy : Organizer
 var id = 0
 @onready var board: Node3D = $".."
@@ -19,10 +18,27 @@ func _ready() -> void:
 func place_card(card, col, row):
 	cards[col][row] = card
 	board.update_row(update_board_column(col), col, id)
+	send_to_enemy()
 
 func remove_card(col, row):
 	cards[col][row] = null
 	update_board_column(col)
+
+func send_to_enemy():
+	enemy.receive_enemy(cards)
+
+func receive_enemy(data):
+	var card_index_1 = -1
+	for i in data:
+		card_index_1 += 1
+		for u : Card in i:
+			if u != null:
+				for x in cards[card_index_1]:
+					var new_index = cards[card_index_1].find(x)
+					if x != null:
+						if u.value_name == cards[card_index_1][new_index].value_name:
+							cards[card_index_1][new_index].get_parent().remove_card()
+	
 
 func update_whole_board():
 	update_board_column(0)
