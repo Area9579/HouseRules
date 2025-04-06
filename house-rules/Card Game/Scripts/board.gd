@@ -5,7 +5,7 @@ const CARD = preload("res://Card Game/Scenes/card.tscn")
 @onready var lady_card_organizer: Node3D = $LadyCardOrganizer
 @onready var player_card_organizer: Node3D = $PlayerCardOrganizer
 @onready var card_generator: CardGenerator
-@onready var deck: CardPlacement = $DECK
+@onready var deck = $DECK
 @onready var hand = get_parent().get_node("HandLeft")
 @onready var drawing = false
 
@@ -61,7 +61,7 @@ func clear_board():
 			card_placement.remove_card()
 
 func switch_cards( desired_placement ):
-	if selected_placement == null or desired_placement.card != null or selected_placement.card == null: 
+	if desired_placement.card != null or selected_placement.card == null: 
 		return
 	selected_placement.card.reparent( desired_placement, false)
 	desired_placement.set_card( selected_placement.card )
@@ -76,22 +76,20 @@ func update_row(amount : int, col : int, person : int):
 		$PlayerColumnText.get_child(col).text = str(amount)
 	if person == 1:
 		$LadyColumnText.get_child(col).text = str(amount)
-	
-	
 
 
 
 
 ## signals connect from lady's cards, player's cards, player's hands, and deck, respectively
 func lady_card_clicked( card_placement : CardPlacement ):
-	if selected_placement.card.value_name == "joker":
-		pass
+	if selected_placement == null:
+		return
 		# add code here to nuke all cards of same suit
 	
 
 func player_card_clicked( card_placement : CardPlacement ):
-	if selected_placement.card.value_name == "joker":
-		pass
+	if selected_placement == null:
+		return
 		# add code here to nuke all cards of same suit
 	switch_cards( card_placement )
 
