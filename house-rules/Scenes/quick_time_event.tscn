@@ -6,24 +6,4 @@
 transform = Transform3D(-1.09278e-08, 0.25, 1.09278e-08, 0, -1.09278e-08, 0.25, 0.25, 1.09278e-08, 4.77671e-16, -0.408512, 1.06069, -2.65226)
 
 [node name="QuickTimeIndicator" parent="." instance=ExtResource("1_aarmr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0, 0)
-mercyTimer = 2.0
-
-[node name="QuickTimeIndicator2" parent="." instance=ExtResource("1_aarmr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0, 0)
-key = "J"
-mercyTimer = 2.0
-
-[node name="QuickTimeIndicator3" parent="." instance=ExtResource("1_aarmr")]
-key = "K"
-mercyTimer = 2.0
-
-[node name="QuickTimeIndicator4" parent="." instance=ExtResource("1_aarmr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 0)
-key = "L"
-mercyTimer = 2.0
-
-[node name="QuickTimeIndicator5" parent="." instance=ExtResource("1_aarmr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 0)
-key = "N"
 mercyTimer = 2.0

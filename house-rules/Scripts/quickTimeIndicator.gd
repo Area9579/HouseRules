@@ -1,17 +1,10 @@
-class_name QuickTimeIndicator
-extends Node3D
+extends BaseKeyIndicator
 
-@onready var keyLabel: Label3D = $Label3D
-@onready var timerLabel: Label3D = $TimerLabel
-
-@export var key: String
-@export_range(0, 5, 0.5) var mercyTimer: float
-
-var currentMercyTimer
-var releasedKey: bool = true
+var quicktimeKeyList : Array[String] = ["Y","H","N","U","J","M","I","K","I","K","O","L","P"]
 
 
 func _ready() -> void:
+	randomizeKey()
 	currentMercyTimer = mercyTimer
 	#connect both of the signals for pressing and releasing keys
 	Director.keyPressed.connect(keyIsPressed)
@@ -26,23 +19,14 @@ func _process(delta: float) -> void:
 	#decrease the timer until it hits 0
 	if currentMercyTimer > 0:
 		currentMercyTimer -= delta
-	elif currentMercyTimer <= 0 and releasedKey == false:
-		setLabelsInvisible()
+	elif currentMercyTimer <= 0 and releasedKey == false: #if you hit the key in time
+		labelHalfOpacity()
 		self.queue_free()
-	else:
-		setLabelsInvisible()
-		get_tree().quit()
+	else: #what happens when you miss the QTE
+		labelHalfOpacity()
+		get_tree().quit() #replace this with death later
 	
 	updateTimerLabel()
-
-
-func _input(event: InputEvent) -> void:
-	#Check to see if the button you pressed is equivalent to the key variable, then send a signal to director
-	if event is InputEventKey and event.is_pressed() and key == OS.get_keycode_string(event.get_keycode_with_modifiers()):
-		Director.keyPressed.emit(OS.get_keycode_string(event.get_keycode_with_modifiers()))
-	#Check to see if the key you released is equivalent to the key variable, then send a signal to director
-	elif event is InputEventKey and key == OS.get_keycode_string(event.get_keycode_with_modifiers()):
-		Director.keyReleased.emit(OS.get_keycode_string(event.get_keycode_with_modifiers()))
 
 
 func keyIsPressed(signalKey):
@@ -59,10 +43,6 @@ func keyIsReleased(signalKey):
 		keyLabel.modulate.a = 0.5
 
 
-func setLabelsInvisible(): #ok this one is pretty self explanatory
-	keyLabel.modulate.a = 0.5
-	timerLabel.modulate.a = 0.5
-
-
-func updateTimerLabel(): #yeah I don't need to say much about this, just formatting
-	timerLabel.text = str(int(currentMercyTimer * 100) / 100.0)
+func randomizeKey(): #randomizes the keybind for the key you need to press
+	var randInt : int = randi_range(0, quicktimeKeyList.size()-1)
+	key = quicktimeKeyList[randInt]
