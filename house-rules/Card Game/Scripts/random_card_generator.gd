@@ -14,7 +14,7 @@ func _init() -> void:
 		var color = "red" if suit == "diamonds" else "red" if suit == "hearts" else "black"
 		var _card = CARD.instantiate()
 		_card.name = "Card"
-		_card.initialize( value, color, suit, value_name )
+		_card.initialize( 2, color, suit, "king" )
 		default_list.append( _card )
 	for card in default_list:
 		available_list.append(card.duplicate())

@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 		clear_board()
 
 func lady_card_clicked( card_placement : CardPlacement ):
-	pass
+	switch_cards( card_placement ) #TODO remove
 	
 
 func player_card_clicked( card_placement : CardPlacement ):
@@ -74,14 +74,33 @@ func clear_board():
 func switch_cards( desired_placement ):
 	if selected_placement == null or desired_placement.card != null or selected_placement.card == null: 
 		return
+	
 	selected_placement.card.reparent( desired_placement, false)
 	desired_placement.set_card( selected_placement.card )
 	selected_placement.card = null
 	selected_placement.update_text()
 	selected_placement = null
+	#emit signal
 
+var player_score = [0,0,0]
+var player_final = 0
+
+var lady_score = [0,0,0]
+var lady_final = 0
 func update_row(amount : int, col : int, person : int):
 	if person == 0: #player
 		$PlayerColumnText.get_child(col).text = str(amount)
+		player_score[col] = amount
+		player_final = 0
+		for i in player_score:
+			player_final += i
+		$PlayerColumnText/FinalScore.text = str(player_final)
 	if person == 1:
 		$LadyColumnText.get_child(col).text = str(amount)
+		lady_score[col] = amount
+		player_final = 0
+		for i in lady_score:
+			player_final += i
+		$LadyColumnText/FinalScore.text = str(lady_final)
+	
+	
