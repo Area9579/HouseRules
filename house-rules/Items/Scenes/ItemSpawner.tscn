@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt1yeo0ewckf3"]
+
+[ext_resource type="Script" uid="uid://cngxa0chvirkp" path="res://Items/Scripts/item_spawner.gd" id="1_ytwfs"]
+
+[node name="ItemSpawner" type="Node3D"]
+script = ExtResource("1_ytwfs")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

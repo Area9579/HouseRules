@@ -1,6 +1,7 @@
 extends Node
 
-@onready var board 
+@onready var board
+@onready var item_spawner
 
 enum States {
 	player_draw, player_main, player_end,
@@ -16,7 +17,7 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	if board == null:
+	if board == null or item_spawner == null:
 		return
 	match state:
 		States.player_draw:
@@ -33,6 +34,7 @@ func _process(delta: float) -> void:
 		States.player_end:
 			# trigger item shit here
 			next_state = States.lady_draw
+			item_spawner.spawn_item()
 			set_ray_pickable_on_card_placements(ray_pickable_state)
 			state = next_state
 		
