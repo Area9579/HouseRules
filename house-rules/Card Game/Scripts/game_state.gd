@@ -1,6 +1,6 @@
 extends Node
 
-@onready var board 
+@onready var board : Board
 
 enum States {
 	player_draw, player_main, player_end,
@@ -12,8 +12,12 @@ enum States {
 @export var next_state = States.player_main
 @export var ray_pickable_state = false
 
+signal turn_pass
+
 func _ready() -> void:
-	pass
+	connect("turn_pass", _turn_pass)
+	
+func _turn_pass(): return true
 
 func _process(delta: float) -> void:
 	if board == null:
@@ -35,29 +39,41 @@ func _process(delta: float) -> void:
 			next_state = States.lady_draw
 			set_ray_pickable_on_card_placements(ray_pickable_state)
 			state = next_state
+			board.check_winner()
 		
 		States.lady_draw:
 			next_state = States.lady_main
+			
 			state = next_state
 		States.lady_main:
 			next_state = States.lady_end
+			state = null
+			board.lady_main()
+			await _turn_pass()
 			state = next_state
 		States.lady_end:
 			next_state = States.player_draw
 			state = next_state
+			board.check_winner()
 		
 		States.win:
 			next_state = null
-			pass
+			print("YAYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY")
 		States.lose:
 			next_state = null
-			pass
+			print("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
 		
 		States.item_event:
 			pass
 		States.fall_event:
 			pass
-		
+
+
+
+func win():
+	state = States.win
+func lose():
+	state = States.lose
 	
 func set_ray_pickable_on_card_placements( state ):
 	for clickable_area in board.get_node("LadyCardOrganizer").get_children():
