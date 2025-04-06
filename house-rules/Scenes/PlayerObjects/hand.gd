@@ -19,3 +19,5 @@ func _process(delta: float) -> void:
 			return
 		if Input.is_action_just_released("left") and item.has_mouse:
 			item_clicked.emit( item )
+			item.get_parent().queue_free()
+			item = null
