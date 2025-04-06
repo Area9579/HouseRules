@@ -12,6 +12,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_released("left") and has_mouse:
 		placement_clicked.emit( self )
 
+	
 func set_card( new_card : Card ):
 	card = new_card
 	if !has_node("Card"):
