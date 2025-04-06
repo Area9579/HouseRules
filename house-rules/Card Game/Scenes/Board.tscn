@@ -4,6 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://cbhk6m8pavkcx" path="res://Card Game/Scenes/card_position.tscn" id="1_bfgrx"]
 [ext_resource type="Script" uid="uid://c3brq1m82vy3k" path="res://Scripts/base_game_logic.gd" id="2_m0mw3"]
 [ext_resource type="PackedScene" uid="uid://bj7qdejlwck26" path="res://Scenes/MainCardDirector.tscn" id="3_m0mw3"]
+[ext_resource type="Script" uid="uid://dkfo1gfj06h7l" path="res://Card Game/Scripts/card_placement.gd" id="3_cgu5m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mxad6"]
+size = Vector3(2.28333, 0.195313, 3.46252)
 
 [node name="Board" type="Node3D"]
 script = ExtResource("1_52vfp")
@@ -72,7 +76,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.43133, 0, -3.90719)
 [node name="22" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.43133, 0, 0)
 
-[node name="DECK" parent="." instance=ExtResource("1_bfgrx")]
+[node name="DECK" type="Node3D" parent="."]
 transform = Transform3D(0.999964, 0, -0.00841238, 0, 1, 0, 0.00841238, 0, 0.999964, -6.87821, 0, 2.50535)
 
 [node name="MainCardDirector" parent="." instance=ExtResource("3_m0mw3")]
@@ -106,3 +110,19 @@ text = "1"
 transform = Transform3D(8.59019, 0, 0, 0, 8.59019, 0, 0, 0, 8.59019, 3.85104, 0, 15.1786)
 text = "2
 "
+script = ExtResource("3_cgu5m")
+
+[node name="Area3D" type="Area3D" parent="DECK"]
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DECK/Area3D"]
+shape = SubResource("BoxShape3D_mxad6")
+debug_color = Color(0, 0.6, 0.701961, 1)
+
+[node name="Label3D" type="Label3D" parent="DECK"]
+transform = Transform3D(1, 0, 0, 0, 0.0216928, 0.999765, 0, -0.999765, 0.0216928, 0, 0.214684, 0)
+pixel_size = 0.025
+text = "wiz"
+
+[connection signal="mouse_entered" from="DECK/Area3D" to="DECK" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="DECK/Area3D" to="DECK" method="_on_area_3d_mouse_exited"]
