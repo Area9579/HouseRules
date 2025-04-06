@@ -24,6 +24,7 @@ func set_card( new_card : Card ):
 		organizer.place_card(card, int(String(name)[0]), int(String(name)[1]))
 
 func set_card_position():
+	return
 	card.position = self.position
 
 func remove_card():

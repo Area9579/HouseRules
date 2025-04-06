@@ -117,7 +117,7 @@ func deck_clicked( deck_position ):
 			if new_card == null:
 				return
 			card_placement.set_card(new_card)
-			card_placement.set_card_position()
+			#card_placement.set_card_position()
 			GameState.state = GameState.States.player_main
 			drawing = false
 			return

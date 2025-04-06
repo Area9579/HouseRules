@@ -18,31 +18,31 @@ script = ExtResource("2_m0mw3")
 enemy = NodePath("../PlayerCardOrganizer")
 
 [node name="00" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.849144, 0, -7.5432)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -0.849144, 0, -7.5432)
 
 [node name="01" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.817017, 0, -3.74201)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -0.817017, 0, -3.74201)
 
 [node name="02" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.849144, 0, 0)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -0.849144, 0, 0)
 
 [node name="10" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78631, 0, -7.5432)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 2.78631, 0, -7.5432)
 
 [node name="11" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88639, 0, -3.74201)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 2.88639, 0, -3.74201)
 
 [node name="12" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72766, 0, 0)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 2.72766, 0, 0)
 
 [node name="20" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.24687, 0, -7.5432)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 6.24687, 0, -7.5432)
 
 [node name="21" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2897, 0, -3.74201)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 6.2897, 0, -3.74201)
 
 [node name="22" parent="LadyCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2897, 0, 0)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 6.2897, 0, 0)
 
 [node name="PlayerCardOrganizer" type="Node3D" parent="." node_paths=PackedStringArray("enemy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77016, 0, 12.4428)
@@ -50,31 +50,31 @@ script = ExtResource("2_m0mw3")
 enemy = NodePath("../LadyCardOrganizer")
 
 [node name="00" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.889129, 0, -7.6293)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -0.889129, 0, -7.6293)
 
 [node name="01" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.857002, 0, -3.90719)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -0.857002, 0, -3.90719)
 
 [node name="02" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.854537, 0, 0)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -0.854537, 0, 0)
 
 [node name="10" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78631, 0, -7.6293)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 2.78631, 0, -7.6293)
 
 [node name="11" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88639, 0, -3.90719)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 2.88639, 0, -3.90719)
 
 [node name="12" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72766, 0, 0)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 2.72766, 0, 0)
 
 [node name="20" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3885, 0, -7.6293)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 6.3885, 0, -7.6293)
 
 [node name="21" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.43133, 0, -3.90719)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 6.43133, 0, -3.90719)
 
 [node name="22" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.43133, 0, 0)
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 6.43133, 0, 0)
 
 [node name="DECK" type="Node3D" parent="."]
 transform = Transform3D(0.999964, 0, -0.00841238, 0, 1, 0, 0.00841238, 0, 0.999964, -6.87821, 0, 2.50535)
