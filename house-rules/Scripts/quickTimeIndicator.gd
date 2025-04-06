@@ -56,6 +56,7 @@ func keyIsReleased(signalKey):
 	#change bool to state that a key has been released
 	if signalKey == key:
 		releasedKey = true
+		keyLabel.modulate.a = 0.5
 
 
 func setLabelsInvisible(): #ok this one is pretty self explanatory

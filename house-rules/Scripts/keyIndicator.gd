@@ -9,7 +9,7 @@ extends Node3D
 @export var cardPlacement: CardPlacement
 
 var currentMercyTimer = 0
-var releasedKey: bool = true
+var releasedKey: bool = false
 
 
 func _ready() -> void:
