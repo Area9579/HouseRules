@@ -6,6 +6,8 @@ class_name Card
 @onready var sprite_3d_2: Sprite3D = $RigidBody3D/Sprite3D2
 @onready var rigidBody: RigidBody3D = $RigidBody3D
 
+@onready var placement_parent
+
 @export var value : int
 @export var color : String
 @export var suit : String
@@ -17,6 +19,21 @@ func _init( value : int = 10, color: String = "red", suit: String = "diamonds", 
 	self.color = color
 	self.suit = suit
 	self.value_name = value_name
+
+func _physics_process(delta: float) -> void:
+	if placement_parent != null:
+		if placement_parent.get_parent().name != "HandCardOrganizer":
+			global_position = lerp(global_position, placement_parent.global_position, 0.1)
+			rotation = lerp(rotation, placement_parent.rotation, 0.1)
+		elif placement_parent.get_parent().name == "HandCardOrganizer":
+			global_position = lerp(global_position, placement_parent.global_position, 0.1)
+			global_rotation = lerp(global_rotation, placement_parent.global_rotation, 0.1)
+			
+		if placement_parent.get_parent().name == "PlayerCardOrganizer":
+			rigidBody.scale = Vector3(1.35, 1.35, 1.35)
+		else:
+			rigidBody.scale = Vector3(1, 1, 1)
+	
 
 func initialize( value : int, color: String, suit: String, value_name : String ):
 	self.value = value

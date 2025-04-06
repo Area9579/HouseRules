@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 	
 func set_card( new_card : Card ):
 	card = new_card
+	card.placement_parent = self
 	if !has_node("Card"):
 		self.add_child(card)
 	card.update_text()
@@ -40,6 +41,7 @@ func remove_card():
 	if organizer is Organizer:
 		organizer.remove_card(int(String(name)[0]), int(String(name)[1]))
 	if card != null:
+		card.placement_parent = null
 		card.queue_free()
 	card = null
 	update_text()

@@ -10,9 +10,14 @@ const CARD = preload("res://Card Game/Scenes/card.tscn")
 @onready var right_hand = get_parent().get_node("HandRight")
 @onready var drawing = false
 
-
 @export var selected_card = null
 @export var selected_placement = null
+
+var player_score = [0,0,0]
+var player_final = 0
+
+var lady_score = [0,0,0]
+var lady_final = 0
 
 
 func _ready() -> void:
@@ -30,7 +35,6 @@ func _ready() -> void:
 	## the signals only connect once children nodes are ready (ik theres other
 	## ways around this but oops, this still works)
 	
-	
 	right_hand.connect("item_clicked", item_clicked)
 
 func _process(delta: float) -> void:
@@ -46,6 +50,94 @@ func _process(delta: float) -> void:
 
 func item_clicked( item : Item ):
 	print("item used")
+
+## moving around cards logic
+func place_card( card_placement : CardPlacement, card = null ):
+	var new_card = null
+	if card == null:
+		new_card = card_generator.get_new_card()
+	else: new_card = card
+	
+	if new_card == null:
+		return
+	card_placement.set_card( new_card )
+
+func clear_board():
+	card_generator.get_new_deck()
+	for card_placement in lady_card_organizer.get_children():
+		if card_placement.card != null:
+			card_placement.remove_card()
+	
+	for card_placement in player_card_organizer.get_children():
+		if card_placement.card != null:
+			card_placement.remove_card()
+	
+	for card_placement in left_hand.hand_card_organizer.get_children():
+		if card_placement.card != null:
+			card_placement.remove_card()
+
+func switch_cards( desired_placement ):
+	if desired_placement.card != null or selected_placement.card == null: 
+		return
+	selected_placement.card.reparent( desired_placement, true)
+	desired_placement.set_card( selected_placement.card )
+	selected_placement.card = null
+	selected_placement.update_text()
+	selected_placement.setSelection(false)
+	selected_placement = null
+	GameState.state = GameState.next_state
+	return desired_placement
+
+	
+## signals connect from lady's cards, player's cards, player's hands, and deck, respectively
+func lady_card_clicked( card_placement : CardPlacement ):
+	if selected_placement == null:
+		return
+		# add code here to nuke all cards of same suit
+	#switch_cards( card_placement )
+
+func player_card_clicked( card_placement : CardPlacement ):
+	if selected_placement == null:
+		return
+		# add code here to nuke all cards of same suit
+	switch_cards( card_placement )
+
+func player_hand_clicked( card_placement : CardPlacement ):
+	selected_card = card_placement.card
+	if selected_placement != null:
+		selected_placement.setSelection(false)
+	selected_placement = card_placement
+	if selected_placement.card != null:
+		selected_placement.setSelection(true)
+
+func draw_card():
+	drawing = true
+	for card_placement in left_hand.hand_card_organizer.get_children():
+		if card_placement.card == null:
+			var new_card = card_generator.get_new_card()
+			if new_card == null:
+				return
+			card_placement.set_card(new_card)
+			new_card.global_position = deck.global_position
+			
+			new_card.rotation = deck.rotation
+			#card_placement.set_card_position()
+			
+	drawing = false
+	GameState.state = GameState.States.player_main
+	return
+
+
+
+#JUDE SHIT
+#JUDE SHIT
+#JUDE SHIT
+#JUDE SHIT
+#JUDE SHIT
+#JUDE SHIT
+
+
+
 
 func lady_draw():
 	pass
@@ -131,50 +223,8 @@ func lady_destroy():
 
 func lady_end():
 	pass
-## moving around cards logic
-func place_card( card_placement : CardPlacement, card = null ):
-	var new_card = null
-	if card == null:
-		new_card = card_generator.get_new_card()
-	else: new_card = card
-	
-	if new_card == null:
-		return
-	card_placement.set_card( new_card )
 
-func clear_board():
-	card_generator.get_new_deck()
-	for card_placement in lady_card_organizer.get_children():
-		if card_placement.card != null:
-			card_placement.remove_card()
-	
-	for card_placement in player_card_organizer.get_children():
-		if card_placement.card != null:
-			card_placement.remove_card()
-	
-	for card_placement in left_hand.hand_card_organizer.get_children():
-		if card_placement.card != null:
-			card_placement.remove_card()
 
-func switch_cards( desired_placement ):
-	if desired_placement.card != null or selected_placement.card == null: 
-		return
-	
-	selected_placement.card.reparent( desired_placement, false)
-	desired_placement.set_card( selected_placement.card )
-	selected_placement.card = null
-	selected_placement.update_text()
-	selected_placement.setSelection(false)
-	selected_placement = null
-	GameState.state = GameState.next_state
-	return desired_placement
-	#emit signal
-
-var player_score = [0,0,0]
-var player_final = 0
-
-var lady_score = [0,0,0]
-var lady_final = 0
 func update_row(amount : int, col : int, person : int):
 	if person == 0: #player
 		$PlayerColumnText.get_child(col).text = str(amount)
@@ -198,39 +248,3 @@ func check_winner():
 		if i.card == null: return
 	if player_final > lady_final: GameState.win()
 	else: GameState.lose()
-	
-## signals connect from lady's cards, player's cards, player's hands, and deck, respectively
-func lady_card_clicked( card_placement : CardPlacement ):
-	if selected_placement == null:
-		return
-		# add code here to nuke all cards of same suit
-	#switch_cards( card_placement )
-
-func player_card_clicked( card_placement : CardPlacement ):
-	if selected_placement == null:
-		return
-		# add code here to nuke all cards of same suit
-	switch_cards( card_placement )
-
-func player_hand_clicked( card_placement : CardPlacement ):
-	selected_card = card_placement.card
-	if selected_placement != null:
-		selected_placement.setSelection(false)
-	selected_placement = card_placement
-	if selected_placement.card != null:
-		selected_placement.setSelection(true)
-
-
-func draw_card():
-	drawing = true
-	for card_placement in left_hand.hand_card_organizer.get_children():
-		if card_placement.card == null:
-			var new_card = card_generator.get_new_card()
-			if new_card == null:
-				return
-			card_placement.set_card(new_card)
-			#card_placement.set_card_position()
-			
-	drawing = false
-	GameState.state = GameState.States.player_main
-	return
