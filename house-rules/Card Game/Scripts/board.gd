@@ -34,13 +34,13 @@ func _ready() -> void:
 	right_hand.connect("item_clicked", item_clicked)
 
 func _process(delta: float) -> void:
-	if not hand.hand_is_initialized:
+	if not left_hand.hand_is_initialized:
 		draw_card()
 		draw_card()
 		draw_card()
 		draw_card()
 		draw_card()
-		hand.hand_is_initialized = true
+		left_hand.hand_is_initialized = true
 	if Input.is_action_just_released("reset"):
 		clear_board()
 
