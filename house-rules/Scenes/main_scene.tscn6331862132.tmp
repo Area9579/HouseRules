@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="Script" uid="uid://bl1a3eiy7hgeh" path="res://Card Game/Scripts/game_state.gd" id="1_huasi"]
+[ext_resource type="PackedScene" uid="uid://3fqo0iphm067" path="res://raw_assets/Lady.blend" id="2_6l7je"]
 [ext_resource type="PackedScene" uid="uid://c27iw0ytkgcnm" path="res://Card Game/Scenes/Board.tscn" id="3_jv6wh"]
-[ext_resource type="PackedScene" uid="uid://cgqj30855y5vj" path="res://raw_assets/BEUASTYYYYY.blend" id="3_m1efj"]
 [ext_resource type="Script" uid="uid://nwhuyg4mi4p" path="res://Scenes/PlayerObjects/hand.gd" id="4_maf8m"]
 [ext_resource type="PackedScene" uid="uid://5yf0piy2h2c3" path="res://raw_assets/Hand.blend" id="5_huasi"]
 [ext_resource type="PackedScene" uid="uid://cuah32gd4hyyy" path="res://Scenes/player_camera.tscn" id="5_iacmt"]
@@ -55,11 +55,11 @@ size = Vector3(53, 5, 21)
 transform = Transform3D(0.817887, 0.575368, 0.00338627, -0.57489, 0.816938, 0.0459615, 0.0236784, -0.0395381, 0.998937, 280.624, -184.935, 7.3366)
 size = Vector3(630.338, 5, 21)
 
-[node name="BEUASTYYYYY" parent="Enviornment" instance=ExtResource("3_m1efj")]
-transform = Transform3D(0.315749, 0, 0.0105296, 0, 0.315924, 0, -0.0105296, 0, 0.315749, 1.16608, 1.44492, -2.65791)
+[node name="Lady" parent="Enviornment" instance=ExtResource("2_6l7je")]
+transform = Transform3D(0.0374809, 0, -0.999297, 0, 1, 0, 0.999297, 0, 0.0374809, 0.944115, 1.1214, -2.62871)
 
 [node name="Board" parent="." instance=ExtResource("3_jv6wh")]
-transform = Transform3D(-0.000261194, -0.00241898, -0.0344023, -1.83653e-05, 0.0344033, -0.00241892, 0.0344872, -5.11928e-12, -0.000261839, 0.129947, 1.02408, -2.61904)
+transform = Transform3D(-0.000265723, 0, -0.034999, 0, -0.035, 0, 0.034999, 0, -0.000265723, 0.0762958, 1.00034, -2.64992)
 
 [node name="HandLeft" type="Node3D" parent="."]
 transform = Transform3D(0.322769, 0.894662, 0.30887, -0.444129, -0.145012, 0.88415, 0.835805, -0.422554, 0.35054, -0.376629, 1.08132, -2.92225)
@@ -88,19 +88,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0990179, 0.177485, -0.00908
 transform = Transform3D(0.990235, -0.135769, 0.0316375, 0.139137, 0.976624, -0.163847, -0.00865277, 0.166649, 0.985978, 0.0168069, 0.0206628, -0.0269839)
 
 [node name="CardPosition" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
-transform = Transform3D(0.830779, 0.357994, 0.4262, 0.548611, -0.39738, -0.735605, -0.0939788, 0.844943, -0.526535, -0.0764231, 0.188268, 0.0593501)
+transform = Transform3D(0.0207695, 0.00894985, 0.010655, 0.0137153, -0.00993452, -0.0183901, -0.00234947, 0.0211236, -0.0131634, -0.0764231, 0.188268, 0.0593501)
 
 [node name="CardPosition2" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
-transform = Transform3D(0.955657, 0.225055, 0.189923, 0.285818, -0.553557, -0.782229, -0.0709115, 0.801826, -0.593336, -0.0357123, 0.21556, 0.0571123)
+transform = Transform3D(0.0238914, 0.00562636, 0.00474806, 0.00714544, -0.0138389, -0.0195557, -0.00177278, 0.0200456, -0.0148334, -0.0357123, 0.21556, 0.0571123)
 
 [node name="CardPosition3" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
-transform = Transform3D(0.995597, -0.0215565, -0.0912207, -0.0893729, -0.511681, -0.854515, -0.0282555, 0.858905, -0.511354, 0.0198447, 0.218987, 0.0521822)
+transform = Transform3D(0.0248899, -0.000538908, -0.00228052, -0.00223432, -0.012792, -0.0213629, -0.000706392, 0.0214726, -0.0127838, 0.0198447, 0.218987, 0.0521822)
 
 [node name="CardPosition4" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
-transform = Transform3D(0.855332, -0.400109, -0.32912, -0.477712, -0.363244, -0.799904, 0.200498, 0.841407, -0.501831, 0.0726406, 0.196224, 0.062027)
+transform = Transform3D(0.0213833, -0.0100027, -0.00822796, -0.0119428, -0.00908112, -0.0199976, 0.00501246, 0.0210352, -0.0125458, 0.0726406, 0.196224, 0.062027)
 
 [node name="CardPosition5" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
-transform = Transform3D(0.738716, -0.388776, -0.550592, -0.663548, -0.276064, -0.695336, 0.118332, 0.879001, -0.461904, 0.100763, 0.158365, 0.0672782)
+transform = Transform3D(0.0184679, -0.00971939, -0.0137648, -0.0165887, -0.00690158, -0.0173835, 0.00295829, 0.021975, -0.0115476, 0.100763, 0.158365, 0.0672782)
 
 [node name="KeyIndicators" type="Node3D" parent="HandLeft"]
 
@@ -156,7 +156,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0990179, 0.177485, -0.00908
 
 [node name="PlayerCamera" parent="." instance=ExtResource("5_iacmt")]
 transform = Transform3D(-4.37114e-08, 0.866026, -0.5, 0, 0.5, 0.866026, 1, 3.78552e-08, -2.18557e-08, -0.52708, 1.47022, -2.64495)
-current = true
 fov = 64.6875
 
 [node name="ItemSpawner" parent="." instance=ExtResource("10_mai8y")]
