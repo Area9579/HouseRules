@@ -34,20 +34,16 @@ func _process(delta: float) -> void:
 			# trigger item shit here
 			next_state = States.lady_draw
 			set_ray_pickable_on_card_placements(ray_pickable_state)
-			print("player end")
 			state = next_state
 		
 		States.lady_draw:
 			next_state = States.lady_main
-			print("lady draw")
 			state = next_state
 		States.lady_main:
 			next_state = States.lady_end
-			print("lady main")
 			state = next_state
 		States.lady_end:
 			next_state = States.player_draw
-			print("lady end")
 			state = next_state
 		
 		States.win:
