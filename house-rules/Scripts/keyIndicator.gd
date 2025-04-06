@@ -10,6 +10,7 @@ extends Node3D
 
 var currentMercyTimer = 0
 var releasedKey: bool = false
+var cardFalling: bool = false
 
 
 func _ready() -> void:
@@ -28,7 +29,12 @@ func _process(delta: float) -> void:
 			currentMercyTimer -= delta
 		else:
 			setLabelsInvisible()
-			cardPlacement.remove_card()
+			if cardPlacement.card != null and !cardFalling:
+				cardFalling = true
+				cardPlacement.card.launchCard()
+				await get_tree().create_timer(3).timeout
+				cardFalling = false
+				cardPlacement.remove_card()
 	
 	updateTimerLabel()
 
