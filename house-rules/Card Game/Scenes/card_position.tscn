@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dkfo1gfj06h7l" path="res://Card Game/Scripts/card_placement.gd" id="1_rcdbo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mxad6"]
-size = Vector3(2.28333, 0.195313, 3.46252)
+size = Vector3(0.057, 0.005, 0.087)
 
 [node name="CardPosition" type="Node3D"]
 script = ExtResource("1_rcdbo")
@@ -15,7 +15,7 @@ shape = SubResource("BoxShape3D_mxad6")
 debug_color = Color(0, 0.6, 0.701961, 1)
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.0216928, 0.999765, 0, -0.999765, 0.0216928, 0, 0.214684, 0)
+transform = Transform3D(0.025, 0, 0, 0, 0.00054232, 0.0249941, 0, -0.0249941, 0.00054232, 0, 0, 0)
 pixel_size = 0.025
 text = "wiz"
 

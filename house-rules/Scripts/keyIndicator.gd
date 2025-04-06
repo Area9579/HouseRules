@@ -16,8 +16,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("left"):
-		switchKeys()
+	#if Input.is_action_just_pressed("left"):
+		#switchKeys()
 	#if a key is released, then decrease the timer
 	if releasedKey:
 		if currentMercyTimer > 0:

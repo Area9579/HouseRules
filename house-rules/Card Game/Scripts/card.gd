@@ -30,12 +30,12 @@ func update_text():
 func launchCard():
 	rigidBody.freeze = false
 	rigidBody.constant_force.x = 20
-	rigidBody.apply_force(Vector3(0,220,0))
+	rigidBody.apply_force(Vector3(0,150,30))
 	
-	for child in rigidBody.get_children():
-		child.scale.x = 0.025
-		child.scale.y = 0.025
-		child.scale.z = 0.025
+	#for child in rigidBody.get_children():
+		#child.scale.x = 0.025
+		#child.scale.y = 0.025
+		#child.scale.z = 0.025
 	
 	for i in range(0,3): #random torque generation
 		var randTorque = randi_range(1,10)

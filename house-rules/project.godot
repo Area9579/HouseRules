@@ -20,6 +20,10 @@ config/icon="uid://db0tp6ik46wk0"
 Director="*res://Scripts/director.gd"
 GameState="*res://Card Game/Scripts/game_state.gd"
 
+[display]
+
+window/size/always_on_top=true
+
 [file_customization]
 
 folder_colors={
