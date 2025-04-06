@@ -14,10 +14,14 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if name == "HandRight":
-		item = get_node_or_null("Item")
 		if item == null:
 			return
 		if Input.is_action_just_released("left") and item.has_mouse:
 			item_clicked.emit( item )
-			item.get_parent().queue_free()
+			item.remove()
 			item = null
+
+func clear_item(_item : Item):
+	if item == _item:
+		_item.remove()
+		item = null

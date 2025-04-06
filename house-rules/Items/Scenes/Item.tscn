@@ -80,6 +80,10 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("CapsuleShape3D_mhc50")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="mouse_entered" from="RigidBody3D" to="." method="_on_rigid_body_3d_mouse_entered"]
 [connection signal="mouse_exited" from="RigidBody3D" to="." method="_on_rigid_body_3d_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

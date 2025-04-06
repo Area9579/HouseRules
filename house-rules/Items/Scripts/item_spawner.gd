@@ -13,9 +13,7 @@ func _ready() -> void:
 	timer.start(0.1)
 
 func _process(delta: float) -> void:
-	if !timer.is_stopped():
-		return
-	spawn_item()
+	return
 
 func item_event_triggered():
 	var random_int = randi_range(1, 10)
@@ -26,6 +24,8 @@ func item_event_triggered():
 		# dont spawn item
 
 func spawn_item():
+	if new_item != null:
+		return
 	new_item = ITEM.instantiate()
 	#new_item.position = self.position
 	add_child(new_item)
@@ -34,7 +34,10 @@ func spawn_item():
 func move_item_to_hand( item: Item ):
 	if item == null:
 		return
-	item.reparent(right_hand, false)
+	if right_hand.item != null:
+		right_hand.item.remove()
+	item.reparent(right_hand, true)
+	right_hand.item = item
 	new_item = null
 	return right_hand
 
