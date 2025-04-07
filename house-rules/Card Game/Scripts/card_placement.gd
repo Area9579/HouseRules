@@ -3,6 +3,7 @@ extends Node3D
 
 var has_mouse : bool
 var is_selected : bool
+var can_discard: bool = false
 @export var card : Card = null
 @onready var text: Label3D = $Label3D
 @onready var organizer = get_parent()
@@ -14,7 +15,7 @@ signal placement_clicked( card_placement )
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("left") and has_mouse:
 		placement_clicked.emit( self )
-	if Input.is_action_just_released("right") and has_mouse and card != null:
+	if Input.is_action_just_released("right") and has_mouse and card != null and can_discard:
 		card.launchCard()
 	
 	if has_mouse:
@@ -56,12 +57,17 @@ func setSelection(select: bool):
 
 
 func highlight():
+	if get_parent().name == "HandCardOrganizer":
+		can_discard = true
 	has_mouse = true
 	if !is_selected:
 		outline.visible = true
+	
 
 
 func unhighlight():
+	if get_parent().name == "HandCardOrganizer":
+		can_discard = true
 	has_mouse = false
 	if !is_selected:
 		outline.visible = false

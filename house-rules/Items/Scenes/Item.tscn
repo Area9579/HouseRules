@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://vf3hehc00p3o"]
+[gd_scene load_steps=9 format=3 uid="uid://vf3hehc00p3o"]
 
 [ext_resource type="Script" uid="uid://cbk3keikb7k51" path="res://Items/Scripts/item.gd" id="1_b6pr5"]
 [ext_resource type="Script" uid="uid://830qq56qgdng" path="res://Scripts/quickTimeIndicator.gd" id="2_mhc50"]
@@ -48,6 +48,9 @@ height = 0.1
 radius = 0.05
 height = 0.1
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_mhc50"]
+radius = 0.055
+
 [node name="Item" type="Node3D"]
 script = ExtResource("1_b6pr5")
 
@@ -80,6 +83,12 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("CapsuleShape3D_mhc50")
+
+[node name="Area3D" type="Area3D" parent="RigidBody3D"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/Area3D"]
+shape = SubResource("SphereShape3D_mhc50")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

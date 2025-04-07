@@ -25,7 +25,6 @@ func _process(delta: float) -> void:
 			if cardPlacement.card != null and !cardFalling:
 				cardFalling = true
 				cardPlacement.card.launchCard()
-				owner.get_node("Board").nuke_cards(cardPlacement.card)
 				await get_tree().create_timer(3).timeout
 				cardFalling = false
 				keyIsPressed = true

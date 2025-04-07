@@ -8,9 +8,13 @@ func _ready() -> void:
 
 func _process(_delta):
 	if rayCast.is_colliding() and rayCast.get_collider().get_parent() is CardPlacement:
-		rayCast.get_collider().get_parent().highlight()
-	elif rayCast.is_colliding() and rayCast.get_collider().get_parent() is Item:
-		rayCast.get_collider().get_parent().has_mouse = true
+		print(rayCast.get_collider().owner.get_parent().name)
+		if rayCast.get_collider().owner.get_parent().name == "HandCardOrganizer" or rayCast.get_collider().owner.get_parent().name == "PlayerCardOrganizer":
+			rayCast.get_collider().get_parent().highlight()
+			if rayCast.get_collider().owner.get_parent().name == "HandCardOrganizer":
+				pass
+	elif rayCast.is_colliding() and rayCast.get_collider().get_parent().get_parent() is Item:
+		rayCast.get_collider().owner.has_mouse = true
 	
 	rotation_degrees.x = clamp(rotation_degrees.x, -65, 0)
 	rotation_degrees.y = clamp(rotation_degrees.y, -150, -30)

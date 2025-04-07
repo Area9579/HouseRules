@@ -48,6 +48,7 @@ func launchCard():
 	rigidBody.freeze = false
 	rigidBody.constant_force.x = 20
 	rigidBody.apply_force(Vector3(0,150,30))
+	get_parent().owner.get_node("Board").nuke_cards(self)
 	await get_tree().create_timer(3).timeout
 	get_parent().remove_card()
 	
