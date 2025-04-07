@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 			global_rotation = lerp(global_rotation, placement_parent.global_rotation, 0.1)
 		
 		if placement_parent.get_parent().name == "PlayerCardOrganizer":
-			rigidBody.scale = Vector3(1.35, 1.35, 1.35)
+			rigidBody.scale = Vector3(1.75, 1.75, 1.75)
 		elif placement_parent.get_parent().name == "LadyHandOrganizer":
 			rigidBody.scale = Vector3(.2,.2,.2)
 		elif placement_parent.get_parent().name == "LadyCardOrganizer":
