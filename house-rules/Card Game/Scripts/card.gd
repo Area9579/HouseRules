@@ -73,7 +73,7 @@ func launchCard():
 	rigidBody.apply_force(Vector3(0,150,30))
 	
 	for i in range(0,3): #random torque generation
-		var randTorque = randi_range(1,10)
+		var randTorque = randi_range(1,5)
 		match i:
 			0:
 				rigidBody.add_constant_torque(Vector3(randTorque, 0, 0))
