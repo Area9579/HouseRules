@@ -14,13 +14,8 @@ signal placement_clicked( card_placement )
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("left") and has_mouse:
 		placement_clicked.emit( self )
-		#if card != null:
-			#setSelection(true)
-		#else:
-			#setSelection(false)
 
 
-	
 func set_card( new_card : Card ):
 	card = new_card
 	if !has_node("Card"):

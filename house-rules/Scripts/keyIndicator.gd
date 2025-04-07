@@ -16,6 +16,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("left"):
+		switchKeys()
 	if !keyIsPressed:
 		if currentMercyTimer > 0:
 			currentMercyTimer -= delta
@@ -23,6 +25,7 @@ func _process(delta: float) -> void:
 			if cardPlacement.card != null and !cardFalling:
 				cardFalling = true
 				cardPlacement.card.launchCard()
+				print("call card placement function to nuke here using card info")
 				await get_tree().create_timer(3).timeout
 				cardFalling = false
 				cardPlacement.remove_card()
@@ -30,14 +33,6 @@ func _process(delta: float) -> void:
 				labelFullOpacity()
 	
 	updateTimerLabel()
-
-
-func pressedKey(signalKey):
-	#resets the timer, and turns the labels to be visible when key is pressed
-	if signalKey == key:
-		keyIsPressed = true
-		keyLabel.modulate.a = 1
-		timerLabel.modulate.a = 1
 
 
 func switchKeys():

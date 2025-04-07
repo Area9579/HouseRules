@@ -5,6 +5,7 @@ class_name Item
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hand = null
 @onready var has_mouse : bool = false
+@onready var rigidBody: RigidBody3D = $RigidBody3D
 var type : String
 
 enum States { falling, QTE, in_hand}
@@ -16,6 +17,9 @@ func _ready() -> void:
 	animation_player.play("quick time event")
 
 func _process(delta: float) -> void:
+	if get_parent().name == "HandRight" and has_mouse and Input.is_action_just_pressed("right"):
+		launchItem()
+	
 	match state:
 		States.falling:
 			rigid_body_3d.gravity_scale = 1
@@ -37,6 +41,23 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		rigid_body_3d.position = Vector3(2.2, 0, 0)
 		
 	
+
+func launchItem():
+	state = States.falling
+	rigidBody.freeze = false
+	rigidBody.constant_force.x = 20
+	rigidBody.apply_force(Vector3(0,150,60))
+	
+	
+	for i in range(0,3): #random torque generation
+		var randTorque = randi_range(1,10)
+		match i:
+			0:
+				rigidBody.add_constant_torque(Vector3(randTorque, 0, 0))
+			1:
+				rigidBody.add_constant_torque(Vector3(0, randTorque, 0))
+			2:
+				rigidBody.add_constant_torque(Vector3(0, 0, randTorque))
 
 
 func _on_rigid_body_3d_mouse_entered() -> void:

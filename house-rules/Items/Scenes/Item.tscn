@@ -57,6 +57,7 @@ libraries = {
 }
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
+freeze = true
 
 [node name="QuickTimeEvent" type="Node3D" parent="RigidBody3D"]
 transform = Transform3D(-0.00129588, 0.00294226, -0.249979, 0.00112572, 0.24998, 0.00293644, 0.249994, -0.0011104, -0.00130903, -0.00167385, -0.0322562, 0.109787)
@@ -64,7 +65,7 @@ transform = Transform3D(-0.00129588, 0.00294226, -0.249979, 0.00112572, 0.24998,
 [node name="QuickTimeIndicator" type="Node3D" parent="RigidBody3D/QuickTimeEvent"]
 script = ExtResource("2_mhc50")
 key = "H"
-mercyTimer = 2.0
+mercyTimer = 3.0
 
 [node name="Label3D" type="Label3D" parent="RigidBody3D/QuickTimeEvent/QuickTimeIndicator"]
 text = "~"

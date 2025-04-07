@@ -5,7 +5,7 @@
 [node name="QuickTimeIndicator" type="Node3D"]
 script = ExtResource("1_rdsnp")
 key = "H"
-mercyTimer = 1.5
+mercyTimer = 4.0
 
 [node name="Label3D" type="Label3D" parent="."]
 text = "~"
