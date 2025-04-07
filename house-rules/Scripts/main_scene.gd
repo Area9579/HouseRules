@@ -6,8 +6,9 @@ extends Node3D
 @onready var menu: Node3D = $Menu
 
 func _ready():
-	
-	player_cam_anim_player.current_animation = "intro"
+	if !GameState.introPlayed:
+		player_cam_anim_player.current_animation = "intro"
+		GameState.introPlayed = true
 	player_fade_anim_player.current_animation = "fade_in"
 
 func _process(delta: float) -> void:

@@ -9,9 +9,11 @@ func _ready() -> void:
 
 func _process(_delta):
 	cam_shake(_delta)
+	
 	if rayCast.is_colliding() and rayCast.get_collider().get_parent() is CardPlacement:
 		if rayCast.get_collider().owner.get_parent().name == "HandCardOrganizer" or rayCast.get_collider().owner.get_parent().name == "PlayerCardOrganizer":
 			rayCast.get_collider().get_parent().highlight()
+		
 	elif rayCast.is_colliding() and rayCast.get_collider().get_parent().get_parent() is Item:
 		rayCast.get_collider().owner.has_mouse = true
 		previous_collider = rayCast.get_collider()
@@ -21,7 +23,7 @@ func _process(_delta):
 		previous_collider = null
 	
 	if animation_player.current_animation != "turning" or animation_player.current_animation != "intro":
-		rotation_degrees.x = clamp(rotation_degrees.x, -75, -15)
+		rotation_degrees.x = clamp(rotation_degrees.x, -75, -5)
 		rotation_degrees.y = clamp(rotation_degrees.y, -170, -10)
 		rotation_degrees.z = clamp(rotation_degrees.z, 0, 0)
 	
@@ -49,3 +51,8 @@ func _input(event: InputEvent) -> void:
 		rotate_y(clampf(event.relative.x, -30, 30) * -0.005 * mouseSensitivity)
 		rotate_z(clampf(event.relative.y, -30, 30) * -0.005 * mouseSensitivity)
 	
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "turning":
+		DialogueManager.readDialouge("Instructions")

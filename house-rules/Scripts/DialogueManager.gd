@@ -1,5 +1,7 @@
 extends Node
 
+signal dialogueComplete
+
 @onready var speechText : SpeechText
 var isBeingRead: bool = false
 
@@ -81,3 +83,4 @@ func readDialouge( dialogueChoice : String ):
 				await get_tree().create_timer(speechText.lineSpeed + 1).timeout
 			dialogueDict[dialogueChoice][-1] = true
 			isBeingRead = false
+			emit_signal("dialogueComplete")
