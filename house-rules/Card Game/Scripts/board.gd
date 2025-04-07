@@ -6,8 +6,8 @@ const CARD = preload("res://Card Game/Scenes/card.tscn")
 @onready var player_card_organizer: Node3D = $PlayerCardOrganizer
 @onready var card_generator: CardGenerator
 @onready var deck = $DECK
-@onready var left_hand = get_parent().get_node("HandLeft")
-@onready var right_hand = get_parent().get_node("HandRight")
+@onready var left_hand = $"../PlayerBody/HandLeft"
+@onready var right_hand = $"../PlayerBody/HandRight"
 @onready var drawing = false
 
 @export var selected_card = null
@@ -146,17 +146,7 @@ func lady_draw():
 var wait = 0
 func lady_main():
 	wait += 1
-	match randi() % 3:
-		0:
-			lady_random()
-			
-		1:
-			lady_match()
-			
-		2:
-			
-			lady_destroy()
-
+	lady_match()
 	GameState.emit_signal("turn_pass")
 
 func get_empty_list():
@@ -182,19 +172,23 @@ func lady_match():
 		if i.card != null:
 			if i.card.value_name == new_card.value_name:
 				if int(String(i.name)[0]) == 0:
+					
 					if $"LadyCardOrganizer/00".card == null: return place_card($"LadyCardOrganizer/00", new_card)
 					elif $"LadyCardOrganizer/01".card == null: return place_card($"LadyCardOrganizer/01", new_card)
 					elif $"LadyCardOrganizer/02".card == null: return place_card($"LadyCardOrganizer/02", new_card)
 				elif int(String(i.name)[0]) == 1:
+					
 					if $"LadyCardOrganizer/10".card == null: return place_card($"LadyCardOrganizer/10", new_card)
 					elif $"LadyCardOrganizer/11".card == null: return place_card($"LadyCardOrganizer/11", new_card)
 					elif $"LadyCardOrganizer/12".card == null: return place_card($"LadyCardOrganizer/12", new_card)
 				elif int(String(i.name)[0]) == 2:
+					
 					if $"LadyCardOrganizer/20".card == null: return place_card($"LadyCardOrganizer/20", new_card)
 					elif $"LadyCardOrganizer/21".card == null: return  place_card($"LadyCardOrganizer/21", new_card)
 					elif $"LadyCardOrganizer/22".card == null: return  place_card($"LadyCardOrganizer/22", new_card)
-				else: return lady_random()
-	return lady_random()
+					
+				else: return lady_destroy()
+	return lady_destroy()
 	
 func lady_destroy():
 	
@@ -242,9 +236,15 @@ func update_row(amount : int, col : int, person : int):
 		$LadyColumnText/FinalScore.text = str(lady_final)
 
 func check_winner():
+	var lady_full = true
+	var player_full = true
 	for i in lady_card_organizer.get_children():
-		if i.card == null: return
+		if i.card == null: lady_full = false
 	for i in player_card_organizer.get_children():
-		if i.card == null: return
-	if player_final > lady_final: GameState.win()
-	else: GameState.lose()
+		if i.card == null: player_full = false
+		if !lady_full or !player_full: return
+	if player_final > lady_final: 
+		GameState.win()
+	else: 
+		GameState.lose()
+	
