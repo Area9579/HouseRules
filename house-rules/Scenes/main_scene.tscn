@@ -68,6 +68,34 @@ tracks/2/keys = {
 "values": [Vector3(-3.08733, 2.67794, -0.0854607)]
 }
 
+[sub_resource type="Animation" id="Animation_7ewk0"]
+resource_name = "end"
+length = 0.6735
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/LookAt:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-3.08733, 2.67794, -0.0854607), Vector3(-3.08733, 3.15332, -0.0854616)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetRightArm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.64735, -2.09274, -1.05924)]
+}
+
 [sub_resource type="Animation" id="Animation_76v2p"]
 resource_name = "grab card"
 length = 3.0
@@ -133,34 +161,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-0.534074, -2.84565, -1.23836), Vector3(-1.25366, -1.13622, -3.12574)]
-}
-
-[sub_resource type="Animation" id="Animation_7ewk0"]
-resource_name = "end"
-length = 0.6735
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Armature/Skeleton3D/LookAt:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-3.08733, 2.67794, -0.0854607), Vector3(-3.08733, 3.15332, -0.0854616)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TargetRightArm:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.64735, -2.09274, -1.05924)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ioaeq"]

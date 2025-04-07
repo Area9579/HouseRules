@@ -67,7 +67,7 @@ func highlight():
 
 func unhighlight():
 	if get_parent().name == "HandCardOrganizer":
-		can_discard = true
+		can_discard = false
 	has_mouse = false
 	if !is_selected:
 		outline.visible = false
