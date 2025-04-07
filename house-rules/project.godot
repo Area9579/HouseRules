@@ -29,6 +29,7 @@ window/size/always_on_top=true
 folder_colors={
 "res://Scenes/": "purple",
 "res://Scripts/": "teal",
+"res://TitleScrene/": "yellow",
 "res://raw_assets/": "red"
 }
 

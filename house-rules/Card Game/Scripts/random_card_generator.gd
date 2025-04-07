@@ -8,7 +8,7 @@ var card_values_array : Array
 func _init() -> void:
 	add_values_to_card_values_array()
 	for i in 52:
-		var value = clamp((i % 13) + 1, 1, 10)
+		var value = clamp((i % 13), 1, 13)
 		var value_name = card_values_array.get(i % 13)
 		var suit = "spades" if i % 4 == 0 else "diamonds" if i % 4 == 1 else "hearts" if i % 4 == 2 else "clubs"
 		var color = "red" if suit == "diamonds" else "red" if suit == "hearts" else "black"
