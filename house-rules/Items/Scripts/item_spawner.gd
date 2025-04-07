@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var timer: Timer = $Timer
 @onready var new_item
-@onready var right_hand = get_parent().get_node("HandRight")
+@onready var right_hand = %HandRight
 
 const ITEM = preload("res://Items/Scenes/Item.tscn")
 

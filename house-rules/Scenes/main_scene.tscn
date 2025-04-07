@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cxddpve567luf"]
+[gd_scene load_steps=17 format=3 uid="uid://cxddpve567luf"]
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="Script" uid="uid://bl1a3eiy7hgeh" path="res://Card Game/Scripts/game_state.gd" id="1_huasi"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://5yf0piy2h2c3" path="res://raw_assets/Hand.blend" id="5_huasi"]
 [ext_resource type="PackedScene" uid="uid://cuah32gd4hyyy" path="res://Scenes/player_camera.tscn" id="5_iacmt"]
 [ext_resource type="PackedScene" uid="uid://cbhk6m8pavkcx" path="res://Card Game/Scenes/card_position.tscn" id="6_m1efj"]
+[ext_resource type="Script" uid="uid://ddbj4q1yclutr" path="res://Scripts/AnimationTree.gd" id="8_76v2p"]
 [ext_resource type="PackedScene" uid="uid://2dinqbum68si" path="res://Scenes/KeyIndicator.tscn" id="8_m1efj"]
 [ext_resource type="PackedScene" uid="uid://bt1yeo0ewckf3" path="res://Items/Scenes/ItemSpawner.tscn" id="10_mai8y"]
 
@@ -27,6 +28,10 @@ sky = SubResource("Sky_mai8y")
 ambient_light_source = 3
 ambient_light_color = Color(0.741385, 0.741385, 0.741385, 1)
 ambient_light_energy = 0.68
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_drdnd"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ioaeq"]
 
 [node name="MainScene" type="Node3D"]
 script = ExtResource("1_huasi")
@@ -55,109 +60,131 @@ size = Vector3(53, 5, 21)
 transform = Transform3D(0.817887, 0.575368, 0.00338627, -0.57489, 0.816938, 0.0459615, 0.0236784, -0.0395381, 0.998937, 280.624, -184.935, 7.3366)
 size = Vector3(630.338, 5, 21)
 
-[node name="BEUASTYYYYY" parent="Enviornment" instance=ExtResource("3_m1efj")]
-transform = Transform3D(0.315749, 0, 0.0105296, 0, 0.315924, 0, -0.0105296, 0, 0.315749, 1.16608, 1.44492, -2.65791)
-
 [node name="Board" parent="." instance=ExtResource("3_jv6wh")]
-transform = Transform3D(-0.000261194, -0.00241898, -0.0344023, -1.83653e-05, 0.0344033, -0.00241892, 0.0344872, -5.11928e-12, -0.000261839, 0.129947, 1.02408, -2.61904)
+transform = Transform3D(-0.000261194, -0.00241898, -0.0344023, -1.83653e-05, 0.0344033, -0.00241892, 0.0344872, -5.11928e-12, -0.000261839, 1.13332, 1.02408, -2.61904)
 
-[node name="HandLeft" type="Node3D" parent="."]
-transform = Transform3D(0.322769, 0.894662, 0.30887, -0.444129, -0.145012, 0.88415, 0.835805, -0.422554, 0.35054, -0.376629, 1.08132, -2.92225)
+[node name="Node3D" type="Node" parent="."]
+script = ExtResource("8_76v2p")
+
+[node name="BeautyTree" type="AnimationTree" parent="Node3D"]
+root_node = NodePath("../../BEUASTYYYYY")
+tree_root = SubResource("AnimationNodeStateMachine_drdnd")
+anim_player = NodePath("../../BEUASTYYYYY/beautyAnimator")
+
+[node name="PlayerTree" type="AnimationTree" parent="Node3D"]
+root_node = NodePath("../../PlayerBody/PlayerCamera")
+tree_root = SubResource("AnimationNodeStateMachine_ioaeq")
+anim_player = NodePath("../../PlayerBody/PlayerAnimator")
+
+[node name="BEUASTYYYYY" parent="." instance=ExtResource("3_m1efj")]
+transform = Transform3D(0.315749, 0, 0.0105296, 0, 0.315924, 0, -0.0105296, 0, 0.315749, 2.16945, 1.44492, -2.65791)
+
+[node name="beautyAnimator" type="AnimationPlayer" parent="BEUASTYYYYY"]
+
+[node name="ItemSpawner" parent="." instance=ExtResource("10_mai8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40705, 1.47595, -2.39201)
+
+[node name="PlayerBody" type="Node3D" parent="."]
+
+[node name="PlayerAnimator" type="AnimationPlayer" parent="PlayerBody"]
+root_node = NodePath("../PlayerCamera")
+
+[node name="HandLeft" type="Node3D" parent="PlayerBody"]
+unique_name_in_owner = true
+transform = Transform3D(0.322769, 0.894662, 0.30887, -0.444129, -0.145012, 0.88415, 0.835805, -0.422554, 0.35054, 0.626742, 1.08132, -2.92225)
 script = ExtResource("4_maf8m")
 
-[node name="Mesh" parent="HandLeft" instance=ExtResource("5_huasi")]
+[node name="Mesh" parent="PlayerBody/HandLeft" instance=ExtResource("5_huasi")]
 
-[node name="FingerPositions" type="Node3D" parent="HandLeft"]
+[node name="FingerPositions" type="Node3D" parent="PlayerBody/HandLeft"]
 
-[node name="1" type="Marker3D" parent="HandLeft/FingerPositions"]
+[node name="1" type="Marker3D" parent="PlayerBody/HandLeft/FingerPositions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0817568, 0.245508, 0.0394814)
 
-[node name="2" type="Marker3D" parent="HandLeft/FingerPositions"]
+[node name="2" type="Marker3D" parent="PlayerBody/HandLeft/FingerPositions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028941, 0.248324, 0.0394814)
 
-[node name="3" type="Marker3D" parent="HandLeft/FingerPositions"]
+[node name="3" type="Marker3D" parent="PlayerBody/HandLeft/FingerPositions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0145642, 0.244885, 0.0394814)
 
-[node name="4" type="Marker3D" parent="HandLeft/FingerPositions"]
+[node name="4" type="Marker3D" parent="PlayerBody/HandLeft/FingerPositions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0549277, 0.23818, 0.0303932)
 
-[node name="5" type="Marker3D" parent="HandLeft/FingerPositions"]
+[node name="5" type="Marker3D" parent="PlayerBody/HandLeft/FingerPositions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0990179, 0.177485, -0.00908822)
 
-[node name="HandCardOrganizer" type="Node3D" parent="HandLeft"]
+[node name="HandCardOrganizer" type="Node3D" parent="PlayerBody/HandLeft"]
 transform = Transform3D(0.990235, -0.135769, 0.0316375, 0.139137, 0.976624, -0.163847, -0.00865277, 0.166649, 0.985978, 0.0168069, 0.0206628, -0.0269839)
 
-[node name="CardPosition" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
+[node name="CardPosition" parent="PlayerBody/HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
 transform = Transform3D(0.830779, 0.357994, 0.4262, 0.548611, -0.39738, -0.735605, -0.0939788, 0.844943, -0.526535, -0.0764231, 0.188268, 0.0593501)
 
-[node name="CardPosition2" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
+[node name="CardPosition2" parent="PlayerBody/HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
 transform = Transform3D(0.955657, 0.225055, 0.189923, 0.285818, -0.553557, -0.782229, -0.0709115, 0.801826, -0.593336, -0.0357123, 0.21556, 0.0571123)
 
-[node name="CardPosition3" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
+[node name="CardPosition3" parent="PlayerBody/HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
 transform = Transform3D(0.995597, -0.0215565, -0.0912207, -0.0893729, -0.511681, -0.854515, -0.0282555, 0.858905, -0.511354, 0.0198447, 0.218987, 0.0521822)
 
-[node name="CardPosition4" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
+[node name="CardPosition4" parent="PlayerBody/HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
 transform = Transform3D(0.855332, -0.400109, -0.32912, -0.477712, -0.363244, -0.799904, 0.200498, 0.841407, -0.501831, 0.0726406, 0.196224, 0.062027)
 
-[node name="CardPosition5" parent="HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
+[node name="CardPosition5" parent="PlayerBody/HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
 transform = Transform3D(0.738716, -0.388776, -0.550592, -0.663548, -0.276064, -0.695336, 0.118332, 0.879001, -0.461904, 0.100763, 0.158365, 0.0672782)
 
-[node name="KeyIndicators" type="Node3D" parent="HandLeft"]
+[node name="KeyIndicators" type="Node3D" parent="PlayerBody/HandLeft"]
 
-[node name="KeyIndicator" parent="HandLeft/KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("8_m1efj")]
+[node name="KeyIndicator" parent="PlayerBody/HandLeft/KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("8_m1efj")]
 transform = Transform3D(0.126617, -0.0920454, 0.0663004, 0.112434, 0.0886423, -0.0916578, 0.0150569, 0.112117, 0.126898, -0.11784, 0.215026, 0.101407)
 cardPlacement = NodePath("../../HandCardOrganizer/CardPosition")
 
-[node name="KeyIndicator2" parent="HandLeft/KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("8_m1efj")]
+[node name="KeyIndicator2" parent="PlayerBody/HandLeft/KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("8_m1efj")]
 transform = Transform3D(0.154839, -0.0575522, 0.0401579, 0.0696165, 0.113687, -0.105493, 0.00885839, 0.11253, 0.127116, -0.063726, 0.256446, 0.107148)
 cardPlacement = NodePath("../../HandCardOrganizer/CardPosition2")
 key = "S"
 
-[node name="KeyIndicator3" parent="HandLeft/KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("8_m1efj")]
+[node name="KeyIndicator3" parent="PlayerBody/HandLeft/KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("8_m1efj")]
 transform = Transform3D(0.169719, -0.00895983, -0.00389551, 0.00412107, 0.127109, -0.112811, 0.00885839, 0.11253, 0.127116, 0.00674344, 0.2813, 0.0943525)
 cardPlacement = NodePath("../../HandCardOrganizer/CardPosition3")
 key = "D"
 
-[node name="KeyIndicator4" parent="HandLeft/KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("8_m1efj")]
+[node name="KeyIndicator4" parent="PlayerBody/HandLeft/KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("8_m1efj")]
 transform = Transform3D(0.158652, 0.0435114, -0.0428513, -0.0580098, 0.144659, -0.0678873, 0.0190879, 0.0779781, 0.14985, 0.0762496, 0.256206, 0.0943525)
 cardPlacement = NodePath("../../HandCardOrganizer/CardPosition4")
 key = "F"
 
-[node name="KeyIndicator5" parent="HandLeft/KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("8_m1efj")]
+[node name="KeyIndicator5" parent="PlayerBody/HandLeft/KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("8_m1efj")]
 transform = Transform3D(0.13682, 0.0803188, -0.0610673, -0.100298, 0.119464, -0.0675909, 0.0109796, 0.0904278, 0.143535, 0.128919, 0.216262, 0.0943525)
 cardPlacement = NodePath("../../HandCardOrganizer/CardPosition5")
 key = "Space"
 
-[node name="HandRight" type="Node3D" parent="."]
-transform = Transform3D(-0.350176, 0.936302, 0.0267549, 0.471332, 0.15145, 0.868855, 0.809459, 0.316862, -0.494344, -0.461582, 1.08838, -2.36465)
+[node name="HandRight" type="Node3D" parent="PlayerBody"]
+unique_name_in_owner = true
+transform = Transform3D(-0.350176, 0.936302, 0.0267549, 0.471332, 0.15145, 0.868855, 0.809459, 0.316862, -0.494344, 0.541789, 1.08838, -2.36465)
 script = ExtResource("4_maf8m")
 
-[node name="ItemPosition" type="Marker3D" parent="HandRight"]
+[node name="ItemPosition" type="Marker3D" parent="PlayerBody/HandRight"]
 transform = Transform3D(0.999999, 0, 5.96046e-08, -1.78814e-07, 1, -5.96046e-08, -1.78814e-07, -5.96046e-08, 0.999999, 0.022009, 0.144684, 0.0479703)
 
-[node name="Mesh" parent="HandRight" instance=ExtResource("5_huasi")]
+[node name="Mesh" parent="PlayerBody/HandRight" instance=ExtResource("5_huasi")]
 
-[node name="FingerPositions" type="Node3D" parent="HandRight"]
+[node name="FingerPositions" type="Node3D" parent="PlayerBody/HandRight"]
 
-[node name="1" type="Marker3D" parent="HandRight/FingerPositions"]
+[node name="1" type="Marker3D" parent="PlayerBody/HandRight/FingerPositions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0817568, 0.245508, 0.0394814)
 
-[node name="2" type="Marker3D" parent="HandRight/FingerPositions"]
+[node name="2" type="Marker3D" parent="PlayerBody/HandRight/FingerPositions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028941, 0.248324, 0.0394814)
 
-[node name="3" type="Marker3D" parent="HandRight/FingerPositions"]
+[node name="3" type="Marker3D" parent="PlayerBody/HandRight/FingerPositions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0145642, 0.244885, 0.0394814)
 
-[node name="4" type="Marker3D" parent="HandRight/FingerPositions"]
+[node name="4" type="Marker3D" parent="PlayerBody/HandRight/FingerPositions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0549277, 0.23818, 0.0303932)
 
-[node name="5" type="Marker3D" parent="HandRight/FingerPositions"]
+[node name="5" type="Marker3D" parent="PlayerBody/HandRight/FingerPositions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0990179, 0.177485, -0.00908822)
 
-[node name="PlayerCamera" parent="." instance=ExtResource("5_iacmt")]
-transform = Transform3D(-4.37114e-08, 0.866026, -0.5, 0, 0.5, 0.866026, 1, 3.78552e-08, -2.18557e-08, -0.52708, 1.47022, -2.64495)
+[node name="PlayerCamera" parent="PlayerBody" instance=ExtResource("5_iacmt")]
+transform = Transform3D(-4.37114e-08, 0.866026, -0.5, 0, 0.5, 0.866026, 1, 3.78552e-08, -2.18557e-08, 0.476291, 1.47022, -2.64495)
 current = true
 fov = 64.6875
-
-[node name="ItemSpawner" parent="." instance=ExtResource("10_mai8y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40705, 1.47595, -2.39201)
