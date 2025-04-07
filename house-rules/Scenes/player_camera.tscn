@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuah32gd4hyyy"]
+[gd_scene load_steps=11 format=3 uid="uid://cuah32gd4hyyy"]
 
 [ext_resource type="Script" uid="uid://chcir735ya4d4" path="res://Scripts/camera.gd" id="1_asj12"]
 [ext_resource type="Texture2D" uid="uid://cnd6mk87jfvm3" path="res://TitleScrene/black.png" id="2_cnr7e"]
+[ext_resource type="Texture2D" uid="uid://ck65soragc46b" path="res://Card Game/Assets/crosshair.png" id="2_n1xto"]
 
 [sub_resource type="Animation" id="Animation_na1lm"]
 length = 0.001
@@ -113,6 +114,8 @@ libraries = {
 }
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, -9.00553e-07, 0, -0.248772)
+texture = ExtResource("2_n1xto")
 
 [node name="FadeIn" type="Sprite3D" parent="."]
 transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 0, -0.134857)
