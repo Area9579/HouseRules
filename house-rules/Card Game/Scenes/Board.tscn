@@ -3,12 +3,16 @@
 [ext_resource type="Script" uid="uid://hr1obdm6tnyv" path="res://Card Game/Scripts/board.gd" id="1_52vfp"]
 [ext_resource type="PackedScene" uid="uid://cbhk6m8pavkcx" path="res://Card Game/Scenes/card_position.tscn" id="1_bfgrx"]
 [ext_resource type="Script" uid="uid://c3brq1m82vy3k" path="res://Scripts/base_game_logic.gd" id="2_m0mw3"]
+[ext_resource type="AudioStream" uid="uid://bml0ehqgecnra" path="res://raw_assets/sounds/grabcard.wav" id="2_o7va3"]
 [ext_resource type="PackedScene" uid="uid://bj7qdejlwck26" path="res://Scenes/MainCardDirector.tscn" id="3_m0mw3"]
 [ext_resource type="AudioStream" uid="uid://ck57upq11ssli" path="res://raw_assets/sounds/cardplace.wav" id="4_irbdl"]
 [ext_resource type="PackedScene" uid="uid://deglo4aemeleu" path="res://raw_assets/deck.blend" id="6_o7va3"]
 
 [node name="Board" type="Node3D"]
 script = ExtResource("1_52vfp")
+
+[node name="PlayerDraw" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_o7va3")
 
 [node name="PlayerPlace" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_irbdl")
@@ -122,3 +126,6 @@ text = "player"
 
 [node name="deck" parent="." instance=ExtResource("6_o7va3")]
 transform = Transform3D(-0.00719939, 0, -0.824969, 0, 0.825, 0, 0.824969, 0, -0.00719939, -8.50044, 0, 0.772486)
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true

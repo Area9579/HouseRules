@@ -30,8 +30,7 @@ func set_card( new_card : Card ):
 		self.add_child(card)
 	card.update_text()
 	if text != null:
-		text.text = ""
-	
+		text.text = "" 
 	
 	if organizer is Organizer:
 		organizer.place_card(card, int(String(name)[0]), int(String(name)[1]))
