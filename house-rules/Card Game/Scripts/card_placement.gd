@@ -14,6 +14,9 @@ signal placement_clicked( card_placement )
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("left") and has_mouse:
 		placement_clicked.emit( self )
+	
+	if has_mouse:
+		unhighlight()
 
 
 func set_card( new_card : Card ):
@@ -49,12 +52,14 @@ func setSelection(select: bool):
 	is_selected = select
 	outline.visible = select
 
-func _on_area_3d_mouse_entered() -> void:
+
+func highlight():
 	has_mouse = true
 	if !is_selected:
 		outline.visible = true
 
-func _on_area_3d_mouse_exited() -> void:
+
+func unhighlight():
 	has_mouse = false
 	if !is_selected:
 		outline.visible = false

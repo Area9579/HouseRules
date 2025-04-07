@@ -62,12 +62,5 @@ func launchItem():
 				rigidBody.add_constant_torque(Vector3(0, 0, randTorque))
 
 
-func _on_rigid_body_3d_mouse_entered() -> void:
-	has_mouse = true
-
-
-func _on_rigid_body_3d_mouse_exited() -> void:
-	has_mouse = false
-
 func _on_timer_timeout() -> void:
 	self.queue_free()
