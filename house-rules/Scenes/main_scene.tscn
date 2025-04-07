@@ -254,7 +254,6 @@ bone_idx = 5
 transform = Transform3D(-2.52265, -5.32045, 0.0160148, 4.10036, -1.95543, -3.74626, 3.39035, -1.59383, 4.54274, -0.296731, 0.805897, -0.415325)
 
 [node name="CardPosition" parent="BEUASTYYYYY/Armature/Skeleton3D/BoneAttachment3D/LadyHandOrganizer" instance=ExtResource("6_m1efj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CardPosition2" parent="BEUASTYYYYY/Armature/Skeleton3D/BoneAttachment3D/LadyHandOrganizer" instance=ExtResource("6_m1efj")]
 transform = Transform3D(0.733209, 0.151692, -0.662869, -0.156638, 0.986263, 0.0524392, 0.661718, 0.0653815, 0.746897, 0.0220165, -0.000840425, 0.00700903)
@@ -289,7 +288,7 @@ playback_default_blend_time = 0.5
 transform = Transform3D(-0.449799, -0.856575, -0.252883, -0.774008, 0.232581, 0.588906, -0.445628, 0.460624, -0.767615, -1.64735, -2.09274, -1.05924)
 
 [node name="ItemSpawner" parent="." instance=ExtResource("10_mai8y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44619, 1.56161, -1.50838)
+transform = Transform3D(0.826884, 0, -0.562372, 0, 1, 0, 0.562372, 0, 0.826884, -5.31938, 1.56161, -1.648)
 
 [node name="PlayerBody" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.67503, 0, 0)
