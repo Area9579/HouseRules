@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bt1yeo0ewckf3" path="res://Items/Scenes/ItemSpawner.tscn" id="10_mai8y"]
 [ext_resource type="PackedScene" uid="uid://b1m5iaasfpavd" path="res://TitleScrene/Scenes/menu.tscn" id="12_drdnd"]
 [ext_resource type="PackedScene" uid="uid://b01dgcxrxgo05" path="res://raw_assets/realhand.blend" id="12_gnsmo"]
+[ext_resource type="PackedScene" uid="uid://cm2wnl7bl5fa0" path="res://Scenes/speech_text.tscn" id="17_psl12"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_52fb6"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -555,6 +556,9 @@ fov = 64.6875
 
 [node name="Menu" parent="." instance=ExtResource("12_drdnd")]
 transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, -5.66453, 1.40962, -4.3482)
+
+[node name="Speech Text" parent="." instance=ExtResource("17_psl12")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.46212, 2.03401, -2.69264)
 
 [connection signal="timeout" from="BEUASTYYYYY/blinktimer" to="BEUASTYYYYY" method="_on_blinktimer_timeout"]
 
