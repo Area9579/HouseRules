@@ -9,6 +9,7 @@ func _ready() -> void:
 
 func play_draw_grap():
 	beauty_animator.play('grab card')
+	$"../BEUASTYYYYY/LadyDraw".play()
 	await beauty_animator.animation_finished
 	GameState.emit_signal("turn_pass")
 

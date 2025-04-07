@@ -26,12 +26,27 @@ func _init( value : int = 10, color: String = "red", suit: String = "e", value_n
 	
 func _ready() -> void:
 	var texture_name = suit + str(value)
+	if value_name == "joker":
+		if color == "red":
+			texture_name = "jr"
+		elif color == "black":
+			texture_name = "jb"
+	if value_name == "k":
+		if suit == "e":
+			texture_name = 'ek'
+		elif suit == 'h':
+			texture_name = 'hk'
+		elif suit == 'm':
+			texture_name = 'mk'
+		elif suit == 'r':
+			texture_name = 'rk'
+		
 	for i in Director.textures:
 		if i.resource_name == texture_name:
 			mesh_instance_3d.set_surface_override_material(0, StandardMaterial3D.new())
 			mesh_instance_3d.get_surface_override_material(0).albedo_texture = i
 			return
-	
+
 func _physics_process(delta: float) -> void:
 	
 	if placement_parent != null:
@@ -44,6 +59,8 @@ func _physics_process(delta: float) -> void:
 		
 		if placement_parent.get_parent().name == "PlayerCardOrganizer":
 			rigidBody.scale = Vector3(1.75, 1.75, 1.75)
+		elif placement_parent.get_parent().name == "LadyHandOrganizer":
+			rigidBody.scale = Vector3(.2,.2,.2)
 		elif placement_parent.get_parent().name == "LadyHandOrganizer":
 			rigidBody.scale = Vector3(.2,.2,.2)
 		elif placement_parent.get_parent().name == "LadyCardOrganizer":

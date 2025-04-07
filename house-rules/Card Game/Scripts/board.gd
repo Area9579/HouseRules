@@ -50,13 +50,17 @@ func _process(delta: float) -> void:
 		#clear_board()
 
 func item_clicked( item : Item ):
+	if GameState.state != GameState.States.player_main: return
 	match item.type:
-		"1": GameState.state = GameState.States.dentures
-		"2": GameState.state = GameState.States.severed_hand
-		"3": GameState.state = GameState.States.bowling_ball
+		"dentures": 
+			GameState.state = GameState.States.dentures
+			dent_item = item
+		"brick": 
+			GameState.state = GameState.States.bowling_ball
+			brick_item = item
+	
 
 func highlight_matched_cards():
-	
 	var hovered_card = null
 	
 	var arr : Array = []
@@ -92,11 +96,35 @@ func highlight_matched_cards():
 					card_placement.setSelection(true)
 		else:
 			card_placement.setSelection(false)
-	
 
+var brick_item = null
+func run_brick_code():
+	
+	$"../PlayerBody/PlayerAnimator".play("brick_throw")
+	
+func hit_lady():
+	var tween = get_tree().create_tween()
+	brick_item.top_level = true
+	tween.tween_property(brick_item, "global_position", Vector3(-3.516, 2.771, -2.647), .1)
+	await tween.finished
+	lady_react()
+	brick_item.remove()
+	brick_item = null
+
+func lady_react():
+	$"../BEUASTYYYYY/beautyAnimator".play("react")
+	await $"../BEUASTYYYYY/beautyAnimator".animation_finished
+	GameState.emit_signal("turn_pass")
+func lady_reset():
+	$"../BEUASTYYYYY/beautyAnimator".play("backup")
+
+var dent_item = null
+var column_to_eat = null
 func run_dentures_code():
 	var hovered_card = null
 	
+	
+#region selecting hovering
 	var arr : Array = []
 	
 	for child in lady_card_organizer.get_children():
@@ -112,22 +140,44 @@ func run_dentures_code():
 	# get column of hovered card
 	var col
 	if hovered_card != null:
-		col = hovered_card.left(1) 
+		col = hovered_card.left(1)
 	else:
 		col = ""
+		
 
 	# highlight all other cards in column
 	for card_placement in arr:
 		if hovered_card != null:
 			if card_placement.name.left(1) == col:
 				card_placement.setSelection(true)
+				column_to_eat = card_placement
 		else:
 			card_placement.setSelection(false)
 	
 	if !Input.is_action_just_released("left"):
 		return
+#endregion
+	GameState.state = null
+	#START HERE AWAIT
+#region nuking
+
+	var tween_col = get_tree().create_tween()
+	if column_to_eat != null:
+		tween_col.tween_property(%HandRight, "global_position:z", column_to_eat.global_position.z - .05, .8).set_ease(Tween.EASE_OUT)
+	else: tween_col.tween_property(%HandRight, "global_position:z",%HandRight.global_position.z + .01, .8).set_ease(Tween.EASE_OUT)
 	
+	
+	await tween_col.finished #x -4
+	var tween_go = get_tree().create_tween()
+	dent_item.top_level = true
+	dent_item.state = dent_item.States.empty
+	
+	tween_go.tween_property(dent_item, "global_position:x", -4.0, 1.7).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+	dent_item.start_dent()
+	await tween_go.finished
 	# nuke highlighted cards
+	
+	
 	for card_placement in arr:
 		if hovered_card != null:
 			if card_placement.name.left(1) == col:
@@ -137,7 +187,14 @@ func run_dentures_code():
 	for card_placement in arr:
 		card_placement.setSelection(false)
 	
+	
+	#await $"../PlayerBody/PlayerAnimator".animation_finished
+	
+	dent_item.remove()
+	dent_item = null
+	column_to_eat = null
 	GameState.state = GameState.next_state
+#endregion
 
 ## moving around cards logic
 func place_card( card_placement : CardPlacement, card = null ):
@@ -190,6 +247,7 @@ func lady_card_clicked( card_placement : CardPlacement ):
 	#switch_cards( card_placement )
 
 func player_card_clicked( card_placement : CardPlacement ):
+	if GameState.state != GameState.States.player_main: return
 	if selected_placement == null:
 		return
 		# add code here to nuke all cards of same suit
@@ -204,6 +262,9 @@ func player_hand_clicked( card_placement : CardPlacement ):
 	selected_placement = card_placement
 	if selected_placement.card != null:
 		selected_placement.setSelection(true)
+
+func play_draw_sound(at_point):
+	$PlayerDraw.play(at_point)
 
 func draw_card():
 	drawing = true
@@ -245,7 +306,7 @@ func nuke_cards( card ):
 			elif card_placement.card.color == value:
 				card_placement.remove_card()
 
-
+#region Jude Stuff
 
 #JUDE SHIT
 #JUDE SHIT
@@ -450,3 +511,4 @@ func check_winner():
 	else: 
 		GameState.lose()
 	
+#endregion

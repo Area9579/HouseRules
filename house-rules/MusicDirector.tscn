@@ -14,7 +14,7 @@ autoplay = true
 stream = ExtResource("2_wypqw")
 
 [node name="SwitcherTrain" type="Timer" parent="."]
-wait_time = 101.0
+wait_time = 100.0
 autostart = true
 
 [connection signal="timeout" from="SwitcherTrain" to="." method="_on_switcher_train_timeout"]

@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://bgal4f8mp6kta"
+path="res://.godot/imported/jr.png-d808485eaefe94174d6a25125cd14f1b.image"
+
+[deps]
+
+source_file="res://raw_assets/cardtextures/jr.png"
+dest_files=["res://.godot/imported/jr.png-d808485eaefe94174d6a25125cd14f1b.image"]
+
+[params]
+

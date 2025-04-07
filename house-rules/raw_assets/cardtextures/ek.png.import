@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://5eb1uljpr06d"
+path="res://.godot/imported/ek.png-70b2702c2d021bd3706c0c1e9f900997.image"
+
+[deps]
+
+source_file="res://raw_assets/cardtextures/ek.png"
+dest_files=["res://.godot/imported/ek.png-70b2702c2d021bd3706c0c1e9f900997.image"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://dgvqtu83t2ktn"
+path="res://.godot/imported/mk.png-c41e3155d29cf145d516e5a898b38d7f.image"
+
+[deps]
+
+source_file="res://raw_assets/cardtextures/mk.png"
+dest_files=["res://.godot/imported/mk.png-c41e3155d29cf145d516e5a898b38d7f.image"]
+
+[params]
+

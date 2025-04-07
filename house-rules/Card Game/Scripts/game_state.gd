@@ -22,14 +22,21 @@ func _ready() -> void:
 func _turn_pass(): 
 	return true
 
+var bricked_wait = 0
 func _process(delta: float) -> void:
-	
 	if board == null or item_spawner == null:
 		return
 	match state:
 		States.player_draw:
+			
+			bricked_wait -= 1
+			if bricked_wait == 0:
+				board.lady_reset()
+			bricked_wait = max(0, bricked_wait)
 			next_state = States.player_main
+			
 			if board.drawing == false:
+				board.play_draw_sound(.5)
 				board.draw_card()
 				state = next_state
 			
@@ -45,13 +52,18 @@ func _process(delta: float) -> void:
 			set_ray_pickable_on_card_placements(ray_pickable_state)
 			ray_pickable_state = false
 			
-		States.player_end:
-			item_spawner.item_event_triggered()
-			next_state = States.lady_draw
-			item_spawner.spawn_item()
-			set_ray_pickable_on_card_placements(ray_pickable_state)
-			state = next_state
-			board.check_winner()
+		States.player_end: #TODO come back and make item event triggered only
+			if bricked_wait == 0:
+				
+				
+				next_state = States.lady_draw
+				 #gurentee
+				set_ray_pickable_on_card_placements(ray_pickable_state)
+				state = next_state
+				board.check_winner()
+			else:
+				next_state = States.player_draw
+				state = next_state
 		
 		States.lady_draw:
 			next_state = States.lady_main
@@ -68,14 +80,16 @@ func _process(delta: float) -> void:
 			board.lady_main()
 			await self.turn_pass
 			state = next_state
+			item_spawner.item_event_triggered()
 			
 		States.lady_end:
-			item_spawner.item_event_triggered()
+			state = null
 			board.lady_end()
 			next_state = States.player_draw
 			await self.turn_pass
 			state = next_state
 			board.check_winner()
+			
 		
 		States.win:
 			next_state = null
@@ -93,9 +107,15 @@ func _process(delta: float) -> void:
 			for i in 5:
 				board.draw_card()
 			state = next_state
+		
 		States.dentures:
 			board.run_dentures_code()
+		
 		States.bowling_ball:
+			state = null
+			board.run_brick_code()
+			bricked_wait = 3
+			await self.turn_pass
 			state = States.player_draw
 
 

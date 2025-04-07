@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://dqldt4vwvsnj3"
+path="res://.godot/imported/jb.png-ec779915a2e09ec3e6fdf1dcb8e8f917.image"
+
+[deps]
+
+source_file="res://raw_assets/cardtextures/jb.png"
+dest_files=["res://.godot/imported/jb.png-ec779915a2e09ec3e6fdf1dcb8e8f917.image"]
+
+[params]
+
