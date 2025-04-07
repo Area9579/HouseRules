@@ -4,11 +4,11 @@ var quicktimeKeyList : Array[String] = ["Y","H","N","U","J","M","I","K","I","K",
 @onready var item_parent = get_parent().get_parent().get_parent()
 
 func _ready() -> void:
+	#connect both of the signals for pressing and releasing keys
+	Director.keyPressed.connect(pressedKey)
 	keyIsPressed = false
 	randomizeKey()
 	currentMercyTimer = mercyTimer
-	#connect the signal for pressing keys
-	Director.keyPressed.connect(pressedKey)
 	#both of these are setting the text for the indicators, this will prob be changed later
 	keyLabel.text = key
 	timerLabel.text = str(mercyTimer)
@@ -32,13 +32,6 @@ func _process(delta: float) -> void:
 		self.queue_free()
 	
 	updateTimerLabel()
-
-
-func pressedKey(signalKey):
-	#resets the timer, and turns the labels to be visible when key is pressed
-	if signalKey == key:
-		keyIsPressed = true
-		keyLabel.modulate.a = 1
 
 
 func randomizeKey(): #randomizes the keybind for the key you need to press

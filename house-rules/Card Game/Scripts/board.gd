@@ -49,7 +49,10 @@ func _process(delta: float) -> void:
 		clear_board()
 
 func item_clicked( item : Item ):
-	print("item used")
+	match item.type:
+		"1": print("This is item 1")
+		"2": print("This is item 2")
+		"3": print("This is item 3")
 
 ## moving around cards logic
 func place_card( card_placement : CardPlacement, card = null ):
@@ -232,9 +235,7 @@ func lady_destroy():
 	var chosen_card = null #get the row
 	for i in player_card_organizer.get_children():
 		if i.card != null:
-			print(i.card.value_name, new_card.value_name)
 			if i.card.value_name == new_card.value_name:
-				#print("matched")
 				if int(String(i.name)[0]) == 0:
 					if $"LadyCardOrganizer/00".card == null: return place_card($"LadyCardOrganizer/00", new_card)
 					elif $"LadyCardOrganizer/01".card == null: return place_card($"LadyCardOrganizer/01", new_card)

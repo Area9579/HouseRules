@@ -17,6 +17,12 @@ func _input(event: InputEvent) -> void:
 		Director.keyPressed.emit(OS.get_keycode_string(event.get_keycode_with_modifiers()))
 
 
+func pressedKey(signalKey):
+	if signalKey == key:
+		keyIsPressed = true
+		labelFullOpacity()
+
+
 func labelHalfOpacity(): #ok this one is pretty self explanatory
 	keyLabel.modulate.a = 0.5
 	timerLabel.modulate.a = 0.5
