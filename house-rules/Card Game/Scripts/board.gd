@@ -30,11 +30,17 @@ func _ready() -> void:
 	## the signals only connect once children nodes are ready (ik theres other
 	## ways around this but oops, this still works)
 	
-	deck.connect("placement_clicked", deck_clicked)
 	
 	right_hand.connect("item_clicked", item_clicked)
 
 func _process(delta: float) -> void:
+	if not left_hand.hand_is_initialized:
+		draw_card()
+		draw_card()
+		draw_card()
+		draw_card()
+		draw_card()
+		left_hand.hand_is_initialized = true
 	if Input.is_action_just_released("reset"):
 		clear_board()
 
@@ -158,6 +164,7 @@ func switch_cards( desired_placement ):
 	desired_placement.set_card( selected_placement.card )
 	selected_placement.card = null
 	selected_placement.update_text()
+	selected_placement.setSelection(false)
 	selected_placement = null
 	GameState.state = GameState.next_state
 	return desired_placement
@@ -207,10 +214,14 @@ func player_card_clicked( card_placement : CardPlacement ):
 
 func player_hand_clicked( card_placement : CardPlacement ):
 	selected_card = card_placement.card
+	if selected_placement != null:
+		selected_placement.setSelection(false)
 	selected_placement = card_placement
+	if selected_placement.card != null:
+		selected_placement.setSelection(true)
 
 
-func deck_clicked( deck_position ):
+func draw_card():
 	drawing = true
 	for card_placement in left_hand.hand_card_organizer.get_children():
 		if card_placement.card == null:
@@ -218,7 +229,9 @@ func deck_clicked( deck_position ):
 			if new_card == null:
 				return
 			card_placement.set_card(new_card)
+			break
 			#card_placement.set_card_position()
-			GameState.state = GameState.States.player_main
-			drawing = false
-			return
+			
+	drawing = false
+	GameState.state = GameState.States.player_main
+	return

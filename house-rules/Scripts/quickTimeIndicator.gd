@@ -4,12 +4,11 @@ var quicktimeKeyList : Array[String] = ["Y","H","N","U","J","M","I","K","I","K",
 @onready var item_parent = get_parent().get_parent().get_parent()
 
 func _ready() -> void:
-	releasedKey = true
+	keyIsPressed = false
 	randomizeKey()
 	currentMercyTimer = mercyTimer
-	#connect both of the signals for pressing and releasing keys
-	Director.keyPressed.connect(keyIsPressed)
-	Director.keyReleased.connect(keyIsReleased)
+	#connect the signal for pressing keys
+	Director.keyPressed.connect(pressedKey)
 	#both of these are setting the text for the indicators, this will prob be changed later
 	keyLabel.text = key
 	timerLabel.text = str(mercyTimer)
@@ -22,14 +21,12 @@ func _process(delta: float) -> void:
 		currentMercyTimer -= delta
 	
 	## if you hit the key in time:
-	elif currentMercyTimer <= 0 and releasedKey == false: 
-		labelHalfOpacity()
+	elif currentMercyTimer <= 0 and keyIsPressed == true: 
 		if item_parent.name == "Item":
 			item_parent.state = item_parent.States.in_hand
 		self.queue_free()
 	## if you dont hit the key in time:
 	else: 
-		labelHalfOpacity()
 		if item_parent.name == "Item":
 			item_parent.state = item_parent.States.falling
 		self.queue_free()
@@ -37,17 +34,11 @@ func _process(delta: float) -> void:
 	updateTimerLabel()
 
 
-func keyIsPressed(signalKey):
+func pressedKey(signalKey):
 	#resets the timer, and turns the labels to be visible when key is pressed
 	if signalKey == key:
-		releasedKey = false
+		keyIsPressed = true
 		keyLabel.modulate.a = 1
-
-
-func keyIsReleased(signalKey):
-	#change bool to state that a key has been released
-	if signalKey == key:
-		keyLabel.modulate.a = 0.5
 
 
 func randomizeKey(): #randomizes the keybind for the key you need to press

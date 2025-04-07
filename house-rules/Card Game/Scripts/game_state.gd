@@ -21,16 +21,23 @@ func _ready() -> void:
 func _turn_pass(): return true
 
 func _process(delta: float) -> void:
+	
 	if board == null or item_spawner == null:
 		return
 	match state:
 		States.player_draw:
 			next_state = States.player_main
 			if board.drawing == false:
-				board.deck_clicked(0)
+				board.draw_card()
 			
 		States.player_main:
 			next_state = States.player_end
+			
+			for card_placement in board.left_hand.hand_card_organizer.get_children():
+				if card_placement.card == null and card_placement:
+					state = next_state
+					break
+			
 			ray_pickable_state = true
 			set_ray_pickable_on_card_placements(ray_pickable_state)
 			ray_pickable_state = false
