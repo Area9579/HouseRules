@@ -8,6 +8,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(_delta):
+	cam_shake(_delta)
 	if rayCast.is_colliding() and rayCast.get_collider().get_parent() is CardPlacement:
 		if rayCast.get_collider().owner.get_parent().name == "HandCardOrganizer" or rayCast.get_collider().owner.get_parent().name == "PlayerCardOrganizer":
 			rayCast.get_collider().get_parent().highlight()
@@ -23,6 +24,25 @@ func _process(_delta):
 		rotation_degrees.x = clamp(rotation_degrees.x, -65, 0)
 		rotation_degrees.y = clamp(rotation_degrees.y, -150, -30)
 		rotation_degrees.z = clamp(rotation_degrees.z, 0, 0)
+	
+	
+
+var trauma_x = 0
+var truama_y = 0
+
+func cam_shake(delta):
+	h_offset += randf_range(-trauma_x,trauma_x) * .01
+	v_offset += randf_range(-truama_y,truama_y) * .01
+	trauma_x = move_toward(trauma_x, 0, delta)
+	truama_y = move_toward(truama_y, 0, delta)
+	h_offset = lerp(h_offset, 0.0, delta * 12)
+	v_offset = lerp(v_offset, 0.0, delta * 12)
+
+func add_trauma():
+	$Timer.start(randf_range(.1,2))
+	truama_y += randf_range(-.3,.3)
+	randomize()
+	trauma_x += randf_range(-.3,.3)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

@@ -17,13 +17,11 @@ func _process(delta: float) -> void:
 		placement_clicked.emit( self )
 	if Input.is_action_just_released("right") and has_mouse and card != null and can_discard:
 		card.discard()
-	
 	if has_mouse:
 		unhighlight()
 
 
 func set_card( new_card : Card ):
-	
 	self.card = new_card
 	
 	card.placement_parent = self
@@ -37,7 +35,7 @@ func set_card( new_card : Card ):
 	
 	if organizer is Organizer:
 		organizer.place_card(card, int(String(name)[0]), int(String(name)[1]))
-	
+		
 
 func set_card_position():
 	return
@@ -46,6 +44,7 @@ func set_card_position():
 func remove_card():
 	if organizer is Organizer:
 		organizer.remove_card(int(String(name)[0]), int(String(name)[1]))
+		$drop.play()
 	if card != null:
 		card.placement_parent = null
 		card.launchCard()
@@ -62,7 +61,6 @@ func update_text():
 func setSelection(select: bool):
 	is_selected = select
 	outline.visible = select
-
 
 func highlight():
 	if get_parent().name == "HandCardOrganizer":

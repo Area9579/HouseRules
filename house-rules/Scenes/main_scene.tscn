@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cxddpve567luf"]
+[gd_scene load_steps=29 format=3 uid="uid://cxddpve567luf"]
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="Script" uid="uid://dieo8wand5g3b" path="res://Scripts/main_scene.gd" id="1_drdnd"]
@@ -7,11 +7,15 @@
 [ext_resource type="Script" uid="uid://nwhuyg4mi4p" path="res://Scenes/PlayerObjects/hand.gd" id="4_maf8m"]
 [ext_resource type="PackedScene" uid="uid://5yf0piy2h2c3" path="res://raw_assets/Hand.blend" id="5_huasi"]
 [ext_resource type="PackedScene" uid="uid://cuah32gd4hyyy" path="res://Scenes/player_camera.tscn" id="5_iacmt"]
+[ext_resource type="AudioStream" uid="uid://ck57upq11ssli" path="res://raw_assets/sounds/cardplace.wav" id="5_lhp3t"]
+[ext_resource type="Script" uid="uid://csxqabxu237o0" path="res://Scripts/beuastyyyyy.gd" id="6_ioaeq"]
 [ext_resource type="PackedScene" uid="uid://cbhk6m8pavkcx" path="res://Card Game/Scenes/card_position.tscn" id="6_m1efj"]
+[ext_resource type="Texture2D" uid="uid://dyk63kkr1lnkx" path="res://raw_assets/textures/None-color.png" id="7_7ewk0"]
 [ext_resource type="Script" uid="uid://ddbj4q1yclutr" path="res://Scripts/AnimationTree.gd" id="8_76v2p"]
 [ext_resource type="PackedScene" uid="uid://2dinqbum68si" path="res://Scenes/KeyIndicator.tscn" id="8_m1efj"]
 [ext_resource type="PackedScene" uid="uid://bt1yeo0ewckf3" path="res://Items/Scenes/ItemSpawner.tscn" id="10_mai8y"]
 [ext_resource type="PackedScene" uid="uid://b1m5iaasfpavd" path="res://TitleScrene/Scenes/menu.tscn" id="12_drdnd"]
+[ext_resource type="PackedScene" uid="uid://b01dgcxrxgo05" path="res://raw_assets/realhand.blend" id="12_gnsmo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_52fb6"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -24,11 +28,17 @@ ground_horizon_color = Color(0.405874, 0.297608, 0.29799, 1)
 sky_material = SubResource("ProceduralSkyMaterial_52fb6")
 
 [sub_resource type="Environment" id="Environment_6l7je"]
-background_mode = 2
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_76v2p")
-ambient_light_source = 3
 ambient_light_color = Color(0.741385, 0.741385, 0.741385, 1)
 ambient_light_energy = 0.68
+fog_enabled = true
+fog_mode = 1
+fog_light_energy = 0.33
+fog_density = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ewk0"]
+albedo_texture = ExtResource("7_7ewk0")
 
 [sub_resource type="Animation" id="Animation_drdnd"]
 length = 0.001
@@ -189,6 +199,68 @@ _data = {
 &"play_card": SubResource("Animation_ioaeq")
 }
 
+[sub_resource type="Animation" id="Animation_gnsmo"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%HandLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.71),
+"transitions": PackedFloat32Array(0.435275, 0.933033),
+"update": 0,
+"values": [Vector3(0.626742, 1.09858, -2.92225), Vector3(0.627, 1.093, -2.922)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%HandLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 2.11),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.08467, 0.72229, -1.88639), Vector3(-1.06931, 0.717548, -1.90536)]
+}
+
+[sub_resource type="Animation" id="Animation_psl12"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%HandLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.626742, 1.08132, -2.92225)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%HandLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.08467, 0.72229, -1.88639)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ebs2"]
+_data = {
+&"RESET": SubResource("Animation_psl12"),
+&"idle": SubResource("Animation_gnsmo")
+}
+
 [node name="MainScene" type="Node3D"]
 script = ExtResource("1_drdnd")
 
@@ -248,8 +320,15 @@ transform = Transform3D(-0.000345905, -0.000407933, -0.0455597, -3.09722e-06, 0.
 [node name="AnimationManager" type="Node" parent="."]
 script = ExtResource("8_76v2p")
 
+[node name="LadyPlace" type="AudioStreamPlayer" parent="AnimationManager"]
+stream = ExtResource("5_lhp3t")
+
 [node name="BEUASTYYYYY" parent="." instance=ExtResource("3_m1efj")]
 transform = Transform3D(0.315749, 0, 0.0105296, 0, 0.315924, 0, -0.0105296, 0, 0.315749, -3.20038, 1.44492, -2.65791)
+script = ExtResource("6_ioaeq")
+
+[node name="Icosphere_002" parent="BEUASTYYYYY/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_7ewk0")
 
 [node name="SkeletonIK3D" type="SkeletonIK3D" parent="BEUASTYYYYY/Armature/Skeleton3D" index="1"]
 transform = Transform3D(0.136063, -0.0327632, 0.990158, 0.97302, -0.183557, -0.139781, 0.18633, 0.982463, 0.00690404, 0, 0, 0)
@@ -311,6 +390,9 @@ playback_default_blend_time = 0.5
 [node name="TargetRightArm" type="Marker3D" parent="BEUASTYYYYY"]
 transform = Transform3D(-0.449799, -0.856575, -0.252883, -0.774008, 0.232581, 0.588906, -0.445628, 0.460624, -0.767615, -1.64735, -2.09274, -1.05924)
 
+[node name="blinktimer" type="Timer" parent="BEUASTYYYYY"]
+autostart = true
+
 [node name="ItemSpawner" parent="." instance=ExtResource("10_mai8y")]
 transform = Transform3D(0.826884, 0, -0.562372, 0, 1, 0, 0.562372, 0, 0.826884, -5.31938, 1.56161, -1.648)
 
@@ -319,13 +401,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.67503, 0, 0)
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="PlayerBody"]
 root_node = NodePath("../PlayerCamera")
+libraries = {
+&"": SubResource("AnimationLibrary_2ebs2")
+}
+autoplay = "idle"
 
 [node name="HandLeft" type="Node3D" parent="PlayerBody"]
 unique_name_in_owner = true
 transform = Transform3D(0.322769, 0.894662, 0.30887, -0.444129, -0.145012, 0.88415, 0.835805, -0.422554, 0.35054, 0.626742, 1.08132, -2.92225)
 script = ExtResource("4_maf8m")
 
+[node name="realhand" parent="PlayerBody/HandLeft" instance=ExtResource("12_gnsmo")]
+transform = Transform3D(0.0132656, 0.145428, -0.127581, -0.124167, 0.104466, 0.106168, 0.148353, 0.0744299, 0.100268, -0.0413365, 0.163523, -0.02089)
+
+[node name="Skeleton3D" parent="PlayerBody/HandLeft/realhand/Armature" index="0"]
+bones/1/position = Vector3(0.134527, 0.382528, 0.349952)
+bones/1/rotation = Quaternion(0.108801, 0.992186, -0.0520992, 0.0318531)
+bones/2/rotation = Quaternion(-0.0108359, 0.0493322, -0.0571261, 0.997089)
+bones/3/rotation = Quaternion(-0.0592208, -0.0399389, 0.0440256, 0.996474)
+bones/4/rotation = Quaternion(-0.0613835, 0.0343514, -0.0461745, 0.996454)
+bones/5/rotation = Quaternion(-0.0406034, 0.0302942, -0.0551468, 0.997192)
+bones/6/position = Vector3(0.00739156, 0.780642, 0.077503)
+bones/6/rotation = Quaternion(-0.149555, -0.0368979, -0.0180769, 0.987899)
+bones/7/rotation = Quaternion(-0.0185112, -0.000257812, 0.0154468, 0.999709)
+bones/8/rotation = Quaternion(0.0122151, 0.000151306, 0.00205548, 0.999923)
+bones/9/position = Vector3(-0.00899631, 0.832289, -0.076227)
+bones/9/rotation = Quaternion(-0.125266, -0.0137275, -0.017329, 0.991877)
+bones/10/rotation = Quaternion(-0.0183728, -0.000260155, 0.0156111, 0.999709)
+bones/11/rotation = Quaternion(0.0122333, 3.36045e-08, 0.0019447, 0.999923)
+bones/12/position = Vector3(-0.0532545, 0.852727, -0.232484)
+bones/12/rotation = Quaternion(-0.146735, -0.0145417, -0.0215003, 0.988835)
+bones/13/rotation = Quaternion(-0.0183727, -0.000260106, 0.0156111, 0.999709)
+bones/14/rotation = Quaternion(0.0122329, -2.25593e-08, 0.00194464, 0.999923)
+
 [node name="Mesh" parent="PlayerBody/HandLeft" instance=ExtResource("5_huasi")]
+visible = false
 
 [node name="FingerPositions" type="Node3D" parent="PlayerBody/HandLeft"]
 
@@ -423,4 +533,7 @@ fov = 64.6875
 [node name="Menu" parent="." instance=ExtResource("12_drdnd")]
 transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, -5.66453, 1.40962, -4.3482)
 
+[connection signal="timeout" from="BEUASTYYYYY/blinktimer" to="BEUASTYYYYY" method="_on_blinktimer_timeout"]
+
 [editable path="BEUASTYYYYY"]
+[editable path="PlayerBody/HandLeft/realhand"]

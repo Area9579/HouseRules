@@ -153,6 +153,8 @@ func player_card_clicked( card_placement : CardPlacement ):
 		return
 		# add code here to nuke all cards of same suit
 	switch_cards( card_placement )
+	$PlayerPlace.stop()
+	$PlayerPlace.play()
 
 func player_hand_clicked( card_placement : CardPlacement ):
 	selected_card = card_placement.card
@@ -292,6 +294,7 @@ func get_empty_list():
 
 func set_card(placement, card):
 	placement.set_card(card)
+	card.global_position += Vector3(0,.1,0)
 	gen_card = null
 
 func lady_random(new_card):
@@ -356,7 +359,7 @@ func lady_match(new_card):
 	return lady_random(new_card)
 	
 func lady_destroy(new_card):
-
+	
 	var chosen_card = null #get the row
 	for i in player_card_organizer.get_children():
 		if i.card != null:

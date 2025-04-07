@@ -16,8 +16,10 @@ func play_card(card_position : Vector3, card : Card, placement : CardPlacement):
 	var tween = get_tree().create_tween()
 	var old_pos = target_right_arm.global_position
 	tween.tween_property(target_right_arm, "global_position", card_position + Vector3(.4,0,-.2), .5 ).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-	
+	$LadyPlace.stop()
+	$LadyPlace.play()
 	await tween.finished
+	
 	var tween_2 = get_tree().create_tween()
 	board.set_card(placement, card)
 	tween_2.tween_property(target_right_arm, "global_position", old_pos, .5 ).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
