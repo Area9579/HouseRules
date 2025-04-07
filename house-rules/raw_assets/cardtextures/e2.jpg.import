@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://ddnbjmffbbhbd"
+path="res://.godot/imported/e2.jpg-648c57289ddd950c9e4e463a8e7e5c0d.image"
+
+[deps]
+
+source_file="res://raw_assets/cardtextures/e2.jpg"
+dest_files=["res://.godot/imported/e2.jpg-648c57289ddd950c9e4e463a8e7e5c0d.image"]
+
+[params]
+

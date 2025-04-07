@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://bbqo72sxjcj07"
+path="res://.godot/imported/r5.jpg-675d2fae4c119f41cb36049ae7e0185b.image"
+
+[deps]
+
+source_file="res://raw_assets/cardtextures/r5.jpg"
+dest_files=["res://.godot/imported/r5.jpg-675d2fae4c119f41cb36049ae7e0185b.image"]
+
+[params]
+
