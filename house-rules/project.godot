@@ -20,6 +20,7 @@ config/icon="uid://db0tp6ik46wk0"
 Director="*res://Scripts/director.gd"
 GameState="*res://Card Game/Scripts/game_state.gd"
 MusicDirector="*res://MusicDirector.tscn"
+DialogueManager="*res://Scripts/DialogueManager.gd"
 
 [display]
 
