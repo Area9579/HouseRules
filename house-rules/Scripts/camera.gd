@@ -9,9 +9,10 @@ func _ready() -> void:
 
 func _process(_delta):
 	if rayCast.is_colliding() and rayCast.get_collider().get_parent() is CardPlacement:
-		rayCast.get_collider().get_parent().highlight()
-	elif rayCast.is_colliding() and rayCast.get_collider().get_parent() is Item:
-		rayCast.get_collider().get_parent().has_mouse = true
+		if rayCast.get_collider().owner.get_parent().name == "HandCardOrganizer" or rayCast.get_collider().owner.get_parent().name == "PlayerCardOrganizer":
+			rayCast.get_collider().get_parent().highlight()
+	elif rayCast.is_colliding() and rayCast.get_collider().get_parent().get_parent() is Item:
+		rayCast.get_collider().owner.has_mouse = true
 	
 	if animation_player.current_animation != "turning" or animation_player.current_animation != "intro":
 		rotation_degrees.x = clamp(rotation_degrees.x, -65, 0)

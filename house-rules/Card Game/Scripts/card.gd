@@ -42,14 +42,13 @@ func initialize( value : int, color: String, suit: String, value_name : String )
 	self.value_name = value_name
 
 func update_text():
-	text_box.set_text(color + "\n" + suit + "\n" + value_name)
+	if text_box != null:
+		text_box.set_text(color + "\n" + suit + "\n" + value_name)
 
 func launchCard():
 	rigidBody.freeze = false
 	rigidBody.constant_force.x = 20
 	rigidBody.apply_force(Vector3(0,150,30))
-	await get_tree().create_timer(3).timeout
-	get_parent().remove_card()
 	
 	for i in range(0,3): #random torque generation
 		var randTorque = randi_range(1,10)
@@ -60,3 +59,15 @@ func launchCard():
 				rigidBody.add_constant_torque(Vector3(0, randTorque, 0))
 			2:
 				rigidBody.add_constant_torque(Vector3(0, 0, randTorque))
+	
+	
+	await get_tree().create_timer(3).timeout
+	self.queue_free()
+	
+	
+
+func discard():
+	get_parent().owner.get_node("Board").nuke_cards(self)
+	get_parent().remove_card()
+	
+	
