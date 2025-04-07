@@ -18,7 +18,8 @@ signal turn_pass
 func _ready() -> void:
 	connect("turn_pass", _turn_pass)
 	
-func _turn_pass(): return true
+func _turn_pass(): 
+	return true
 
 func _process(delta: float) -> void:
 	
@@ -52,17 +53,25 @@ func _process(delta: float) -> void:
 		
 		States.lady_draw:
 			next_state = States.lady_main
+			state = null
+			
+			board.lady_draw()
+			await self.turn_pass
 			
 			state = next_state
+		
 		States.lady_main:
 			next_state = States.lady_end
 			state = null
 			board.lady_main()
-			await _turn_pass()
+			await self.turn_pass
 			state = next_state
+			
 		States.lady_end:
 			item_spawner.item_event_triggered()
+			board.lady_end()
 			next_state = States.player_draw
+			await self.turn_pass
 			state = next_state
 			board.check_winner()
 		

@@ -42,7 +42,8 @@ func initialize( value : int, color: String, suit: String, value_name : String )
 	self.value_name = value_name
 
 func update_text():
-	text_box.set_text(color + "\n" + suit + "\n" + value_name)
+	if text_box != null:
+		text_box.set_text(color + "\n" + suit + "\n" + value_name)
 
 func launchCard():
 	rigidBody.freeze = false
