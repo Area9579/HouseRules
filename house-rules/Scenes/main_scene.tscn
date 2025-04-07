@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cxddpve567luf"]
+[gd_scene load_steps=30 format=3 uid="uid://cxddpve567luf"]
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="Script" uid="uid://dieo8wand5g3b" path="res://Scripts/main_scene.gd" id="1_drdnd"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bt1yeo0ewckf3" path="res://Items/Scenes/ItemSpawner.tscn" id="10_mai8y"]
 [ext_resource type="PackedScene" uid="uid://b1m5iaasfpavd" path="res://TitleScrene/Scenes/menu.tscn" id="12_drdnd"]
 [ext_resource type="PackedScene" uid="uid://b01dgcxrxgo05" path="res://raw_assets/realhand.blend" id="12_gnsmo"]
+[ext_resource type="PackedScene" uid="uid://cm2wnl7bl5fa0" path="res://Scenes/speech_text.tscn" id="17_psl12"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_52fb6"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -199,6 +200,33 @@ _data = {
 &"play_card": SubResource("Animation_ioaeq")
 }
 
+[sub_resource type="Animation" id="Animation_psl12"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%HandLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.626742, 1.08132, -2.92225)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%HandLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.08467, 0.72229, -1.88639)]
+}
+
 [sub_resource type="Animation" id="Animation_gnsmo"]
 resource_name = "idle"
 length = 4.0
@@ -226,33 +254,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-1.08467, 0.72229, -1.88639), Vector3(-1.06931, 0.717548, -1.90536)]
-}
-
-[sub_resource type="Animation" id="Animation_psl12"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%HandLeft:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.626742, 1.08132, -2.92225)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%HandLeft:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.08467, 0.72229, -1.88639)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ebs2"]
@@ -408,7 +409,7 @@ autoplay = "idle"
 
 [node name="HandLeft" type="Node3D" parent="PlayerBody"]
 unique_name_in_owner = true
-transform = Transform3D(0.322769, 0.894662, 0.30887, -0.444129, -0.145012, 0.88415, 0.835805, -0.422554, 0.35054, 0.626742, 1.08132, -2.92225)
+transform = Transform3D(0.32277, 0.894661, 0.308871, -0.44413, -0.145011, 0.884149, 0.835804, -0.422556, 0.350541, 0.626742, 1.08132, -2.92225)
 script = ExtResource("4_maf8m")
 
 [node name="realhand" parent="PlayerBody/HandLeft" instance=ExtResource("12_gnsmo")]
@@ -532,6 +533,9 @@ fov = 64.6875
 
 [node name="Menu" parent="." instance=ExtResource("12_drdnd")]
 transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, -5.66453, 1.40962, -4.3482)
+
+[node name="Speech Text" parent="." instance=ExtResource("17_psl12")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.46212, 2.03401, -2.69264)
 
 [connection signal="timeout" from="BEUASTYYYYY/blinktimer" to="BEUASTYYYYY" method="_on_blinktimer_timeout"]
 
