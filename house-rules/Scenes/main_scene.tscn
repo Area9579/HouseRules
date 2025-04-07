@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cxddpve567luf"]
+[gd_scene load_steps=31 format=3 uid="uid://cxddpve567luf"]
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="Script" uid="uid://dieo8wand5g3b" path="res://Scripts/main_scene.gd" id="1_drdnd"]
