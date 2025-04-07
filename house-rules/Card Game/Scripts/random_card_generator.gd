@@ -15,7 +15,8 @@ func _init() -> void:
 		var _card = CARD.instantiate()
 		_card.name = "Card"
 		_card.initialize( value, color, suit, value_name )
-		default_list.append( _card )
+		if _card.value_name != "queen" or _card.value_name != "jack":
+			default_list.append( _card )
 	var b_joker = CARD.instantiate()
 	b_joker.name = "Card"
 	b_joker.initialize( 10, "black", "joker", "joker" )
