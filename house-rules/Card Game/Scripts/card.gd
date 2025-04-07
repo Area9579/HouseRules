@@ -31,7 +31,16 @@ func _ready() -> void:
 			texture_name = "jr"
 		elif color == "black":
 			texture_name = "jb"
-	
+	if value_name == "k":
+		if suit == "e":
+			texture_name = 'ek'
+		elif suit == 'h':
+			texture_name = 'hk'
+		elif suit == 'm':
+			texture_name = 'mk'
+		elif suit == 'r':
+			texture_name = 'rk'
+		
 	for i in Director.textures:
 		if i.resource_name == texture_name:
 			mesh_instance_3d.set_surface_override_material(0, StandardMaterial3D.new())

@@ -16,8 +16,9 @@ func _process(delta: float) -> void:
 	return
 
 func item_event_triggered():
+	print('spawned')
 	var random_int = randi_range(1, 10)
-	if right_hand.item == null:
+	if right_hand.item != null:
 		return
 	elif random_int > threshold:
 		spawn_item()
@@ -31,7 +32,7 @@ func spawn_item():
 	$AudioStreamPlayer.play()
 	#new_item.position = self.position
 	match randi_range(1,2):
-		1: new_item.type = "dentures" #TODO
+		1: new_item.type = "brick" 
 		2: new_item.type = "dentures"
 	new_item.verify()
 	

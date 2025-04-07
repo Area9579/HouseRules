@@ -203,6 +203,7 @@ shape = SubResource("SphereShape3D_mhc50")
 
 [node name="dentures" type="Node3D" parent="RigidBody3D"]
 transform = Transform3D(-0.018522, 0, -0.0691244, 0, 0.0715629, 0, 0.0691244, 0, -0.018522, 0, 0, 0)
+visible = false
 
 [node name="bottom" type="Node3D" parent="RigidBody3D/dentures"]
 transform = Transform3D(-0.0105629, -0.965132, -0.261551, 0.999569, -0.0173572, 0.0236807, -0.0273948, -0.261188, 0.964899, 0.500628, -0.0596629, 0.183021)
