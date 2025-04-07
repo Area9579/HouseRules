@@ -20,9 +20,54 @@ var dialogueDict: Dictionary = {
 	"of the same value on the board",
 	"the round ends when one person's board is full",
 	"Good luck, f r i e n d ...",
-	false]
+	false],
 	
+	"SpecialCards":
+	["This game has two special cards",
+	"The King and the Joker",
+	"The King, when discarded will destroy",
+	"all cards of the same Suit",
+	"The Joker however, destorys every card",
+	"of the same color",
+	false],
+	
+	
+	"Dentures" :
+	["Oh goodness me!",
+	"That must be where it went",
+	"Well I suppose that we can make use of it",
+	"Let's say... it takes out a whole row",
+	"Both mine and yours included",
+	false],
+	
+	
+	"Brick" : 
+	["Oh, I guess we can use that... but",
+	"...what are you goint to doing with it?",
+	false],
+	
+	
+	"Win":
+	["Well done, well done!",
+	"But how about we spice it up a little, hmm?",
+	false],
+	
+	
+	"Lose":
+	["I win!",
+	"Aww, that was well played",
+	"It would be a shame to end now though",
+	"How about another round?",
+	false],
+	
+	
+	"End":
+	["I commend you, truly",
+	"But you didn't really think it would end",
+	"l i k e  t h i s  d i d  y o u. . ?",
+	false]
 }
+
 
 func readDialouge( dialogueChoice : String ):
 	if dialogueDict[dialogueChoice][-1] == true:
