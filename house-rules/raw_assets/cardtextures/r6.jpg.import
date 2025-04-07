@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://c04fiw7uxq0x6"
+path="res://.godot/imported/r6.jpg-eebb5bf2d1c74b4242b5c327dcbb03e8.image"
+
+[deps]
+
+source_file="res://raw_assets/cardtextures/r6.jpg"
+dest_files=["res://.godot/imported/r6.jpg-eebb5bf2d1c74b4242b5c327dcbb03e8.image"]
+
+[params]
+

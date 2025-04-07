@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://iklbqmo51fkg"
+path="res://.godot/imported/h5.jpg-645035f7a3551daefc4c5e2198aca2fe.image"
+
+[deps]
+
+source_file="res://raw_assets/cardtextures/h5.jpg"
+dest_files=["res://.godot/imported/h5.jpg-645035f7a3551daefc4c5e2198aca2fe.image"]
+
+[params]
+

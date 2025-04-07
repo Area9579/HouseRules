@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://cmtwjuovnypps"
+path="res://.godot/imported/m10.jpg-e7efb7b1be671c202b3af3ad8da3c417.image"
+
+[deps]
+
+source_file="res://raw_assets/cardtextures/m10.jpg"
+dest_files=["res://.godot/imported/m10.jpg-e7efb7b1be671c202b3af3ad8da3c417.image"]
+
+[params]
+

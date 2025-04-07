@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://fsi1dhyrjgra"
+path="res://.godot/imported/m8.jpg-53ddc30526427ceccc80a12ed3c8a717.image"
+
+[deps]
+
+source_file="res://raw_assets/cardtextures/m8.jpg"
+dest_files=["res://.godot/imported/m8.jpg-53ddc30526427ceccc80a12ed3c8a717.image"]
+
+[params]
+

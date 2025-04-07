@@ -10,8 +10,8 @@ func _init() -> void:
 	for i in 52:
 		var value = clamp((i % 13), 1, 13)
 		var value_name = card_values_array.get(i % 13)
-		var suit = "spades" if i % 4 == 0 else "diamonds" if i % 4 == 1 else "hearts" if i % 4 == 2 else "clubs"
-		var color = "red" if suit == "diamonds" else "red" if suit == "hearts" else "black"
+		var suit = "e" if i % 4 == 0 else "m" if i % 4 == 1 else "h" if i % 4 == 2 else "r"
+		var color = "red" if suit == "r" else "red" if suit == "h" else "black"
 		var _card = CARD.instantiate()
 		_card.name = "Card"
 		_card.initialize( value, color, suit, value_name )
