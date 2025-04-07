@@ -497,6 +497,7 @@ transform = Transform3D(0.855332, -0.400109, -0.32912, -0.477712, -0.363244, -0.
 transform = Transform3D(0.738716, -0.388776, -0.550592, -0.663548, -0.276064, -0.695336, 0.118332, 0.879001, -0.461904, 0.100763, 0.158365, 0.0672782)
 
 [node name="KeyIndicators" type="Node3D" parent="PlayerBody/HandLeft"]
+visible = false
 
 [node name="KeyIndicator" parent="PlayerBody/HandLeft/KeyIndicators" node_paths=PackedStringArray("cardPlacement") instance=ExtResource("8_m1efj")]
 transform = Transform3D(0.126617, -0.0920454, 0.0663004, 0.112434, 0.0886423, -0.0916578, 0.0150569, 0.112117, 0.126898, -0.11784, 0.215026, 0.101407)
