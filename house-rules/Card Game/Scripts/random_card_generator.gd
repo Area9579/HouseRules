@@ -16,6 +16,16 @@ func _init() -> void:
 		_card.name = "Card"
 		_card.initialize( value, color, suit, value_name )
 		default_list.append( _card )
+	var b_joker = CARD.instantiate()
+	b_joker.name = "Card"
+	b_joker.initialize( 10, "black", "joker", "joker" )
+	var r_joker = CARD.instantiate()
+	r_joker.name = "Card"
+	r_joker.initialize( 10, "black", "joker", "joker" )
+	
+	default_list.append(b_joker)
+	default_list.append(r_joker)
+	
 	for card in default_list:
 		available_list.append(card.duplicate())
 	available_list.shuffle()
