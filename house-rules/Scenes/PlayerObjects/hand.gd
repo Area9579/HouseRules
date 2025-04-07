@@ -18,6 +18,5 @@ func _process(delta: float) -> void:
 		if item == null:
 			return
 		if Input.is_action_just_released("left") and item.has_mouse:
-			item.remove()
 			item_clicked.emit( item )
 			item = null

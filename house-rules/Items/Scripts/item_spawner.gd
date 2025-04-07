@@ -31,8 +31,8 @@ func spawn_item():
 	$AudioStreamPlayer.play()
 	#new_item.position = self.position
 	match randi_range(1,2):
-		1: new_item.type = "dentures"
-		2: new_item.type = "brick"
+		1: new_item.type = "dentures" #TODO
+		2: new_item.type = "dentures"
 	new_item.verify()
 	
 	new_item.hand = right_hand

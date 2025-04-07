@@ -122,3 +122,6 @@ text = "2
 [node name="FinalScore" type="Label3D" parent="PlayerColumnText"]
 transform = Transform3D(6.1644, 0, 0, 0, 6.1644, 0, 0, 0, 6.1644, 8.61231, 0.718102, 5.69199)
 text = "player"
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true

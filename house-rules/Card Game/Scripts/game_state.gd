@@ -26,7 +26,6 @@ func _turn_pass():
 
 var bricked_wait = 0
 func _process(delta: float) -> void:
-	print(bricked_wait)
 	if board == null or item_spawner == null:
 		return
 	match state:
@@ -110,10 +109,7 @@ func _process(delta: float) -> void:
 			state = next_state
 		
 		States.dentures:
-			state = null
 			board.run_dentures_code()
-			
-			await self.turn_pass
 		
 		States.bowling_ball:
 			state = null

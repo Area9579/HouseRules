@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cxddpve567luf"]
+[gd_scene load_steps=36 format=3 uid="uid://cxddpve567luf"]
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="Script" uid="uid://dieo8wand5g3b" path="res://Scripts/main_scene.gd" id="1_drdnd"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://2dinqbum68si" path="res://Scenes/KeyIndicator.tscn" id="8_m1efj"]
 [ext_resource type="PackedScene" uid="uid://bt1yeo0ewckf3" path="res://Items/Scenes/ItemSpawner.tscn" id="10_mai8y"]
 [ext_resource type="AudioStream" uid="uid://bml0ehqgecnra" path="res://raw_assets/sounds/grabcard.wav" id="10_psl12"]
+[ext_resource type="AudioStream" uid="uid://dj22pirjjq1fw" path="res://raw_assets/sounds/hitbybrick.wav" id="11_2ebs2"]
 [ext_resource type="PackedScene" uid="uid://b1m5iaasfpavd" path="res://TitleScrene/Scenes/menu.tscn" id="12_drdnd"]
 [ext_resource type="PackedScene" uid="uid://b01dgcxrxgo05" path="res://raw_assets/realhand.blend" id="12_gnsmo"]
 
@@ -279,6 +280,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(-4.16274, 1.86097, -0.0854611), Vector3(-1.62093, 4.74175, -0.0854613), Vector3(-1.62093, 4.74175, -0.0854613), Vector3(-3.45513, 1.14282, -0.0854614), Vector3(-3.03719, 2.99961, -0.0854616), Vector3(-3.37659, 2.44522, -0.0854613), Vector3(-3.37659, 2.44522, -0.0854613), Vector3(-2.41871, 3.26069, -0.0854613), Vector3(-2.41871, 3.26069, -0.0854613), Vector3(-2.39561, -1.11715, -0.0854612), Vector3(-2.396, -0.602, -0.085), Vector3(-2.39561, -1.11715, -0.0854612), Vector3(-2.396, -0.872, -0.085), Vector3(-2.39561, -1.11715, -0.0854612)]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Brick")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_jvnna"]
 resource_name = "backup"
@@ -515,18 +530,22 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_b48ew"]
+resource_name = "placedent"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ebs2"]
 _data = {
 &"RESET": SubResource("Animation_psl12"),
 &"brick_throw": SubResource("Animation_2ebs2"),
-&"idle": SubResource("Animation_gnsmo")
+&"idle": SubResource("Animation_gnsmo"),
+&"placedent": SubResource("Animation_b48ew")
 }
 
 [node name="MainScene" type="Node3D"]
 script = ExtResource("1_drdnd")
 
 [node name="reader" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.51599, 1.77069, -2.64676)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0166, 1.11507, -2.64676)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6l7je")
@@ -595,10 +614,10 @@ script = ExtResource("6_ioaeq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0799443, -3.39998, 0.0886431)
 
 [node name="Skeleton3D" parent="BEUASTYYYYY/Armature" index="0"]
-bones/0/rotation = Quaternion(-0.000435949, -0.000551057, 0.00473666, 0.999989)
-bones/1/position = Vector3(-0.00154452, 1.51311, 0.000161804)
-bones/2/rotation = Quaternion(-0.00652176, 0.0402888, 0.0940815, 0.994728)
-bones/3/rotation = Quaternion(0.932736, -0.203367, 0.122761, 0.271249)
+bones/0/rotation = Quaternion(-0.000720953, -0.000911315, 0.00783329, 0.999969)
+bones/1/position = Vector3(-0.00608279, 1.48264, 0.000637235)
+bones/2/rotation = Quaternion(-0.0086414, 0.041737, 0.100138, 0.99406)
+bones/3/rotation = Quaternion(0.934737, -0.194193, 0.124938, 0.270085)
 bones/4/rotation = Quaternion(0.175811, -0.14033, 0.727358, 0.648342)
 bones/5/rotation = Quaternion(0.212546, 0.183628, 0.186027, 0.941541)
 bones/6/position = Vector3(0.239378, 0.829122, 0.130257)
@@ -614,7 +633,7 @@ bones/15/rotation = Quaternion(0.160722, 0.528883, 0.598428, 0.579944)
 bones/16/rotation = Quaternion(-0.364819, 0.782575, 0.438971, 0.248574)
 bones/18/rotation = Quaternion(0.0544914, 0.155524, 0.284254, 0.94448)
 bones/19/rotation = Quaternion(0.20219, 0.324431, -0.0798911, 0.920587)
-bones/20/rotation = Quaternion(-0.903511, 0.0635461, 0.100127, 0.411831)
+bones/20/rotation = Quaternion(-0.907713, 0.0605054, 0.103434, 0.402116)
 bones/21/rotation = Quaternion(-0.429428, 0.255931, 0.536138, 0.680182)
 bones/22/rotation = Quaternion(-0.155076, -0.0117675, 0.123031, 0.980141)
 bones/23/rotation = Quaternion(-0.120893, 0.127561, 0.126095, 0.976326)
@@ -658,7 +677,7 @@ duration = 0.5
 transition_type = 7
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="BEUASTYYYYY/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.819055, -0.4075, 0.403848, -0.568241, 0.479197, -0.668934, 0.0790678, -0.777377, -0.624046, -2.25916, 1.93696, 1.10928)
+transform = Transform3D(-0.80423, -0.419806, 0.420687, -0.588972, 0.46823, -0.658691, 0.0795443, -0.777512, -0.623818, -2.26561, 1.85125, 1.1091)
 bone_name = "LeftForarm.001"
 bone_idx = 5
 
@@ -680,7 +699,7 @@ transform = Transform3D(0.406221, 0.18996, -0.893812, -0.139416, 0.979585, 0.144
 transform = Transform3D(-0.121933, 0.127994, -0.984251, -0.21992, 0.963518, 0.152542, 0.967867, 0.235057, -0.0893367, 0.0392692, 0.00509369, 0.0625181)
 
 [node name="righthand" type="BoneAttachment3D" parent="BEUASTYYYYY/Armature/Skeleton3D" index="5"]
-transform = Transform3D(0.0759108, -0.788386, -0.610479, -0.980359, 0.0527546, -0.190033, 0.182025, 0.612914, -0.768898, -2.00966, 1.16174, -1.45646)
+transform = Transform3D(0.0929509, -0.787488, -0.60928, -0.974976, 0.0521233, -0.21611, 0.201942, 0.614121, -0.762938, -2.00468, 1.08799, -1.41953)
 bone_name = "rhand"
 bone_idx = 22
 
@@ -710,6 +729,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.413323, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BEUASTYYYYY/StaticBody3D"]
 shape = SubResource("SphereShape3D_psl12")
+
+[node name="Brick" type="AudioStreamPlayer" parent="BEUASTYYYYY"]
+stream = ExtResource("11_2ebs2")
 
 [node name="ItemSpawner" parent="." instance=ExtResource("10_mai8y")]
 transform = Transform3D(0.826884, 0, -0.562372, 0, 1, 0, 0.562372, 0, 0.826884, -5.31938, 1.56161, -1.648)

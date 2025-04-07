@@ -9,7 +9,7 @@ class_name Item
 @onready var rigidBody: RigidBody3D = $RigidBody3D
 var type : String
 
-enum States { falling, spawning, in_hand }
+enum States { falling, spawning, in_hand, empty}
 @onready var state
 
 func _init() -> void:
@@ -19,6 +19,8 @@ func _ready() -> void:
 	state = States.spawning
 	animation_player.play("spawning")
 	
+func start_dent():
+	$RigidBody3D/dentures/AnimationPlayer.play("bottomAction_001 ")
 
 func verify():
 	if type == "dentures":
