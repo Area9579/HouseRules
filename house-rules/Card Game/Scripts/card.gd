@@ -48,6 +48,8 @@ func launchCard():
 	rigidBody.freeze = false
 	rigidBody.constant_force.x = 20
 	rigidBody.apply_force(Vector3(0,150,30))
+	await get_tree().create_timer(3).timeout
+	get_parent().remove_card()
 	
 	for i in range(0,3): #random torque generation
 		var randTorque = randi_range(1,10)

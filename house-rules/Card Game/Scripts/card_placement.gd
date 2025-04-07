@@ -14,6 +14,8 @@ signal placement_clicked( card_placement )
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("left") and has_mouse:
 		placement_clicked.emit( self )
+	if Input.is_action_just_released("right") and has_mouse and card != null:
+		card.launchCard()
 	
 	if has_mouse:
 		unhighlight()
