@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbhk6m8pavkcx"]
+[gd_scene load_steps=8 format=3 uid="uid://cbhk6m8pavkcx"]
 
 [ext_resource type="Script" uid="uid://dkfo1gfj06h7l" path="res://Card Game/Scripts/card_placement.gd" id="1_rcdbo"]
 [ext_resource type="Material" uid="uid://cem4l3d3umol4" path="res://outlineMaterial.tres" id="2_20chl"]
+[ext_resource type="AudioStream" uid="uid://dadru7wynhtto" path="res://raw_assets/sounds/placecard.wav" id="3_7qjyw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mxad6"]
 size = Vector3(0.057, 0.005, 0.087)
@@ -9,6 +10,16 @@ size = Vector3(0.057, 0.005, 0.087)
 [sub_resource type="BoxMesh" id="BoxMesh_7qjyw"]
 material = ExtResource("2_20chl")
 size = Vector3(0.06, 0.008, 0.09)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e2w3p"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_7qjyw")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7qjyw"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_7qjyw")
 
 [node name="CardPosition" type="Node3D"]
 script = ExtResource("1_rcdbo")
@@ -28,6 +39,13 @@ text = "wiz"
 [node name="Outline" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("BoxMesh_7qjyw")
+
+[node name="Place" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_e2w3p")
+
+[node name="drop" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_7qjyw")
+pitch_scale = 0.5
 
 [connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
 [connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]

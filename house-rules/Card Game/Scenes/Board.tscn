@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://c27iw0ytkgcnm"]
+[gd_scene load_steps=6 format=3 uid="uid://c27iw0ytkgcnm"]
 
 [ext_resource type="Script" uid="uid://hr1obdm6tnyv" path="res://Card Game/Scripts/board.gd" id="1_52vfp"]
 [ext_resource type="PackedScene" uid="uid://cbhk6m8pavkcx" path="res://Card Game/Scenes/card_position.tscn" id="1_bfgrx"]
 [ext_resource type="Script" uid="uid://c3brq1m82vy3k" path="res://Scripts/base_game_logic.gd" id="2_m0mw3"]
 [ext_resource type="PackedScene" uid="uid://bj7qdejlwck26" path="res://Scenes/MainCardDirector.tscn" id="3_m0mw3"]
+[ext_resource type="AudioStream" uid="uid://ck57upq11ssli" path="res://raw_assets/sounds/cardplace.wav" id="4_irbdl"]
 
 [node name="Board" type="Node3D"]
 script = ExtResource("1_52vfp")
+
+[node name="PlayerPlace" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_irbdl")
 
 [node name="LadyCardOrganizer" type="Node3D" parent="." node_paths=PackedStringArray("enemy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77016, 0, 0.189935)

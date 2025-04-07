@@ -8,6 +8,7 @@ var fullscreen := false
 var textures = []
 
 func _ready() -> void:
+	
 	var dir = DirAccess.open("res://raw_assets/cardtextures/")
 	dir.list_dir_begin()
 	
@@ -23,8 +24,9 @@ func _ready() -> void:
 				textures += [texture_to_place]
 				
 				
-				
+	
 func _process(_delta):
+	
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
 	

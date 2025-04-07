@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv2dxsr33dvr0"]
+
+[ext_resource type="Script" uid="uid://co77el3go5kwj" path="res://music_director.gd" id="1_wypqw"]
+[ext_resource type="AudioStream" uid="uid://c2i54e6jnpwt8" path="res://raw_assets/sounds/ominous.wav" id="2_wypqw"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_wypqw")
+
+[node name="Train" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wypqw")
+autoplay = true
+
+[node name="Train2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wypqw")
+
+[node name="SwitcherTrain" type="Timer" parent="."]
+wait_time = 101.0
+autostart = true
+
+[connection signal="timeout" from="SwitcherTrain" to="." method="_on_switcher_train_timeout"]

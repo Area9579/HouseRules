@@ -122,3 +122,10 @@ texture = ExtResource("2_cnr7e")
 libraries = {
 &"": SubResource("AnimationLibrary_wg711")
 }
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="add_trauma"]
