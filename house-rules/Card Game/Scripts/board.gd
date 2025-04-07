@@ -60,8 +60,7 @@ func highlight_matched_cards():
 	
 	var arr : Array = []
 	
-	for child in lady_card_organizer.get_children():
-		arr.append(child)
+
 	for child in player_card_organizer.get_children():
 		arr.append(child)
 	

@@ -1,15 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbhk6m8pavkcx"]
+[gd_scene load_steps=9 format=3 uid="uid://cbhk6m8pavkcx"]
 
 [ext_resource type="Script" uid="uid://dkfo1gfj06h7l" path="res://Card Game/Scripts/card_placement.gd" id="1_rcdbo"]
 [ext_resource type="Material" uid="uid://cem4l3d3umol4" path="res://outlineMaterial.tres" id="2_20chl"]
 [ext_resource type="AudioStream" uid="uid://dadru7wynhtto" path="res://raw_assets/sounds/placecard.wav" id="3_7qjyw"]
+[ext_resource type="Texture2D" uid="uid://bjyifpt5thsgw" path="res://Card Game/Assets/card_placement.png" id="4_e2w3p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mxad6"]
 size = Vector3(0.057, 0.005, 0.087)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7qjyw"]
 material = ExtResource("2_20chl")
-size = Vector3(0.06, 0.008, 0.09)
+size = Vector3(0.06, 0.002, 0.09)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e2w3p"]
 random_pitch = 1.1
@@ -33,6 +34,7 @@ debug_color = Color(0, 0.6, 0.701961, 1)
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(0.025, 0, 0, 0, 0.00054232, 0.0249941, 0, -0.0249941, 0.00054232, 0, 0, 0)
+visible = false
 pixel_size = 0.025
 text = "wiz"
 
@@ -46,6 +48,11 @@ stream = SubResource("AudioStreamRandomizer_e2w3p")
 [node name="drop" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_7qjyw")
 pitch_scale = 0.5
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, 0.000677407, 0.0199885, 0, -0.0199885, 0.000677407, 0, 0, 0)
+modulate = Color(0.443137, 0.443137, 0.443137, 0.27451)
+texture = ExtResource("4_e2w3p")
 
 [connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
 [connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]
