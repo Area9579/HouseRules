@@ -46,12 +46,11 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_rigid_body_3d_mouse_entered() -> void:
 	has_mouse = true
-	print("item has mouse")
+
 
 
 func _on_rigid_body_3d_mouse_exited() -> void:
 	has_mouse = false
-	print("item doesnt have mouse")
 
 func _on_timer_timeout() -> void:
 	self.queue_free()
