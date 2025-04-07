@@ -42,8 +42,8 @@ func _process(delta: float) -> void:
 		for i in 5:
 			draw_card()
 		left_hand.hand_is_initialized = true
-	if Input.is_action_just_released("reset"):
-		clear_board()
+	#if Input.is_action_just_released("reset"):
+		#clear_board()
 
 func item_clicked( item : Item ):
 	match item.type:
@@ -196,6 +196,7 @@ func nuke_cards( card ):
 				card_placement.remove_card()
 			elif card_placement.card.color == value:
 				card_placement.remove_card()
+
 
 
 #JUDE SHIT
