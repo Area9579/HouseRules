@@ -82,7 +82,7 @@ transform = Transform3D(0.315749, 0, 0.0105296, 0, 0.315924, 0, -0.0105296, 0, 0
 [node name="beautyAnimator" type="AnimationPlayer" parent="BEUASTYYYYY"]
 
 [node name="ItemSpawner" parent="." instance=ExtResource("10_mai8y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40705, 1.47595, -2.39201)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.355084, 1.47595, -1.99365)
 
 [node name="PlayerBody" type="Node3D" parent="."]
 
