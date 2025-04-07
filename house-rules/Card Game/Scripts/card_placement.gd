@@ -23,16 +23,21 @@ func _process(delta: float) -> void:
 
 
 func set_card( new_card : Card ):
-	card = new_card
+	
+	self.card = new_card
+	
 	card.placement_parent = self
 	if !has_node("Card"):
+		if card.get_parent(): card.get_parent().remove_child(card)
 		self.add_child(card)
 	card.update_text()
-	text.text = ""
+	if text != null:
+		text.text = ""
 	
 	
 	if organizer is Organizer:
 		organizer.place_card(card, int(String(name)[0]), int(String(name)[1]))
+	
 
 func set_card_position():
 	return
@@ -47,6 +52,9 @@ func remove_card():
 	card = null
 	update_text()
 
+func remove_lady_child():
+	card = null
+	
 func update_text():
 	if card == null:
 		text.text = "wiz"

@@ -18,7 +18,6 @@ func _ready() -> void:
 func place_card(card, col, row):
 	cards[col][row] = card
 	board.update_row(update_board_column(col), col, id)
-	send_to_enemy()
 
 func remove_card(col, row):
 	cards[col][row] = null
