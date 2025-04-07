@@ -18,8 +18,6 @@ signal turn_pass
 
 func _ready() -> void:
 	connect("turn_pass", _turn_pass)
-	await get_tree().create_timer(1.0).timeout
-	item_spawner.spawn_item()
 	
 func _turn_pass(): 
 	return true
@@ -82,14 +80,16 @@ func _process(delta: float) -> void:
 			board.lady_main()
 			await self.turn_pass
 			state = next_state
+			item_spawner.item_event_triggered()
 			
 		States.lady_end:
-			item_spawner.item_event_triggered()
+			state = null
 			board.lady_end()
 			next_state = States.player_draw
 			await self.turn_pass
 			state = next_state
 			board.check_winner()
+			
 		
 		States.win:
 			next_state = null

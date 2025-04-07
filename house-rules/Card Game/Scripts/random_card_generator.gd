@@ -56,4 +56,4 @@ func add_values_to_card_values_array():
 	card_values_array.append("ten")
 	card_values_array.append("jack")
 	card_values_array.append("queen")
-	card_values_array.append("king")
+	card_values_array.append("k")

@@ -7,6 +7,22 @@ extends Node
 var fullscreen := false 
 var textures = []
 
+static func load_asset(path : String) -> Resource:
+	if OS.has_feature("export"):
+		# Check if file is .remap
+		if not path.ends_with(".remap"):
+			return load(path)
+		# Open the file
+		var __config_file = ConfigFile.new()
+		__config_file.load(path)
+
+		# Load the remapped file
+		var __remapped_file_path = __config_file.get_value("remap", "path")
+		__config_file = null
+		return load(__remapped_file_path)
+	else:
+		return load(path)
+
 func _ready() -> void:
 	
 	var dir = DirAccess.open("res://raw_assets/cardtextures/")
@@ -15,7 +31,7 @@ func _ready() -> void:
 	for file in dir.get_files():
 		var index = dir.get_files().find(file) % 2
 		if index == 0:
-			var i = load(dir.get_current_dir() + "/" + file)
+			var i = load_asset(dir.get_current_dir() + "/" + file)
 			if i is Image:
 				var image_texture = ImageTexture.new()
 				
