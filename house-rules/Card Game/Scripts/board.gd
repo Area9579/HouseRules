@@ -49,13 +49,15 @@ func _process(delta: float) -> void:
 		#clear_board()
 
 func item_clicked( item : Item ):
+	if GameState.state != GameState.States.player_main: return
 	match item.type:
-		"1": GameState.state = GameState.States.dentures
-		"2": GameState.state = GameState.States.severed_hand
-		"3": GameState.state = GameState.States.bowling_ball
+		"dentures": 
+			GameState.state = GameState.States.dentures
+		"brick": 
+			GameState.state = GameState.States.bowling_ball
+	brick_item = item
 
 func highlight_matched_cards():
-	
 	var hovered_card = null
 	
 	var arr : Array = []
@@ -92,7 +94,27 @@ func highlight_matched_cards():
 					card_placement.setSelection(true)
 		else:
 			card_placement.setSelection(false)
+
+var brick_item = null
+func run_brick_code():
+	print('running brick')
+	$"../PlayerBody/PlayerAnimator".play("brick_throw")
 	
+func hit_lady():
+	var tween = get_tree().create_tween()
+	brick_item.top_level = true
+	tween.tween_property(brick_item, "global_position", Vector3(-3.516, 2.771, -2.647), .1)
+	await tween.finished
+	lady_react()
+	brick_item.remove()
+	brick_item = null
+
+func lady_react():
+	$"../BEUASTYYYYY/beautyAnimator".play("react")
+	await $"../BEUASTYYYYY/beautyAnimator".animation_finished
+	GameState.emit_signal("turn_pass")
+func lady_reset():
+	$"../BEUASTYYYYY/beautyAnimator".play("backup")
 
 func run_dentures_code():
 	var hovered_card = null
@@ -190,6 +212,7 @@ func lady_card_clicked( card_placement : CardPlacement ):
 	#switch_cards( card_placement )
 
 func player_card_clicked( card_placement : CardPlacement ):
+	if GameState.state != GameState.States.player_main: return
 	if selected_placement == null:
 		return
 		# add code here to nuke all cards of same suit
@@ -204,6 +227,9 @@ func player_hand_clicked( card_placement : CardPlacement ):
 	selected_placement = card_placement
 	if selected_placement.card != null:
 		selected_placement.setSelection(true)
+
+func play_draw_sound(at_point):
+	$PlayerDraw.play(at_point)
 
 func draw_card():
 	drawing = true
@@ -245,7 +271,7 @@ func nuke_cards( card ):
 			elif card_placement.card.color == value:
 				card_placement.remove_card()
 
-
+#region Jude Stuff
 
 #JUDE SHIT
 #JUDE SHIT
@@ -450,3 +476,4 @@ func check_winner():
 	else: 
 		GameState.lose()
 	
+#endregion

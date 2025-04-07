@@ -18,7 +18,14 @@ func _init() -> void:
 func _ready() -> void:
 	state = States.spawning
 	animation_player.play("spawning")
+	
 
+func verify():
+	if type == "dentures":
+		$RigidBody3D/dentures.show()
+	if type == 'brick':
+		$RigidBody3D/brick.show()
+	
 func _process(delta: float) -> void:
 	
 	match state:
@@ -34,14 +41,13 @@ func _process(delta: float) -> void:
 				return
 			if !animation_player.is_playing():
 				rigid_body_3d.global_position = lerp( rigid_body_3d.global_position, hand.get_node("ItemPosition").global_position, .1 )
-			
 
-func remove():
+func remove(): #TODO not right away
 	state = States.falling
-	timer.start(2)
+	timer.start(10)
 	launchItem()
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+func _on_animation_player_animation_finished(anim_name: StringName) -> void: #plays after drops
 	animation_player.stop()
 	rigid_body_3d.position = Vector3(0, -0.49, -1.325)
 	state = States.in_hand
@@ -50,7 +56,6 @@ func launchItem():
 	rigidBody.freeze = false
 	rigidBody.constant_force.x = 20
 	rigidBody.apply_force(Vector3(0,150,60))
-	
 	
 	for i in range(0,3): #random torque generation
 		var randTorque = randi_range(1,10)
@@ -64,4 +69,5 @@ func launchItem():
 
 
 func _on_timer_timeout() -> void:
+	return
 	self.queue_free()

@@ -18,8 +18,12 @@ func _init() -> void:
 		default_list.append( _card )
 	var b_joker = CARD.instantiate()
 	b_joker.name = "Card"
-	b_joker.initialize( 10, "black", "joker", "joker" )
+	
+	b_joker.initialize( 10, "black", "joker", "joker")
+	
+	#set texture here
 	var r_joker = CARD.instantiate()
+	
 	r_joker.name = "Card"
 	r_joker.initialize( 10, "black", "joker", "joker" )
 	

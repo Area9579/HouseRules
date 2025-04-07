@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://vf3hehc00p3o"]
+[gd_scene load_steps=10 format=3 uid="uid://vf3hehc00p3o"]
 
 [ext_resource type="Script" uid="uid://cbk3keikb7k51" path="res://Items/Scripts/item.gd" id="1_b6pr5"]
+[ext_resource type="PackedScene" uid="uid://clx8s0uyog7ho" path="res://raw_assets/dentures.blend" id="2_tsj1q"]
+[ext_resource type="PackedScene" uid="uid://d31p4cpd40y8h" path="res://raw_assets/brick.blend" id="3_xhafu"]
 
 [sub_resource type="Animation" id="Animation_mhc50"]
 resource_name = "RESET"
@@ -99,6 +101,14 @@ collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/Area3D"]
 shape = SubResource("SphereShape3D_mhc50")
+
+[node name="dentures" parent="RigidBody3D" instance=ExtResource("2_tsj1q")]
+transform = Transform3D(-0.0715629, 0, 1.81425e-07, 0, 0.0715629, 0, -1.81425e-07, 0, -0.0715629, 0, 0, 0)
+visible = false
+
+[node name="brick" parent="RigidBody3D" instance=ExtResource("3_xhafu")]
+transform = Transform3D(-0.0388251, 0, 9.84287e-08, 0, 0.0388251, 0, -9.84287e-08, 0, -0.0388251, 0, 0, 0)
+visible = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
