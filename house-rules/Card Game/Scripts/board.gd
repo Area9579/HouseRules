@@ -127,6 +127,41 @@ func draw_card():
 	GameState.state = GameState.States.player_main
 	return
 
+func nuke_cards( card ):
+	var value
+	if card.value_name == "joker":
+		value = card.color
+	elif card.value_name == "king":
+		value = card.suit
+	else:
+		value = card.value_name
+	
+	for card_placement in lady_card_organizer.get_children():
+		if card_placement.card != null:
+			if card_placement.card.value_name == value:
+				card_placement.remove_card()
+			if card_placement.card.suit == value:
+				card_placement.remove_card()
+			if card_placement.card.color == value:
+				card_placement.remove_card()
+	
+	for card_placement in player_card_organizer.get_children():
+		if card_placement.card != null:
+			if card_placement.card.value_name == value:
+				card_placement.remove_card()
+			if card_placement.card.suit == value:
+				card_placement.remove_card()
+			if card_placement.card.color == value:
+				card_placement.remove_card()
+	
+	for card_placement in left_hand.hand_card_organizer.get_children():
+		if card_placement.card != null:
+			if card_placement.card.value_name == value:
+				card_placement.remove_card()
+			if card_placement.card.suit == value:
+				card_placement.remove_card()
+			if card_placement.card.color == value:
+				card_placement.remove_card()
 
 
 #JUDE SHIT
