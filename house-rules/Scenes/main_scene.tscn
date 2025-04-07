@@ -432,7 +432,7 @@ autoplay = "idle"
 
 [node name="HandLeft" type="Node3D" parent="PlayerBody"]
 unique_name_in_owner = true
-transform = Transform3D(0.32277, 0.894661, 0.308871, -0.44413, -0.145011, 0.884149, 0.835804, -0.422556, 0.350541, 0.626742, 1.08132, -2.92225)
+transform = Transform3D(0.322771, 0.894661, 0.308871, -0.444131, -0.145011, 0.884149, 0.835804, -0.422556, 0.350541, 0.626742, 1.08132, -2.92225)
 script = ExtResource("4_maf8m")
 
 [node name="realhand" parent="PlayerBody/HandLeft" instance=ExtResource("12_gnsmo")]

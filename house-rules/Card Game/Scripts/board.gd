@@ -12,6 +12,7 @@ const CARD = preload("res://Card Game/Scenes/card.tscn")
 
 @export var selected_card = null
 @export var selected_placement = null
+@onready var deck_mesh: Node3D = $deck
 
 var player_score = [0,0,0]
 var player_final = 0
