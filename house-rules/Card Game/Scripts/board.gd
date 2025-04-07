@@ -45,7 +45,10 @@ func _process(delta: float) -> void:
 		clear_board()
 
 func item_clicked( item : Item ):
-	print("item used")
+	match item.type:
+		"1": print("This is item 1")
+		"2": print("This is item 2")
+		"3": print("This is item 3")
 
 func lady_draw():
 	pass

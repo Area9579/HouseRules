@@ -20,8 +20,6 @@ func _ready() -> void:
 	animation_player.play("quick time event")
 
 func _process(delta: float) -> void:
-	if get_parent().name == "HandRight" and has_mouse and Input.is_action_just_pressed("right"):
-		launchItem()
 	
 	match state:
 		States.falling:
@@ -48,7 +46,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		state = States.falling
 
 func launchItem():
-	state = States.falling
 	rigidBody.freeze = false
 	rigidBody.constant_force.x = 20
 	rigidBody.apply_force(Vector3(0,150,60))
@@ -67,7 +64,6 @@ func launchItem():
 
 func _on_rigid_body_3d_mouse_entered() -> void:
 	has_mouse = true
-
 
 
 func _on_rigid_body_3d_mouse_exited() -> void:

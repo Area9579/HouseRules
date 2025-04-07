@@ -28,8 +28,9 @@ func spawn_item():
 		return
 	new_item = ITEM.instantiate()
 	#new_item.position = self.position
+	new_item.type = str(randi_range(1,3)) #temp random item 1-3
 	add_child(new_item)
-	timer.start(10)
+	timer.start(4)
 
 func move_item_to_hand( item: Item ):
 	if item == null:
