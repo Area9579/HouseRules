@@ -32,12 +32,18 @@ func _process(delta: float) -> void:
 			
 		States.player_main:
 			next_state = States.player_end
+			
+			for card_placement in board.left_hand.hand_card_organizer.get_children():
+				if card_placement.card == null and card_placement:
+					state = next_state
+					break
+			
 			ray_pickable_state = true
 			set_ray_pickable_on_card_placements(ray_pickable_state)
 			ray_pickable_state = false
 			
 		States.player_end:
-			# trigger item shit here
+			item_spawner.item_event_triggered()
 			next_state = States.lady_draw
 			item_spawner.spawn_item()
 			set_ray_pickable_on_card_placements(ray_pickable_state)
@@ -55,6 +61,7 @@ func _process(delta: float) -> void:
 			await _turn_pass()
 			state = next_state
 		States.lady_end:
+			item_spawner.item_event_triggered()
 			next_state = States.player_draw
 			state = next_state
 			board.check_winner()
