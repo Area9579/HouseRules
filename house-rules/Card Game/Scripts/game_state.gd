@@ -6,7 +6,8 @@ extends Node
 enum States {
 	player_draw, player_main, player_end,
 	lady_draw, lady_main, lady_end,
-	win, lose, item_event, fall_event
+	win, lose, item_event, fall_event,
+	dentures, bowling_ball, severed_hand
 	}
 
 @export var state = States.player_draw
@@ -29,6 +30,7 @@ func _process(delta: float) -> void:
 			next_state = States.player_main
 			if board.drawing == false:
 				board.draw_card()
+				state = next_state
 			
 		States.player_main:
 			next_state = States.player_end
@@ -77,6 +79,15 @@ func _process(delta: float) -> void:
 			pass
 		States.fall_event:
 			pass
+		
+		States.severed_hand:
+			for i in 5:
+				board.draw_card()
+			state = next_state
+		States.dentures:
+			board.run_dentures_code()
+		States.bowling_ball:
+			state = States.player_draw
 
 
 

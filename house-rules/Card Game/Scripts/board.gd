@@ -39,20 +39,62 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if not left_hand.hand_is_initialized:
-		draw_card()
-		draw_card()
-		draw_card()
-		draw_card()
-		draw_card()
+		for i in 5:
+			draw_card()
 		left_hand.hand_is_initialized = true
 	if Input.is_action_just_released("reset"):
 		clear_board()
 
 func item_clicked( item : Item ):
 	match item.type:
-		"1": print("This is item 1")
-		"2": print("This is item 2")
-		"3": print("This is item 3")
+		"1": GameState.state = GameState.States.dentures
+		"2": GameState.state = GameState.States.severed_hand
+		"3": GameState.state = GameState.States.bowling_ball
+
+func run_dentures_code():
+	var hovered_card = null
+	
+	var arr : Array = []
+	
+	for child in lady_card_organizer.get_children():
+		arr.append(child)
+	for child in player_card_organizer.get_children():
+		arr.append(child)
+	
+	for card_placement in arr:
+		if card_placement.has_mouse:
+			hovered_card = card_placement.name
+			break
+
+	# get column of hovered card
+	var col
+	if hovered_card != null:
+		col = hovered_card.left(1) 
+	else:
+		col = ""
+
+	# highlight all other cards in column
+	for card_placement in arr:
+		if hovered_card != null:
+			if card_placement.name.left(1) == col:
+				card_placement.setSelection(true)
+		else:
+			card_placement.setSelection(false)
+	
+	if !Input.is_action_just_released("left"):
+		return
+	
+	# nuke highlighted cards
+	for card_placement in arr:
+		if hovered_card != null:
+			if card_placement.name.left(1) == col:
+				card_placement.remove_card()
+	
+	# remove highlights from cards
+	for card_placement in arr:
+		card_placement.setSelection(false)
+	
+	GameState.state = GameState.next_state
 
 ## moving around cards logic
 func place_card( card_placement : CardPlacement, card = null ):
@@ -67,15 +109,17 @@ func place_card( card_placement : CardPlacement, card = null ):
 
 func clear_board():
 	card_generator.get_new_deck()
-	for card_placement in lady_card_organizer.get_children():
-		if card_placement.card != null:
-			card_placement.remove_card()
 	
-	for card_placement in player_card_organizer.get_children():
-		if card_placement.card != null:
-			card_placement.remove_card()
+	var arr : Array = []
 	
-	for card_placement in left_hand.hand_card_organizer.get_children():
+	for child in lady_card_organizer.get_children():
+		arr.append(child)
+	for child in player_card_organizer.get_children():
+		arr.append(child)
+	for child in left_hand.hand_card_organizer.get_children():
+		arr.append(child)
+	
+	for card_placement in arr:
 		if card_placement.card != null:
 			card_placement.remove_card()
 
@@ -127,8 +171,6 @@ func draw_card():
 			#card_placement.set_card_position()
 			
 	drawing = false
-	GameState.state = GameState.States.player_main
-	return
 
 func nuke_cards( card ):
 	var value
@@ -139,31 +181,20 @@ func nuke_cards( card ):
 	else:
 		value = card.value_name
 	
-	for card_placement in lady_card_organizer.get_children():
-		if card_placement.card != null:
-			if card_placement.card.value_name == value:
-				card_placement.remove_card()
-			if card_placement.card.suit == value:
-				card_placement.remove_card()
-			if card_placement.card.color == value:
-				card_placement.remove_card()
+	var arr : Array = []
 	
-	for card_placement in player_card_organizer.get_children():
-		if card_placement.card != null:
-			if card_placement.card.value_name == value:
-				card_placement.remove_card()
-			if card_placement.card.suit == value:
-				card_placement.remove_card()
-			if card_placement.card.color == value:
-				card_placement.remove_card()
+	for child in lady_card_organizer.get_children():
+		arr.append(child)
+	for child in player_card_organizer.get_children():
+		arr.append(child)
 	
-	for card_placement in left_hand.hand_card_organizer.get_children():
+	for card_placement in arr:
 		if card_placement.card != null:
 			if card_placement.card.value_name == value:
 				card_placement.remove_card()
-			if card_placement.card.suit == value:
+			elif card_placement.card.suit == value:
 				card_placement.remove_card()
-			if card_placement.card.color == value:
+			elif card_placement.card.color == value:
 				card_placement.remove_card()
 
 
