@@ -1,0 +1,27 @@
+extends Node3D
+
+@onready var sprite3D : Sprite3D = $Sprite3D
+@onready var subViewport : SubViewport = $Sprite3D/SubViewport
+@onready var richTextLabel : RichTextLabel = $Sprite3D/SubViewport/RichTextLabel
+
+
+var string : String = "The quick brown fox jumped over the lazy dog..."
+
+
+func _ready() -> void:
+	pass
+	#tweenText(string)
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("right"):
+		tweenText(string)
+	subViewport.size = richTextLabel.size
+	richTextLabel.position = Vector2.ZERO
+	
+
+func tweenText(text: String):
+	richTextLabel.text = text
+	var tween = get_tree().create_tween()
+	richTextLabel.visible_ratio = 0
+	tween.tween_property(richTextLabel, "visible_ratio", 1.0, 5.0)
