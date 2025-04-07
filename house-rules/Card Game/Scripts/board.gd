@@ -39,6 +39,7 @@ func _ready() -> void:
 	quad_lady_draw()
 
 func _process(delta: float) -> void:
+	highlight_matched_cards()
 	proces_lady_hand(delta)
 	if not left_hand.hand_is_initialized:
 		for i in 5:
@@ -52,6 +53,46 @@ func item_clicked( item : Item ):
 		"1": GameState.state = GameState.States.dentures
 		"2": GameState.state = GameState.States.severed_hand
 		"3": GameState.state = GameState.States.bowling_ball
+
+func highlight_matched_cards():
+	
+	var hovered_card = null
+	
+	var arr : Array = []
+	
+	for child in lady_card_organizer.get_children():
+		arr.append(child)
+	for child in player_card_organizer.get_children():
+		arr.append(child)
+	
+	# remove highlights from cards
+	for card_placement in arr:
+		card_placement.setSelection(false)
+	
+	if selected_placement == null or selected_placement.card == null:
+		return
+	
+	for card_placement in arr:
+		if card_placement.has_mouse:
+			hovered_card = card_placement.name
+			break
+
+	# get column of hovered card
+	var col
+	if hovered_card != null:
+		col = hovered_card.left(1) 
+	else:
+		col = ""
+
+	# highlight all other cards in column
+	for card_placement in arr:
+		if hovered_card != null:
+			if card_placement.name.left(1) == col and card_placement.card != null:
+				if selected_placement.card.value_name == card_placement.card.value_name:
+					card_placement.setSelection(true)
+		else:
+			card_placement.setSelection(false)
+	
 
 func run_dentures_code():
 	var hovered_card = null
