@@ -22,7 +22,7 @@ func _process(_delta):
 	
 	if animation_player.current_animation != "turning" or animation_player.current_animation != "intro":
 		rotation_degrees.x = clamp(rotation_degrees.x, -75, -15)
-		rotation_degrees.y = clamp(rotation_degrees.y, -170, -30)
+		rotation_degrees.y = clamp(rotation_degrees.y, -170, -10)
 		rotation_degrees.z = clamp(rotation_degrees.z, 0, 0)
 	
 	
