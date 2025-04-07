@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cxddpve567luf"]
+[gd_scene load_steps=21 format=3 uid="uid://cxddpve567luf"]
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="Script" uid="uid://dieo8wand5g3b" path="res://Scripts/main_scene.gd" id="1_drdnd"]
@@ -387,10 +387,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0549277, 0.23818, 0.0303932
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0990179, 0.177485, -0.00908822)
 
 [node name="PlayerCamera" parent="PlayerBody" instance=ExtResource("5_iacmt")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.476291, 1.47022, -2.64495)
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, 0.476291, 1.47022, -2.64495)
 current = true
 fov = 64.6875
 
 [node name="Menu" parent="." instance=ExtResource("12_drdnd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40962, -8.70401)
+transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, -5.66453, 1.40962, -4.3482)
+
 [editable path="BEUASTYYYYY"]
