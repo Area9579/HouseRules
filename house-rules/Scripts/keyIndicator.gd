@@ -16,8 +16,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	#if Input.is_action_just_pressed("left"):
-		#switchKeys()
+	if Input.is_action_just_pressed("reset"):
+		switchKeys()
 	if !keyIsPressed:
 		if currentMercyTimer > 0:
 			currentMercyTimer -= delta
@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 			if cardPlacement.card != null and !cardFalling:
 				cardFalling = true
 				cardPlacement.card.launchCard()
-				print("call card placement function to nuke here using card info")
+				owner.get_node("Board").nuke_cards(cardPlacement.card)
 				await get_tree().create_timer(3).timeout
 				cardFalling = false
 				cardPlacement.remove_card()

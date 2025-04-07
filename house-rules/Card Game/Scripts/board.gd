@@ -45,8 +45,8 @@ func _process(delta: float) -> void:
 		draw_card()
 		draw_card()
 		left_hand.hand_is_initialized = true
-	if Input.is_action_just_released("reset"):
-		clear_board()
+	#if Input.is_action_just_released("reset"):
+		#clear_board()
 
 func item_clicked( item : Item ):
 	match item.type:
@@ -140,31 +140,23 @@ func nuke_cards( card ):
 		value = card.value_name
 	
 	for card_placement in lady_card_organizer.get_children():
-		if card_placement.card != null:
+		if card_placement != null and card_placement.card != null:
 			if card_placement.card.value_name == value:
 				card_placement.remove_card()
-			if card_placement.card.suit == value:
+			elif card_placement.card.suit == value:
 				card_placement.remove_card()
-			if card_placement.card.color == value:
+			elif card_placement.card.color == value:
 				card_placement.remove_card()
 	
 	for card_placement in player_card_organizer.get_children():
-		if card_placement.card != null:
+		if card_placement != null and card_placement.card != null:
 			if card_placement.card.value_name == value:
 				card_placement.remove_card()
-			if card_placement.card.suit == value:
+			elif card_placement.card.suit == value:
 				card_placement.remove_card()
-			if card_placement.card.color == value:
+			elif card_placement.card.color == value:
 				card_placement.remove_card()
-	
-	for card_placement in left_hand.hand_card_organizer.get_children():
-		if card_placement.card != null:
-			if card_placement.card.value_name == value:
-				card_placement.remove_card()
-			if card_placement.card.suit == value:
-				card_placement.remove_card()
-			if card_placement.card.color == value:
-				card_placement.remove_card()
+
 
 
 #JUDE SHIT
