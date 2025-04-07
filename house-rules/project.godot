@@ -69,4 +69,4 @@ reset={
 
 [physics]
 
-3d/default_gravity_vector=Vector3(0, -0.5, 0)
+3d/default_gravity_vector=Vector3(2.12, -2.12, 0)

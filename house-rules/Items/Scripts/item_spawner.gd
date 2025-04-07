@@ -6,7 +6,7 @@ extends Node3D
 
 const ITEM = preload("res://Items/Scenes/Item.tscn")
 
-var threshold : int = 0
+var threshold : int = 5
 
 func _ready() -> void:
 	GameState.item_spawner = self
@@ -17,29 +17,29 @@ func _process(delta: float) -> void:
 
 func item_event_triggered():
 	var random_int = randi_range(1, 10)
-	if random_int > threshold and right_hand.item == null:
+	if right_hand.item == null:
+		return
+	elif random_int > threshold:
 		spawn_item()
-	else:
-		pass
-		# dont spawn item
 
 func spawn_item():
 	if new_item != null:
 		return
 	new_item = ITEM.instantiate()
+	add_child(new_item)
 	#new_item.position = self.position
 	new_item.type = str(randi_range(1,3)) #temp random item 1-3
-	add_child(new_item)
-	timer.start(4)
+	new_item.hand = right_hand
+	move_item_to_hand(new_item)
 
 func move_item_to_hand( item: Item ):
 	if item == null:
 		return
-	if right_hand.item != null:
-		right_hand.item.remove()
+	#if right_hand.item != null:
+		#right_hand.item.remove()
 	item.reparent(right_hand, true)
 	right_hand.item = item
-	new_item = null
+	#new_item = null
 	return right_hand
 
 

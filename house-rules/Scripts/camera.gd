@@ -3,7 +3,7 @@ extends Camera3D
 @export var mouseSensitivity: int 
 @onready var rayCast: RayCast3D = $RayCast3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+@onready var previous_collider
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -13,6 +13,11 @@ func _process(_delta):
 			rayCast.get_collider().get_parent().highlight()
 	elif rayCast.is_colliding() and rayCast.get_collider().get_parent().get_parent() is Item:
 		rayCast.get_collider().owner.has_mouse = true
+		previous_collider = rayCast.get_collider()
+	
+	if rayCast.is_colliding() == false and previous_collider != null:
+		previous_collider.owner.has_mouse = false
+		previous_collider = null
 	
 	if animation_player.current_animation != "turning" or animation_player.current_animation != "intro":
 		rotation_degrees.x = clamp(rotation_degrees.x, -65, 0)

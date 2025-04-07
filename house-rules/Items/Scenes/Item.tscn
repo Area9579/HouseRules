@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://vf3hehc00p3o"]
+[gd_scene load_steps=8 format=3 uid="uid://vf3hehc00p3o"]
 
 [ext_resource type="Script" uid="uid://cbk3keikb7k51" path="res://Items/Scripts/item.gd" id="1_b6pr5"]
-[ext_resource type="Script" uid="uid://830qq56qgdng" path="res://Scripts/quickTimeIndicator.gd" id="2_mhc50"]
 
 [sub_resource type="Animation" id="Animation_mhc50"]
-length = 0.001
+resource_name = "RESET"
+length = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -13,14 +13,26 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1.07177),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
 
-[sub_resource type="Animation" id="Animation_b6pr5"]
-resource_name = "quick time event"
-length = 4.0
+[sub_resource type="Animation" id="Animation_tsj1q"]
+resource_name = "RESET"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,16 +40,28 @@ tracks/0/path = NodePath("RigidBody3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.06667, 4),
-"transitions": PackedFloat32Array(4.92458, 0.329878, 1),
+"times": PackedFloat32Array(0, 0.633333, 0.833333, 1.1, 1.23333, 1.5, 2),
+"transitions": PackedFloat32Array(2.73208, 0.554785, 1.41421, 0.757859, 1.56917, 0.31864, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1.5, 0, 0), Vector3(2.2, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -0.49, -0.805), Vector3(0, -0.4, -1.02), Vector3(0, -0.49, -1.095), Vector3(0, -0.415, -1.155), Vector3(0, -0.49, -1.215), Vector3(0, -0.49, -1.325)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.633333, 1.13333, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 0.574349, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(0, -1.39626, 0), Vector3(0, 1.0472, 0), Vector3(0, 1.5708, 0), Vector3(0, 1.84132, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tsj1q"]
 _data = {
 &"RESET": SubResource("Animation_mhc50"),
-&"quick time event": SubResource("Animation_b6pr5")
+&"spawning": SubResource("Animation_tsj1q")
 }
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b6pr5"]
@@ -60,22 +84,8 @@ libraries = {
 }
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, 0, 0, 0)
 freeze = true
-
-[node name="QuickTimeEvent" type="Node3D" parent="RigidBody3D"]
-transform = Transform3D(-0.00129588, 0.00294226, -0.249979, 0.00112572, 0.24998, 0.00293644, 0.249994, -0.0011104, -0.00130903, -0.00167385, -0.0322562, 0.109787)
-
-[node name="QuickTimeIndicator" type="Node3D" parent="RigidBody3D/QuickTimeEvent"]
-script = ExtResource("2_mhc50")
-key = "H"
-mercyTimer = 3.0
-
-[node name="Label3D" type="Label3D" parent="RigidBody3D/QuickTimeEvent/QuickTimeIndicator"]
-text = "~"
-
-[node name="TimerLabel" type="Label3D" parent="RigidBody3D/QuickTimeEvent/QuickTimeIndicator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.263725, 0)
-text = "0.0"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
 mesh = SubResource("CapsuleMesh_b6pr5")

@@ -283,7 +283,7 @@ playback_default_blend_time = 0.5
 transform = Transform3D(-0.449799, -0.856575, -0.252883, -0.774008, 0.232581, 0.588906, -0.445628, 0.460624, -0.767615, -1.64735, -2.09274, -1.05924)
 
 [node name="ItemSpawner" parent="." instance=ExtResource("10_mai8y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.36039, 1.47595, -1.99365)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44619, 1.56161, -1.50838)
 
 [node name="PlayerBody" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.67503, 0, 0)

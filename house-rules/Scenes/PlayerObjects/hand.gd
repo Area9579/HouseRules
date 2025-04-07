@@ -17,13 +17,7 @@ func _process(delta: float) -> void:
 	if name == "HandRight":
 		if item == null:
 			return
-		if Input.is_action_just_released("right") and item.has_mouse:
-			item.launchItem()
+		if Input.is_action_just_released("left") and item.has_mouse:
 			item.remove()
 			item_clicked.emit( item )
 			item = null
-
-func clear_item(_item : Item):
-	if item == _item:
-		_item.remove()
-		item = null
