@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cxddpve567luf"]
+[gd_scene load_steps=20 format=3 uid="uid://cxddpve567luf"]
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="Script" uid="uid://bl1a3eiy7hgeh" path="res://Card Game/Scripts/game_state.gd" id="1_huasi"]
@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://bt1yeo0ewckf3" path="res://Items/Scenes/ItemSpawner.tscn" id="10_mai8y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_52fb6"]
-sky_top_color = Color(0.542308, 0.368438, 0.613554, 1)
-sky_horizon_color = Color(0.461027, 0.439003, 0.460586, 1)
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
 sky_curve = 0.235375
 ground_bottom_color = Color(0, 0, 0, 1)
 ground_horizon_color = Color(0.405874, 0.297608, 0.29799, 1)
@@ -29,9 +29,147 @@ ambient_light_source = 3
 ambient_light_color = Color(0.741385, 0.741385, 0.741385, 1)
 ambient_light_energy = 0.68
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_drdnd"]
+[sub_resource type="Animation" id="Animation_drdnd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetRightArm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.64735, -2.09274, -1.05924)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetRightArm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.629707, -2.82335, -1.27889)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D/LookAt:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.08733, 2.67794, -0.0854607)]
+}
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ioaeq"]
+[sub_resource type="Animation" id="Animation_76v2p"]
+resource_name = "grab card"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetRightArm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.162081, 0.36198, 0.448423, 0.6, 0.794196, 1.1, 1.39447, 1.58377, 1.73333, 2.53333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 0.574349, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.64735, -2.09274, -1.05924), Vector3(-2.3781, -1.15231, -1.08361), Vector3(-3.29358, -1.21983, -1.54732), Vector3(-3.29358, -1.21983, -1.54732), Vector3(-1.93866, -1.14576, -1.9906), Vector3(-1.86227, -2.42868, -0.526814), Vector3(-1.64735, -2.09274, -1.05924), Vector3(-1.66854, -1.56009, -0.424025), Vector3(-1.68015, -1.3649, -0.0757561), Vector3(-1.68038, -1.32614, -0.0690174), Vector3(-1.68038, -1.32614, -0.0690174)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetRightArm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.36198, 0.448423, 0.6, 0.794196, 0.8, 1.1, 1.39447, 1.58377, 2.53333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 0.574349, 1, 1),
+"update": 0,
+"values": [Vector3(-1.3689, 1.13984, 0.731185), Vector3(-0.910102, 0.187708, 1.28087), Vector3(-0.910102, 0.187708, 1.28087), Vector3(-0.969155, 0.31026, 1.21012), Vector3(-1.16613, 0.719048, 0.974119), Vector3(-1.02398, -2.95946, 0.377056), Vector3(-0.629707, -2.82335, -1.27889), Vector3(-1.16072, -2.40215, -1.79576), Vector3(-0.534074, -2.84565, -1.23836), Vector3(-0.534074, -2.84565, -1.23836)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D/LookAt:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.00540269, 0.567283, 1.14537, 1.73967, 1.9, 2, 2.0718, 2.53333),
+"transitions": PackedFloat32Array(1, 0.34151, 0.34151, 0.34151, 1, 1, 0.615572, 1, 1),
+"update": 0,
+"values": [Vector3(-3.08733, 2.67794, -0.0854607), Vector3(-3.08733, 2.67794, -0.0854607), Vector3(-3.06303, 2.26512, -0.814162), Vector3(-3.11902, 1.62857, 0.864879), Vector3(-3.11902, 1.83172, 0.864878), Vector3(-3.11902, 1.83172, 0.864878), Vector3(-3.08687, 1.83172, -0.0991707), Vector3(-3.08298, 1.83172, -0.21604), Vector3(-3.08298, 1.83172, -0.21604)]
+}
+
+[sub_resource type="Animation" id="Animation_ioaeq"]
+resource_name = "play_card"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetRightArm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.68038, -1.32614, -0.0690174), Vector3(-1.64735, -2.09274, -1.05924)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetRightArm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.534074, -2.84565, -1.23836), Vector3(-1.25366, -1.13622, -3.12574)]
+}
+
+[sub_resource type="Animation" id="Animation_7ewk0"]
+resource_name = "end"
+length = 0.6735
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/LookAt:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-3.08733, 2.67794, -0.0854607), Vector3(-3.08733, 3.15332, -0.0854616)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetRightArm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.64735, -2.09274, -1.05924)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ioaeq"]
+_data = {
+&"RESET": SubResource("Animation_drdnd"),
+&"end": SubResource("Animation_7ewk0"),
+&"grab card": SubResource("Animation_76v2p"),
+&"play_card": SubResource("Animation_ioaeq")
+}
 
 [node name="MainScene" type="Node3D"]
 script = ExtResource("1_huasi")
@@ -47,10 +185,12 @@ environment = SubResource("Environment_6l7je")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.37103, -3.44959)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Enviornment"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 9.8501, -3.40513)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -4.06635, 3.69345, -2.7297)
+light_color = Color(0.604952, 0.49557, 0.434679, 1)
 light_energy = 9.727
 spot_range = 12.2471
 spot_angle = 31.2114
+metadata/_edit_lock_ = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Enviornment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0.501411)
@@ -61,30 +201,91 @@ transform = Transform3D(0.817887, 0.575368, 0.00338627, -0.57489, 0.816938, 0.04
 size = Vector3(630.338, 5, 21)
 
 [node name="Board" parent="." instance=ExtResource("3_jv6wh")]
-transform = Transform3D(-0.000261194, -0.00241898, -0.0344023, -1.83653e-05, 0.0344033, -0.00241892, 0.0344872, -5.11928e-12, -0.000261839, 1.13332, 1.02408, -2.61904)
+transform = Transform3D(-0.000345905, -0.000407933, -0.0455597, -3.09722e-06, 0.045561, -0.000407935, 0.0455615, -1.20246e-11, -0.000345919, -4.48593, 1.017, -2.61904)
 
-[node name="Node3D" type="Node" parent="."]
+[node name="AnimationManager" type="Node" parent="."]
 script = ExtResource("8_76v2p")
 
-[node name="BeautyTree" type="AnimationTree" parent="Node3D"]
-root_node = NodePath("../../BEUASTYYYYY")
-tree_root = SubResource("AnimationNodeStateMachine_drdnd")
-anim_player = NodePath("../../BEUASTYYYYY/beautyAnimator")
-
-[node name="PlayerTree" type="AnimationTree" parent="Node3D"]
-root_node = NodePath("../../PlayerBody/PlayerCamera")
-tree_root = SubResource("AnimationNodeStateMachine_ioaeq")
-anim_player = NodePath("../../PlayerBody/PlayerAnimator")
-
 [node name="BEUASTYYYYY" parent="." instance=ExtResource("3_m1efj")]
-transform = Transform3D(0.315749, 0, 0.0105296, 0, 0.315924, 0, -0.0105296, 0, 0.315749, 2.16945, 1.44492, -2.65791)
+transform = Transform3D(0.315749, 0, 0.0105296, 0, 0.315924, 0, -0.0105296, 0, 0.315749, -3.20038, 1.44492, -2.65791)
+
+[node name="Skeleton3D" parent="BEUASTYYYYY/Armature" index="0"]
+bones/0/rotation = Quaternion(-0.000435949, -0.000551057, 0.00473666, 0.999989)
+bones/1/position = Vector3(-0.00154452, 1.51311, 0.000161804)
+bones/2/rotation = Quaternion(-0.00652176, 0.0402888, 0.0940815, 0.994728)
+bones/3/rotation = Quaternion(0.932736, -0.203367, 0.122761, 0.271249)
+bones/4/rotation = Quaternion(0.175811, -0.14033, 0.727358, 0.648342)
+bones/5/rotation = Quaternion(0.212546, 0.183628, 0.186027, 0.941541)
+bones/6/position = Vector3(0.239378, 0.829122, 0.130257)
+bones/6/rotation = Quaternion(0.40532, -0.0336147, 0.604538, 0.684923)
+bones/7/rotation = Quaternion(0.528372, -0.057525, 0.29953, 0.792335)
+bones/9/position = Vector3(0.0494077, 0.84241, 0.028769)
+bones/9/rotation = Quaternion(0.415676, -0.0480578, 0.627953, 0.656185)
+bones/10/rotation = Quaternion(0.583792, -0.0349553, 0.233219, 0.7769)
+bones/12/position = Vector3(-0.0307215, 0.853832, -0.194725)
+bones/12/rotation = Quaternion(0.415676, -0.0480576, 0.627953, 0.656185)
+bones/13/rotation = Quaternion(0.566029, -0.0609698, 0.260572, 0.779741)
+bones/15/rotation = Quaternion(0.160722, 0.528883, 0.598428, 0.579944)
+bones/16/rotation = Quaternion(-0.364819, 0.782575, 0.438971, 0.248574)
+bones/18/rotation = Quaternion(0.0544914, 0.155524, 0.284254, 0.94448)
+bones/19/rotation = Quaternion(0.20219, 0.324431, -0.0798911, 0.920587)
+bones/20/rotation = Quaternion(-0.903511, 0.0635461, 0.100127, 0.411831)
+bones/21/rotation = Quaternion(-0.429428, 0.255931, 0.536138, 0.680182)
+bones/22/rotation = Quaternion(-0.155076, -0.0117675, 0.123031, 0.980141)
+bones/23/rotation = Quaternion(-0.120893, 0.127561, 0.126095, 0.976326)
+bones/24/rotation = Quaternion(-0.5544, 0.122858, 0.524429, 0.634446)
+bones/25/rotation = Quaternion(0.191441, -0.0573361, -0.103487, 0.974348)
+bones/26/position = Vector3(0.0479648, 0.886475, -0.0218318)
+bones/26/rotation = Quaternion(-0.717903, 0.0432028, 0.0978318, 0.68788)
+bones/27/rotation = Quaternion(-0.741136, 0.0499296, 0.148742, 0.652764)
+bones/28/rotation = Quaternion(-0.200206, -0.0932808, -0.0557548, 0.973708)
+bones/29/position = Vector3(0.202429, 0.833289, -0.060417)
+bones/29/rotation = Quaternion(-0.717903, 0.0432028, 0.0978318, 0.68788)
+bones/30/rotation = Quaternion(-0.74711, 0.0328634, 0.135096, 0.649996)
+bones/31/rotation = Quaternion(-0.19055, -0.0971141, -0.0355898, 0.976214)
+bones/32/position = Vector3(0.327141, 0.813, -0.168079)
+bones/32/rotation = Quaternion(-0.706442, 0.0324544, 0.0851287, 0.701882)
+bones/33/rotation = Quaternion(-0.763872, 0.0342181, 0.157741, 0.624857)
+bones/34/rotation = Quaternion(-0.189612, -0.0941679, -0.0644165, 0.975208)
+bones/35/position = Vector3(-0.379716, 0.464093, 0.253615)
+bones/35/rotation = Quaternion(-0.0778201, -0.797324, 0.339753, 0.492734)
+bones/36/rotation = Quaternion(0.110374, -0.230494, -0.0702135, 0.964241)
+
+[node name="SkeletonIK3D" type="SkeletonIK3D" parent="BEUASTYYYYY/Armature/Skeleton3D" index="1"]
+transform = Transform3D(0.175109, 0, 0.984549, 0, 1, 0, -0.984549, 0, 0.175109, 0, 0, 0)
+root_bone = &"RightArm"
+tip_bone = &"rhand"
+target_node = NodePath("../../../TargetRightArm")
+
+[node name="LookAt" type="Marker3D" parent="BEUASTYYYYY/Armature/Skeleton3D" index="2"]
+transform = Transform3D(0.999997, 0, 3.72529e-09, 0, 1, 0, -3.72529e-09, 0, 0.999997, -3.08733, 2.67794, -0.0854607)
+
+[node name="LookAtModifier3D" type="LookAtModifier3D" parent="BEUASTYYYYY/Armature/Skeleton3D" index="3"]
+target_node = NodePath("../LookAt")
+bone_name = "Head"
+bone = 2
+forward_axis = 1
+primary_rotation_axis = 2
+duration = 0.5
+transition_type = 7
+
+[node name="AnimationPlayer" parent="BEUASTYYYYY" index="1"]
+autoplay = "idle"
 
 [node name="beautyAnimator" type="AnimationPlayer" parent="BEUASTYYYYY"]
+libraries = {
+&"": SubResource("AnimationLibrary_ioaeq")
+}
+playback_default_blend_time = 0.5
+
+[node name="TargetRightArm" type="Marker3D" parent="BEUASTYYYYY"]
+transform = Transform3D(-0.449799, -0.856575, -0.252883, -0.774008, 0.232581, 0.588906, -0.445628, 0.460624, -0.767615, -1.64735, -2.09274, -1.05924)
 
 [node name="ItemSpawner" parent="." instance=ExtResource("10_mai8y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.355084, 1.47595, -1.99365)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.36039, 1.47595, -1.99365)
 
 [node name="PlayerBody" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.67503, 0, 0)
 
 [node name="PlayerAnimator" type="AnimationPlayer" parent="PlayerBody"]
 root_node = NodePath("../PlayerCamera")
@@ -188,3 +389,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0990179, 0.177485, -0.00908
 transform = Transform3D(-4.37114e-08, 0.866026, -0.5, 0, 0.5, 0.866026, 1, 3.78552e-08, -2.18557e-08, 0.476291, 1.47022, -2.64495)
 current = true
 fov = 64.6875
+
+[editable path="BEUASTYYYYY"]

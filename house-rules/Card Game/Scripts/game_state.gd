@@ -6,7 +6,8 @@ extends Node
 enum States {
 	player_draw, player_main, player_end,
 	lady_draw, lady_main, lady_end,
-	win, lose, item_event, fall_event
+	win, lose, item_event, fall_event,
+	dentures, bowling_ball, severed_hand
 	}
 
 @export var state = States.player_draw
@@ -18,7 +19,8 @@ signal turn_pass
 func _ready() -> void:
 	connect("turn_pass", _turn_pass)
 	
-func _turn_pass(): return true
+func _turn_pass(): 
+	return true
 
 func _process(delta: float) -> void:
 	
@@ -29,6 +31,7 @@ func _process(delta: float) -> void:
 			next_state = States.player_main
 			if board.drawing == false:
 				board.draw_card()
+				state = next_state
 			
 		States.player_main:
 			next_state = States.player_end
@@ -52,17 +55,25 @@ func _process(delta: float) -> void:
 		
 		States.lady_draw:
 			next_state = States.lady_main
+			state = null
+			
+			board.lady_draw()
+			await self.turn_pass
 			
 			state = next_state
+		
 		States.lady_main:
 			next_state = States.lady_end
 			state = null
 			board.lady_main()
-			await _turn_pass()
+			await self.turn_pass
 			state = next_state
+			
 		States.lady_end:
 			item_spawner.item_event_triggered()
+			board.lady_end()
 			next_state = States.player_draw
+			await self.turn_pass
 			state = next_state
 			board.check_winner()
 		
@@ -77,6 +88,15 @@ func _process(delta: float) -> void:
 			pass
 		States.fall_event:
 			pass
+		
+		States.severed_hand:
+			for i in 5:
+				board.draw_card()
+			state = next_state
+		States.dentures:
+			board.run_dentures_code()
+		States.bowling_ball:
+			state = States.player_draw
 
 
 

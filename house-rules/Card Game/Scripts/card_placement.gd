@@ -43,7 +43,7 @@ func remove_card():
 		organizer.remove_card(int(String(name)[0]), int(String(name)[1]))
 	if card != null:
 		card.placement_parent = null
-		card.queue_free()
+		card.launchCard()
 	card = null
 	update_text()
 

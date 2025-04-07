@@ -22,6 +22,7 @@ func place_card(card, col, row):
 
 func remove_card(col, row):
 	cards[col][row] = null
+	board.update_row(update_board_column(col), col, id)
 	update_board_column(col)
 
 func send_to_enemy():
