@@ -6,13 +6,18 @@ const CARD = preload("res://Card Game/Scenes/card.tscn")
 @onready var player_card_organizer: Node3D = $PlayerCardOrganizer
 @onready var card_generator: CardGenerator
 @onready var deck = $DECK
-@onready var left_hand = get_parent().get_node("HandLeft")
-@onready var right_hand = get_parent().get_node("HandRight")
+@onready var left_hand = $"../PlayerBody/HandLeft"
+@onready var right_hand = $"../PlayerBody/HandRight"
 @onready var drawing = false
-
 
 @export var selected_card = null
 @export var selected_placement = null
+
+var player_score = [0,0,0]
+var player_final = 0
+
+var lady_score = [0,0,0]
+var lady_final = 0
 
 
 func _ready() -> void:
@@ -29,7 +34,6 @@ func _ready() -> void:
 	## signals for player hand are initialized on the node Hand in main so that
 	## the signals only connect once children nodes are ready (ik theres other
 	## ways around this but oops, this still works)
-	
 	
 	right_hand.connect("item_clicked", item_clicked)
 
@@ -50,90 +54,6 @@ func item_clicked( item : Item ):
 		"2": print("This is item 2")
 		"3": print("This is item 3")
 
-func lady_draw():
-	pass
-	
-
-var wait = 0
-func lady_main():
-	wait += 1
-	match randi() % 3:
-		0:
-			lady_random()
-			
-		1:
-			lady_match()
-			
-		2:
-			
-			lady_destroy()
-
-	GameState.emit_signal("turn_pass")
-
-func get_empty_list():
-	var empty_list = []
-	for i in lady_card_organizer.get_children():
-		if i.card == null:
-			empty_list += [i]
-	return empty_list
-
-func lady_random():
-	
-	var empty_list = get_empty_list()
-	if !empty_list.is_empty():
-		var random_choice = empty_list[randi() % empty_list.size()]
-		place_card(random_choice)
-
-func lady_match():
-	
-	var new_card : Card = card_generator.get_new_card()
-	
-	var chosen_card = null #get the row
-	for i in lady_card_organizer.get_children():
-		if i.card != null:
-			if i.card.value_name == new_card.value_name:
-				if int(String(i.name)[0]) == 0:
-					if $"LadyCardOrganizer/00".card == null: return place_card($"LadyCardOrganizer/00", new_card)
-					elif $"LadyCardOrganizer/01".card == null: return place_card($"LadyCardOrganizer/01", new_card)
-					elif $"LadyCardOrganizer/02".card == null: return place_card($"LadyCardOrganizer/02", new_card)
-				elif int(String(i.name)[0]) == 1:
-					if $"LadyCardOrganizer/10".card == null: return place_card($"LadyCardOrganizer/10", new_card)
-					elif $"LadyCardOrganizer/11".card == null: return place_card($"LadyCardOrganizer/11", new_card)
-					elif $"LadyCardOrganizer/12".card == null: return place_card($"LadyCardOrganizer/12", new_card)
-				elif int(String(i.name)[0]) == 2:
-					if $"LadyCardOrganizer/20".card == null: return place_card($"LadyCardOrganizer/20", new_card)
-					elif $"LadyCardOrganizer/21".card == null: return  place_card($"LadyCardOrganizer/21", new_card)
-					elif $"LadyCardOrganizer/22".card == null: return  place_card($"LadyCardOrganizer/22", new_card)
-				else: return lady_random()
-	return lady_random()
-	
-func lady_destroy():
-	
-	var new_card : Card = card_generator.get_new_card()
-
-	var chosen_card = null #get the row
-	for i in player_card_organizer.get_children():
-		if i.card != null:
-			print(i.card.value_name, new_card.value_name)
-			if i.card.value_name == new_card.value_name:
-				#print("matched")
-				if int(String(i.name)[0]) == 0:
-					if $"LadyCardOrganizer/00".card == null: return place_card($"LadyCardOrganizer/00", new_card)
-					elif $"LadyCardOrganizer/01".card == null: return place_card($"LadyCardOrganizer/01", new_card)
-					elif $"LadyCardOrganizer/02".card == null: return place_card($"LadyCardOrganizer/02", new_card)
-				elif int(String(i.name)[0]) == 1:
-					if $"LadyCardOrganizer/10".card == null: return place_card($"LadyCardOrganizer/10", new_card)
-					elif $"LadyCardOrganizer/11".card == null: return place_card($"LadyCardOrganizer/11", new_card)
-					elif $"LadyCardOrganizer/12".card == null: return place_card($"LadyCardOrganizer/12", new_card)
-				elif int(String(i.name)[0]) == 2:
-					if $"LadyCardOrganizer/20".card == null: return place_card($"LadyCardOrganizer/20", new_card)
-					elif $"LadyCardOrganizer/21".card == null: return  place_card($"LadyCardOrganizer/21", new_card)
-					elif $"LadyCardOrganizer/22".card == null: return  place_card($"LadyCardOrganizer/22", new_card)
-				else: return lady_random()
-	return lady_random()
-
-func lady_end():
-	pass
 ## moving around cards logic
 func place_card( card_placement : CardPlacement, card = null ):
 	var new_card = null
@@ -162,8 +82,7 @@ func clear_board():
 func switch_cards( desired_placement ):
 	if desired_placement.card != null or selected_placement.card == null: 
 		return
-	
-	selected_placement.card.reparent( desired_placement, false)
+	selected_placement.card.reparent( desired_placement, true)
 	desired_placement.set_card( selected_placement.card )
 	selected_placement.card = null
 	selected_placement.update_text()
@@ -171,36 +90,7 @@ func switch_cards( desired_placement ):
 	selected_placement = null
 	GameState.state = GameState.next_state
 	return desired_placement
-	#emit signal
 
-var player_score = [0,0,0]
-var player_final = 0
-
-var lady_score = [0,0,0]
-var lady_final = 0
-func update_row(amount : int, col : int, person : int):
-	if person == 0: #player
-		$PlayerColumnText.get_child(col).text = str(amount)
-		player_score[col] = amount
-		player_final = 0
-		for i in player_score:
-			player_final += i
-		$PlayerColumnText/FinalScore.text = str(player_final)
-	if person == 1:
-		$LadyColumnText.get_child(col).text = str(amount)
-		lady_score[col] = amount
-		lady_final = 0
-		for i in lady_score:
-			lady_final += i
-		$LadyColumnText/FinalScore.text = str(lady_final)
-
-func check_winner():
-	for i in lady_card_organizer.get_children():
-		if i.card == null: return
-	for i in player_card_organizer.get_children():
-		if i.card == null: return
-	if player_final > lady_final: GameState.win()
-	else: GameState.lose()
 	
 ## signals connect from lady's cards, player's cards, player's hands, and deck, respectively
 func lady_card_clicked( card_placement : CardPlacement ):
@@ -223,7 +113,6 @@ func player_hand_clicked( card_placement : CardPlacement ):
 	if selected_placement.card != null:
 		selected_placement.setSelection(true)
 
-
 func draw_card():
 	drawing = true
 	for card_placement in left_hand.hand_card_organizer.get_children():
@@ -232,9 +121,133 @@ func draw_card():
 			if new_card == null:
 				return
 			card_placement.set_card(new_card)
-			break
+			new_card.global_position = deck.global_position
+			
+			new_card.rotation = deck.rotation
 			#card_placement.set_card_position()
 			
 	drawing = false
 	GameState.state = GameState.States.player_main
 	return
+
+
+
+#JUDE SHIT
+#JUDE SHIT
+#JUDE SHIT
+#JUDE SHIT
+#JUDE SHIT
+#JUDE SHIT
+
+
+
+
+func lady_draw():
+	pass
+	
+
+var wait = 0
+func lady_main():
+	wait += 1
+	lady_match()
+	GameState.emit_signal("turn_pass")
+
+func get_empty_list():
+	var empty_list = []
+	for i in lady_card_organizer.get_children():
+		if i.card == null:
+			empty_list += [i]
+	return empty_list
+
+func lady_random():
+	
+	var empty_list = get_empty_list()
+	if !empty_list.is_empty():
+		var random_choice = empty_list[randi() % empty_list.size()]
+		place_card(random_choice)
+
+func lady_match():
+	
+	var new_card : Card = card_generator.get_new_card()
+	
+	var chosen_card = null #get the row
+	for i in lady_card_organizer.get_children():
+		if i.card != null:
+			if i.card.value_name == new_card.value_name:
+				if int(String(i.name)[0]) == 0:
+					
+					if $"LadyCardOrganizer/00".card == null: return place_card($"LadyCardOrganizer/00", new_card)
+					elif $"LadyCardOrganizer/01".card == null: return place_card($"LadyCardOrganizer/01", new_card)
+					elif $"LadyCardOrganizer/02".card == null: return place_card($"LadyCardOrganizer/02", new_card)
+				elif int(String(i.name)[0]) == 1:
+					
+					if $"LadyCardOrganizer/10".card == null: return place_card($"LadyCardOrganizer/10", new_card)
+					elif $"LadyCardOrganizer/11".card == null: return place_card($"LadyCardOrganizer/11", new_card)
+					elif $"LadyCardOrganizer/12".card == null: return place_card($"LadyCardOrganizer/12", new_card)
+				elif int(String(i.name)[0]) == 2:
+					
+					if $"LadyCardOrganizer/20".card == null: return place_card($"LadyCardOrganizer/20", new_card)
+					elif $"LadyCardOrganizer/21".card == null: return  place_card($"LadyCardOrganizer/21", new_card)
+					elif $"LadyCardOrganizer/22".card == null: return  place_card($"LadyCardOrganizer/22", new_card)
+					
+				else: return lady_destroy()
+	return lady_destroy()
+	
+func lady_destroy():
+	
+	var new_card : Card = card_generator.get_new_card()
+
+	var chosen_card = null #get the row
+	for i in player_card_organizer.get_children():
+		if i.card != null:
+			print(i.card.value_name, new_card.value_name)
+			if i.card.value_name == new_card.value_name:
+				#print("matched")
+				if int(String(i.name)[0]) == 0:
+					if $"LadyCardOrganizer/00".card == null: return place_card($"LadyCardOrganizer/00", new_card)
+					elif $"LadyCardOrganizer/01".card == null: return place_card($"LadyCardOrganizer/01", new_card)
+					elif $"LadyCardOrganizer/02".card == null: return place_card($"LadyCardOrganizer/02", new_card)
+				elif int(String(i.name)[0]) == 1:
+					if $"LadyCardOrganizer/10".card == null: return place_card($"LadyCardOrganizer/10", new_card)
+					elif $"LadyCardOrganizer/11".card == null: return place_card($"LadyCardOrganizer/11", new_card)
+					elif $"LadyCardOrganizer/12".card == null: return place_card($"LadyCardOrganizer/12", new_card)
+				elif int(String(i.name)[0]) == 2:
+					if $"LadyCardOrganizer/20".card == null: return place_card($"LadyCardOrganizer/20", new_card)
+					elif $"LadyCardOrganizer/21".card == null: return  place_card($"LadyCardOrganizer/21", new_card)
+					elif $"LadyCardOrganizer/22".card == null: return  place_card($"LadyCardOrganizer/22", new_card)
+				else: return lady_random()
+	return lady_random()
+
+func lady_end():
+	pass
+
+
+func update_row(amount : int, col : int, person : int):
+	if person == 0: #player
+		$PlayerColumnText.get_child(col).text = str(amount)
+		player_score[col] = amount
+		player_final = 0
+		for i in player_score:
+			player_final += i
+		$PlayerColumnText/FinalScore.text = str(player_final)
+	if person == 1:
+		$LadyColumnText.get_child(col).text = str(amount)
+		lady_score[col] = amount
+		lady_final = 0
+		for i in lady_score:
+			lady_final += i
+		$LadyColumnText/FinalScore.text = str(lady_final)
+
+func check_winner():
+	var lady_full = true
+	var player_full = true
+	for i in lady_card_organizer.get_children():
+		if i.card == null: lady_full = false
+	for i in player_card_organizer.get_children():
+		if i.card == null: player_full = false
+		if !lady_full or !player_full: return
+	if player_final > lady_final: 
+		GameState.win()
+	else: 
+		GameState.lose()
+	

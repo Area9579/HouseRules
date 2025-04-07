@@ -1,8 +1,8 @@
 extends Node3D
 
 @onready var hand_card_organizer: Node3D
-@onready var board: Node3D = get_parent().get_node("Board")
 @onready var hand_is_initialized : bool = false
+@onready var board: Node3D = $"../../Board"
 @onready var item : Item = null
 
 signal item_clicked( value )
