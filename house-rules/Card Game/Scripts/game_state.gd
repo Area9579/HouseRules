@@ -125,7 +125,7 @@ func _process(delta: float) -> void:
 			await self.turn_pass
 			state = States.player_draw
 	
-	match state:
+	match stage:
 		Stages.stage_1:
 			item_spawner.threshold = 11
 		Stages.stage_2:
