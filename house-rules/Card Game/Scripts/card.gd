@@ -40,12 +40,61 @@ func _ready() -> void:
 			texture_name = 'mk'
 		elif suit == 'r':
 			texture_name = 'rk'
+	var h = 0
+	
+	match texture_name:
+		"e1": h = 0
+		"e2": h = 1 
+		"e3": h = 2
+		"e4": h = 3
+		"e5": h = 4
+		"e6": h = 5
+		"e7": h = 6
+		"e8": h = 7
+		"e9": h = 8
+		"e10": h = 9
+		"ek": h = 10
+		"h1": h = 11
+		"h2": h = 12
+		"h3": h = 13
+		"h4": h = 14
+		"h5": h = 15
+		"h6": h = 16
+		"h7": h = 17
+		"h8": h = 18
+		"h9": h = 19
+		"h10": h = 20
+		"hk": h = 21
+		"jb": h = 22
+		"jr": h = 23
+		"m1": h = 24
+		"m2": h = 25
+		"m3": h = 26
+		"m4": h = 27
+		"m5": h = 28
+		"m6": h = 29
+		"m7": h = 30
+		"m8": h = 31
+		"m9": h = 32
+		"m10": h = 33
+		"mk": h = 34
+		"r1": h = 36
+		"r2": h = 37
+		"r3": h = 38
+		"r4": h = 39
+		"r5": h = 40
+		"r6": h = 41
+		"r7": h = 42
+		"r8": h = 43
+		"r9": h = 44
+		"r10": h = 45
+		"rk": h = 46
 		
-	for i in Director.textures:
-		if i.resource_name == texture_name:
-			mesh_instance_3d.set_surface_override_material(0, StandardMaterial3D.new())
-			mesh_instance_3d.get_surface_override_material(0).albedo_texture = i
-			return
+		
+		
+	mesh_instance_3d.set_surface_override_material(0, StandardMaterial3D.new())
+	mesh_instance_3d.get_surface_override_material(0).albedo_texture = Director.textures[h]
+
 
 func _physics_process(delta: float) -> void:
 	if launching: return

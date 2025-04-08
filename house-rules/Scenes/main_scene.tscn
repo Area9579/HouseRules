@@ -817,7 +817,7 @@ key = "Space"
 
 [node name="HandRight" type="Node3D" parent="PlayerBody"]
 unique_name_in_owner = true
-transform = Transform3D(-0.356676, 0.934225, 0.00254747, 0.0448541, 0.014401, 0.99889, 0.933151, 0.356394, -0.0470402, 0.541789, 1.08838, -2.36465)
+transform = Transform3D(-0.356676, 0.934225, 0.00254742, 0.044854, 0.014401, 0.99889, 0.933151, 0.356394, -0.0470403, 0.541789, 1.08838, -2.36465)
 script = ExtResource("4_maf8m")
 
 [node name="ItemPosition" type="Marker3D" parent="PlayerBody/HandRight"]
