@@ -1,6 +1,7 @@
 extends Node3D
 
-@onready var sprite_3d: Sprite3D = $Sprite3D
+@onready var label_3d: Label3D = $Label3D
+
 var fading : bool = false
 
 func fade_out():
@@ -9,4 +10,4 @@ func fade_out():
 func _process(delta: float) -> void:
 	if fading: 
 		var tween = get_tree().create_tween()
-		tween.tween_property(sprite_3d, "modulate", Color(Color.WHITE, 0), 1)
+		tween.tween_property(label_3d, "modulate", Color(Color.WHITE, 0), 1)
