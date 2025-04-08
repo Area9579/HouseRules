@@ -17,15 +17,17 @@ var dialogueDict: Dictionary = {
 	"at the end of the round",
 	"you get points equal to the value on the card",
 	"multiples of a card in a row will",
-	"mulitpy by how many there are in that row",
+	"multiply by how many there are in that row",
 	"discarding a card will get rid of all cards",
 	"of the same value on the board",
 	"the round ends when one person's board is full",
-	"Good luck, f r i e n d ...",
+	"Good luck, friend ...",
 	false],
 	
 	"SpecialCards":
-	["This game has two special cards",
+	["This deck was a gift to me,",
+	"and it's very special.",
+	"It has two special cards",
 	"The King and the Joker",
 	"The King, when discarded will destroy",
 	"all cards of the same Suit",
@@ -38,7 +40,7 @@ var dialogueDict: Dictionary = {
 	["Oh goodness me!",
 	"That must be where it went",
 	"Well I suppose that we can make use of it",
-	"Let's say... it takes out a whole row",
+	"Let's say... it eats a whole row!",
 	"Both mine and yours included",
 	false],
 	
@@ -64,9 +66,10 @@ var dialogueDict: Dictionary = {
 	
 	
 	"End":
-	["I commend you, truly",
-	"But you didn't really think it would end",
-	"l i k e  t h i s  d i d  y o u. . ?",
+	["Oh my, it looks like",
+	"we've run out of time!",
+	"I hope I can play with you",
+	"again sometime.",
 	false]
 }
 
