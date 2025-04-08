@@ -6,7 +6,7 @@ extends Node3D
 
 const ITEM = preload("res://Items/Scenes/Item.tscn")
 
-var threshold : int = 5
+var threshold : int
 
 func _ready() -> void:
 	GameState.item_spawner = self
@@ -16,7 +16,6 @@ func _process(delta: float) -> void:
 	return
 
 func item_event_triggered():
-	print('spawned')
 	var random_int = randi_range(1, 10)
 	if right_hand.item != null:
 		return

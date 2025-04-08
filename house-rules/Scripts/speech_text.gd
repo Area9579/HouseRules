@@ -13,8 +13,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	#if Input.is_action_just_pressed("right"):
-		#DialogueManager.readDialouge("Instructions")
 	subViewport.size = Vector2(richTextLabel.size.x,richTextLabel.size.y)
 	richTextLabel.position = Vector2.ZERO
 	

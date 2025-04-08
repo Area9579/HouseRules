@@ -39,6 +39,7 @@ func _ready() -> void:
 	right_hand.connect("item_clicked", item_clicked)
 	quad_lady_draw()
 
+
 func _process(delta: float) -> void:
 	highlight_matched_cards()
 	proces_lady_hand(delta)
@@ -505,10 +506,23 @@ func check_winner():
 		if i.card == null: lady_full = false
 	for i in player_card_organizer.get_children():
 		if i.card == null: player_full = false
-		if !lady_full or !player_full: return
+	if !lady_full and !player_full: return
 	if player_final > lady_final: 
 		GameState.win()
+		if GameState.stage == GameState.Stages.stage_1:
+			GameState.stage = GameState.nextStage
+			DialogueManager.readDialouge("Win")
+			await DialogueManager.dialogueComplete
+			get_tree().reload_current_scene()
+		elif GameState.stage == GameState.Stages.stage_2:
+			DialogueManager.readDialouge("End")
+			await DialogueManager.dialogueComplete
+			get_tree().reload_current_scene()
 	else: 
 		GameState.lose()
+		DialogueManager.readDialouge("Lose")
+		await DialogueManager.dialogueComplete
+		get_tree().reload_current_scene()
+		
 	
 #endregion
