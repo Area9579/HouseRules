@@ -3,12 +3,21 @@ extends Node
 @onready var board
 @onready var item_spawner
 
+var introPlayed: bool = false
+
 enum States {
 	player_draw, player_main, player_end,
 	lady_draw, lady_main, lady_end,
 	win, lose, item_event, fall_event,
 	dentures, bowling_ball, severed_hand
 	}
+
+enum Stages {
+	stage_1, stage_2
+}
+
+var stage = Stages.stage_1
+var nextStage = Stages.stage_2
 
 @export var state = States.player_draw
 @export var next_state = States.player_main
@@ -93,10 +102,8 @@ func _process(delta: float) -> void:
 		
 		States.win:
 			next_state = null
-			print("YAYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY")
 		States.lose:
 			next_state = null
-			print("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
 		
 		States.item_event:
 			pass
@@ -117,6 +124,12 @@ func _process(delta: float) -> void:
 			bricked_wait = 3
 			await self.turn_pass
 			state = States.player_draw
+	
+	match state:
+		Stages.stage_1:
+			item_spawner.threshold = 11
+		Stages.stage_2:
+			item_spawner.threshold = 5
 
 
 
