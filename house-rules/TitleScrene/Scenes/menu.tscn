@@ -1,11 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1m5iaasfpavd"]
 
-[ext_resource type="Texture2D" uid="uid://cy2i2xsdikc2b" path="res://Card Game/Assets/Spade.png" id="1_4tbal"]
 [ext_resource type="Script" uid="uid://dp0jtjf4pc12o" path="res://TitleScrene/Scripts/menu.gd" id="1_he1db"]
+[ext_resource type="FontFile" uid="uid://dg6gaeyq0780c" path="res://Card Game/Assets/SpecialElite-Regular.ttf" id="3_p58rd"]
 
 [node name="Menu" type="Node3D"]
 script = ExtResource("1_he1db")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.375, 0, 0, 0, 0.375, 0, 0, 0, 0.375, 0, 0, 0)
-texture = ExtResource("1_4tbal")
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+texture_filter = 0
+text = "Left Click to Continue"
+font = ExtResource("3_p58rd")
