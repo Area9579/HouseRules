@@ -653,7 +653,7 @@ duration = 0.5
 transition_type = 7
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="BEUASTYYYYY/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.819055, -0.4075, 0.403848, -0.568241, 0.479197, -0.668934, 0.0790678, -0.777377, -0.624046, -2.25916, 1.93696, 1.10928)
+transform = Transform3D(-0.819055, -0.4075, 0.403848, -0.568241, 0.479196, -0.668935, 0.0790686, -0.777377, -0.624046, -2.25916, 1.93696, 1.10928)
 bone_name = "LeftForarm.001"
 bone_idx = 5
 
@@ -675,7 +675,7 @@ transform = Transform3D(0.406221, 0.18996, -0.893812, -0.139416, 0.979585, 0.144
 transform = Transform3D(-0.121933, 0.127994, -0.984251, -0.21992, 0.963518, 0.152542, 0.967867, 0.235057, -0.0893367, 0.0392692, 0.00509369, 0.0625181)
 
 [node name="righthand" type="BoneAttachment3D" parent="BEUASTYYYYY/Armature/Skeleton3D" index="5"]
-transform = Transform3D(0.0759108, -0.788386, -0.610479, -0.980359, 0.0527546, -0.190033, 0.182025, 0.612914, -0.768898, -2.00966, 1.16174, -1.45646)
+transform = Transform3D(0.0759095, -0.788387, -0.610478, -0.980359, 0.0527562, -0.190033, 0.182026, 0.612913, -0.768898, -2.00966, 1.16174, -1.45646)
 bone_name = "rhand"
 bone_idx = 22
 
@@ -724,7 +724,7 @@ autoplay = "idle"
 
 [node name="HandLeft" type="Node3D" parent="PlayerBody"]
 unique_name_in_owner = true
-transform = Transform3D(0.32277, 0.894661, 0.308871, -0.44413, -0.145011, 0.884149, 0.835804, -0.422556, 0.350541, 0.626742, 1.08132, -2.92225)
+transform = Transform3D(0.322771, 0.894661, 0.308871, -0.444131, -0.145011, 0.884149, 0.835804, -0.422556, 0.350541, 0.626742, 1.08132, -2.92225)
 script = ExtResource("4_maf8m")
 
 [node name="realhand" parent="PlayerBody/HandLeft" instance=ExtResource("12_gnsmo")]
@@ -754,19 +754,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0990179, 0.177485, -0.00908
 transform = Transform3D(0.990235, -0.135769, 0.0316375, 0.139137, 0.976624, -0.163847, -0.00865277, 0.166649, 0.985978, 0.0168069, 0.0206628, -0.0269839)
 
 [node name="CardPosition" parent="PlayerBody/HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
-transform = Transform3D(0.830779, 0.357994, 0.4262, 0.548611, -0.39738, -0.735605, -0.0939788, 0.844943, -0.526535, -0.0764231, 0.188268, 0.0593501)
+transform = Transform3D(0.917442, 0.262301, 0.299163, 0.396184, -0.533129, -0.747537, -0.0365871, 0.804345, -0.593035, -0.0849957, 0.20639, 0.0748094)
 
 [node name="CardPosition2" parent="PlayerBody/HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
-transform = Transform3D(0.955657, 0.225055, 0.189923, 0.285818, -0.553557, -0.782229, -0.0709115, 0.801826, -0.593336, -0.0357123, 0.21556, 0.0571123)
+transform = Transform3D(0.992716, 0.104537, 0.059892, 0.114196, -0.658014, -0.744296, -0.038397, 0.745714, -0.665159, -0.0400171, 0.225981, 0.0754122)
 
 [node name="CardPosition3" parent="PlayerBody/HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
-transform = Transform3D(0.995597, -0.0215565, -0.0912207, -0.0893729, -0.511681, -0.854515, -0.0282555, 0.858905, -0.511354, 0.0198447, 0.218987, 0.0521822)
+transform = Transform3D(0.963891, -0.131795, -0.231393, -0.264368, -0.577916, -0.772091, -0.0319686, 0.805384, -0.59189, 0.0153508, 0.219783, 0.071103)
 
 [node name="CardPosition4" parent="PlayerBody/HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
-transform = Transform3D(0.855332, -0.400109, -0.32912, -0.477712, -0.363244, -0.799904, 0.200498, 0.841407, -0.501831, 0.0726406, 0.196224, 0.062027)
+transform = Transform3D(0.751349, -0.477178, -0.455824, -0.640822, -0.362676, -0.67662, 0.157551, 0.800479, -0.578282, 0.0629883, 0.187049, 0.0789577)
 
 [node name="CardPosition5" parent="PlayerBody/HandLeft/HandCardOrganizer" instance=ExtResource("6_m1efj")]
-transform = Transform3D(0.738716, -0.388776, -0.550592, -0.663548, -0.276064, -0.695336, 0.118332, 0.879001, -0.461904, 0.100763, 0.158365, 0.0672782)
+transform = Transform3D(0.605194, -0.451255, -0.655827, -0.794015, -0.282899, -0.53806, 0.0572698, 0.846368, -0.529511, 0.0837555, 0.144416, 0.0806648)
 
 [node name="KeyIndicators" type="Node3D" parent="PlayerBody/HandLeft"]
 visible = false
@@ -797,7 +797,7 @@ key = "Space"
 
 [node name="HandRight" type="Node3D" parent="PlayerBody"]
 unique_name_in_owner = true
-transform = Transform3D(-0.356676, 0.934225, 0.00254747, 0.0448538, 0.0144009, 0.99889, 0.933151, 0.356395, -0.04704, 0.541789, 1.08838, -2.36465)
+transform = Transform3D(-0.356676, 0.934225, 0.00254747, 0.0448541, 0.014401, 0.99889, 0.933151, 0.356394, -0.0470402, 0.541789, 1.08838, -2.36465)
 script = ExtResource("4_maf8m")
 
 [node name="ItemPosition" type="Marker3D" parent="PlayerBody/HandRight"]
