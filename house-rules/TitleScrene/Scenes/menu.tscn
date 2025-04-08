@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1m5iaasfpavd"]
+[gd_scene load_steps=2 format=3 uid="uid://b1m5iaasfpavd"]
 
 [ext_resource type="Script" uid="uid://dp0jtjf4pc12o" path="res://TitleScrene/Scripts/menu.gd" id="1_he1db"]
 [ext_resource type="FontFile" uid="uid://dg6gaeyq0780c" path="res://Card Game/Assets/SpecialElite-Regular.ttf" id="3_p58rd"]

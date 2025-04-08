@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c27iw0ytkgcnm"]
+[gd_scene load_steps=9 format=3 uid="uid://c27iw0ytkgcnm"]
 
 [ext_resource type="Script" uid="uid://hr1obdm6tnyv" path="res://Card Game/Scripts/board.gd" id="1_52vfp"]
 [ext_resource type="PackedScene" uid="uid://cbhk6m8pavkcx" path="res://Card Game/Scenes/card_position.tscn" id="1_bfgrx"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bml0ehqgecnra" path="res://raw_assets/sounds/grabcard.wav" id="2_o7va3"]
 [ext_resource type="PackedScene" uid="uid://bj7qdejlwck26" path="res://Scenes/MainCardDirector.tscn" id="3_m0mw3"]
 [ext_resource type="AudioStream" uid="uid://ck57upq11ssli" path="res://raw_assets/sounds/cardplace.wav" id="4_irbdl"]
+[ext_resource type="Texture2D" uid="uid://bxlbvp8ql5s45" path="res://Card Game/Assets/score placement.png" id="6_am3um"]
 [ext_resource type="PackedScene" uid="uid://deglo4aemeleu" path="res://raw_assets/deck.blend" id="6_o7va3"]
 
 [node name="Board" type="Node3D"]
@@ -89,40 +90,80 @@ transform = Transform3D(-39.9771, -1.35481, 0, 1.35481, -39.9771, 0, 0, 0, 40, -
 [node name="LadyColumnText" type="Node3D" parent="."]
 
 [node name="0" type="Label3D" parent="LadyColumnText"]
-transform = Transform3D(8.18988, -0.0193953, 0.00879082, 0.0193957, 8.18989, -0.000386126, -0.00878987, 0.000407043, 8.1899, -3.04689, 1.22926, -12.8892)
+transform = Transform3D(8.18986, -0.0285802, 0.000498869, 0.000498869, 0.285823, 8.18492, -0.0285802, -8.18487, 0.285823, -3.3954, 0.470711, 3.23409)
 text = "0"
 
+[node name="Sprite3D" type="Sprite3D" parent="LadyColumnText/0"]
+transform = Transform3D(0.125, 2.61897e-11, -1.45519e-11, -1.27187e-12, 0.125, 0, 2.91038e-11, -4.54747e-13, 0.125, 1.06692e-05, -4.91738e-07, -0.00993216)
+modulate = Color(0.457293, 0.417384, 0.412145, 1)
+texture = ExtResource("6_am3um")
+
 [node name="1" type="Label3D" parent="LadyColumnText"]
-transform = Transform3D(8.18988, -0.0193953, 0.00879082, 0.0193957, 8.18989, -0.000386126, -0.00878987, 0.000407043, 8.1899, 2.04291, 1.24132, -12.8946)
+transform = Transform3D(8.18986, -0.0285794, 0.000498856, 0.000498856, 0.285823, 8.18492, -0.0285794, -8.18487, 0.285823, -0.0401546, 0.437113, 3.09864)
 text = "1
 "
 
+[node name="Sprite3D" type="Sprite3D" parent="LadyColumnText/1"]
+transform = Transform3D(0.125, 2.61897e-11, -1.45519e-11, -1.27187e-12, 0.125, 0, 2.91038e-11, -4.54747e-13, 0.125, 1.06692e-05, -4.91738e-07, -0.00993216)
+modulate = Color(0.457293, 0.417384, 0.412145, 1)
+texture = ExtResource("6_am3um")
+
 [node name="2" type="Label3D" parent="LadyColumnText"]
-transform = Transform3D(8.18988, -0.0193953, 0.00879082, 0.0193957, 8.18989, -0.000386126, -0.00878987, 0.000407043, 8.1899, 5.84948, 1.25033, -12.8987)
+transform = Transform3D(8.18986, -0.028449, 0.00198935, 0.00198935, 1.13981, 8.1102, -0.028449, -8.11016, 1.13981, 3.47992, 0.204019, 2.75038)
 text = "2"
 
+[node name="Sprite3D" type="Sprite3D" parent="LadyColumnText/2"]
+transform = Transform3D(0.125, 2.61897e-11, -1.45519e-11, -1.27187e-12, 0.125, 0, 2.91038e-11, -4.54747e-13, 0.125, 1.06692e-05, -4.91738e-07, -0.00993216)
+modulate = Color(0.457293, 0.417384, 0.412145, 1)
+texture = ExtResource("6_am3um")
+
 [node name="FinalScore" type="Label3D" parent="LadyColumnText"]
-transform = Transform3D(6.20806, -0.0147019, 0.00666358, 0.0147022, 6.20807, -0.00029269, -0.00666287, 0.000308545, 6.20808, 8.62085, 1.21972, -2.30752)
+transform = Transform3D(6.20804, -0.0214335, 0.00225275, 0.00225275, 1.29073, 6.07242, -0.0214335, -6.07239, 1.29073, 8.03484, 1.21972, 4.25198)
 text = "lady"
+
+[node name="Sprite3D" type="Sprite3D" parent="LadyColumnText/FinalScore"]
+transform = Transform3D(0.125, -2.9039e-12, -1.45519e-11, 2.78266e-11, 0.125, 0, -1.45519e-11, 4.54747e-13, 0.125, 1.40667e-05, -6.55651e-07, -0.0131029)
+modulate = Color(0.457293, 0.417384, 0.412145, 1)
+texture = ExtResource("6_am3um")
 
 [node name="PlayerColumnText" type="Node3D" parent="."]
 
 [node name="0" type="Label3D" parent="PlayerColumnText"]
-transform = Transform3D(8.59019, 0, 0, 0, 6.64382, 5.44527, 0, -5.44527, 6.64382, -3.33814, 1.12896, 13.553)
+transform = Transform3D(8.59019, 0, 0, 0, 3.4561, 7.86427, 0, -7.86427, 3.4561, -3.69021, 0.119006, 15.5281)
 text = "0"
 
+[node name="Sprite3D" type="Sprite3D" parent="PlayerColumnText/0"]
+transform = Transform3D(0.116412, 0, 0, 0, 0.116231, 0.00649621, 0, -0.00649621, 0.116231, 0.00546351, -0.0436369, -0.00655901)
+modulate = Color(0.457293, 0.417384, 0.412145, 1)
+texture = ExtResource("6_am3um")
+
 [node name="1" type="Label3D" parent="PlayerColumnText"]
-transform = Transform3D(8.59019, 0, 0, 0, 6.64382, 5.44527, 0, -5.44527, 6.64382, 0, 1.15331, 13.5827)
+transform = Transform3D(8.59019, 0, 0, 0, 3.94721, 7.6296, 0, -7.6296, 3.94721, -0.0218294, 0.0590836, 15.7382)
 text = "1"
 
+[node name="Sprite3D2" type="Sprite3D" parent="PlayerColumnText/1"]
+transform = Transform3D(0.116412, 0, 0, 0, 0.11627, 0.00573941, 0, -0.00573941, 0.11627, 0, -0.0227889, -0.015958)
+modulate = Color(0.457293, 0.417384, 0.412145, 1)
+texture = ExtResource("6_am3um")
+
 [node name="2" type="Label3D" parent="PlayerColumnText"]
-transform = Transform3D(8.59019, 0, 0, 0, 6.64382, 5.44527, 0, -5.44527, 6.64382, 3.85104, 1.42321, 13.912)
+transform = Transform3D(8.59019, 0, 0, 0, 5.07813, 6.92849, 0, -6.92849, 5.07813, 3.63192, 0.0304435, 15.7117)
 text = "2
 "
 
+[node name="Sprite3D3" type="Sprite3D" parent="PlayerColumnText/2"]
+transform = Transform3D(0.116412, 0, 0, 0, 0.116378, 0.00282179, 0, -0.00282179, 0.116378, -0.00408146, -0.0346203, -0.0116318)
+modulate = Color(0.457293, 0.417384, 0.412145, 1)
+texture = ExtResource("6_am3um")
+
 [node name="FinalScore" type="Label3D" parent="PlayerColumnText"]
-transform = Transform3D(6.1644, 0, 0, 0, 6.1644, 0, 0, 0, 6.1644, 8.61231, 0.718102, 5.69199)
+transform = Transform3D(6.1644, 0, 0, 0, 3.87938, 4.79064, 0, -4.79064, 3.87938, 6.92628, 0.0818002, 15.5018)
 text = "player"
+
+[node name="Sprite3D4" type="Sprite3D" parent="PlayerColumnText/FinalScore"]
+transform = Transform3D(0.162222, 0, 0, 0, 0.162222, 1.49012e-08, 0, -1.49012e-08, 0.162222, -0.0179015, -0.0595394, -0.00917065)
+modulate = Color(0.457293, 0.417384, 0.412145, 1)
+texture = ExtResource("6_am3um")
 
 [node name="deck" parent="." instance=ExtResource("6_o7va3")]
 transform = Transform3D(-0.00719939, 0, -0.824969, 0, 0.825, 0, 0.824969, 0, -0.00719939, -8.50044, 0, 0.772486)

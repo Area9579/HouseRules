@@ -9,7 +9,7 @@ class_name Card
 
 @onready var placement_parent
 var lady_hand = null
-
+var launching = false
 @export var value : int
 @export var color : String
 @export var suit : String
@@ -48,8 +48,9 @@ func _ready() -> void:
 			return
 
 func _physics_process(delta: float) -> void:
+	if launching: return
 	
-	if placement_parent != null:
+	if placement_parent != null and not launching:
 		if placement_parent.get_parent().name != "HandCardOrganizer":
 			global_position = lerp(global_position, placement_parent.global_position, 0.1)
 			rotation = lerp(rotation, placement_parent.rotation, 0.1)
@@ -65,8 +66,8 @@ func _physics_process(delta: float) -> void:
 			rigidBody.scale = Vector3(.2,.2,.2)
 		elif placement_parent.get_parent().name == "LadyCardOrganizer":
 			rigidBody.scale = Vector3(.2,.2,.2)
-		else:
-			rigidBody.scale = Vector3(1, 1, 1)
+		#else:
+			#rigidBody.scale = Vector3(1, 1, 1)
 	
 func set_lady_placement(placement):
 	
@@ -84,6 +85,9 @@ func update_text():
 		text_box.set_text(color + "\n" + suit + "\n" + value_name)
 
 func launchCard():
+	self.top_level = true
+	launching = true
+	placement_parent = null
 	if rigidBody == null: return
 	rigidBody.freeze = false
 	rigidBody.constant_force.x = 20
