@@ -7,7 +7,9 @@ extends Camera3D
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+var zoom = false
 func _process(_delta):
+	
 	cam_shake(_delta)
 	
 	if rayCast.is_colliding() and rayCast.get_collider().get_parent() is CardPlacement:

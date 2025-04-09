@@ -19,6 +19,7 @@ var player_final = 0
 
 var lady_score = [0,0,0]
 var lady_final = 0
+@onready var audio_stream_player: AudioStreamPlayer = $"../AudioStreamPlayer"
 
 
 func _ready() -> void:
@@ -39,6 +40,15 @@ func _ready() -> void:
 	right_hand.connect("item_clicked", item_clicked)
 	quad_lady_draw()
 
+func read_start():
+	$"../AudioStreamPlayer".play()
+	print('talking')
+	$"../BEUASTYYYYY".talking = true
+
+func stop_read():
+	$"../AudioStreamPlayer".stop()
+	print('stop')
+	$"../BEUASTYYYYY".set_stop_talk()
 
 func _process(delta: float) -> void:
 	highlight_matched_cards()

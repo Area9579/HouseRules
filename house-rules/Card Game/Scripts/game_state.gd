@@ -127,7 +127,7 @@ func _process(delta: float) -> void:
 	
 	match stage:
 		Stages.stage_1:
-			item_spawner.threshold = 11
+			item_spawner.threshold = 5
 		Stages.stage_2:
 			item_spawner.threshold = 5
 

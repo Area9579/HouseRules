@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cxddpve567luf"]
+[gd_scene load_steps=39 format=3 uid="uid://cxddpve567luf"]
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="Script" uid="uid://dieo8wand5g3b" path="res://Scripts/main_scene.gd" id="1_drdnd"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cgqj30855y5vj" path="res://raw_assets/BEUASTYYYYY.blend" id="3_m1efj"]
 [ext_resource type="PackedScene" uid="uid://dos0jcx7lyvfx" path="res://Scenes/CaveWalls.tscn" id="3_psl12"]
 [ext_resource type="Script" uid="uid://nwhuyg4mi4p" path="res://Scenes/PlayerObjects/hand.gd" id="4_maf8m"]
+[ext_resource type="AudioStream" uid="uid://ccbfxntt5ap1q" path="res://raw_assets/sounds/mumble.wav" id="5_b48ew"]
 [ext_resource type="PackedScene" uid="uid://5yf0piy2h2c3" path="res://raw_assets/Hand.blend" id="5_huasi"]
 [ext_resource type="PackedScene" uid="uid://cuah32gd4hyyy" path="res://Scenes/player_camera.tscn" id="5_iacmt"]
 [ext_resource type="AudioStream" uid="uid://ck57upq11ssli" path="res://raw_assets/sounds/cardplace.wav" id="5_lhp3t"]
@@ -573,6 +574,9 @@ size = Vector3(53, 5, 21)
 transform = Transform3D(0.817887, 0.575368, 0.00338627, -0.57489, 0.816938, 0.0459615, 0.0236784, -0.0395381, 0.998937, 280.624, -184.935, 7.3366)
 size = Vector3(630.338, 5, 21)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_b48ew")
+
 [node name="Board" parent="." instance=ExtResource("3_jv6wh")]
 transform = Transform3D(-0.000345905, -0.000407933, -0.0455597, -3.09722e-06, 0.045561, -0.000407935, 0.0455615, -1.20246e-11, -0.000345919, -4.48593, 1.017, -2.61904)
 
@@ -880,7 +884,7 @@ fov = 64.6875
 transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, -5.66453, 1.40962, -4.3482)
 
 [node name="Speech Text" parent="." instance=ExtResource("17_psl12")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.46212, 2.03401, -2.69264)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.77444, 1.28869, -2.69264)
 
 [connection signal="timeout" from="BEUASTYYYYY/blinktimer" to="BEUASTYYYYY" method="_on_blinktimer_timeout"]
 

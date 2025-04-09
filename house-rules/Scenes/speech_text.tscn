@@ -10,6 +10,7 @@ viewport_path = NodePath("Sprite3D/SubViewport")
 script = ExtResource("1_ay2vl")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.699766, 0, 0, 0, 0.699766, 0, 0, 0, 0.699766, 0, 0, 0)
 texture = SubResource("ViewportTexture_jh0ga")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D"]

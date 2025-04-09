@@ -8,20 +8,23 @@ var isBeingRead: bool = false
 var dialogueDict: Dictionary = {
 	"Instructions" : 
 	["Here is how the game is played...",
-	"It's house rules so you may not be familiar...",
-	"Basically I made that shit up... anyways",
-	"Each turn you can play a card using",
-	"left mouse button",
-	"or discard a card with right mouse button",
-	"the goal is to have more points",
-	"at the end of the round",
-	"you get points equal to the value on the card",
-	"multiples of a card in a row will",
-	"multiply by how many there are in that row",
-	"discarding a card will get rid of all cards",
-	"of the same value on the board",
-	"the round ends when one person's board is full",
-	"Good luck, friend ...",
+	"I use house rules so they may not be familiar...",
+	"Basically I made this shit up...",
+	"Any object that topples onto our table may be used",
+	"Often to your benefit...",
+	"...",
+	"...",
+	"My eyes are up here...", 
+	"Anyways...",
+	"Each turn you can play a card using LMB",
+	"or discard a card with RMB...",
+	"the goal is to have the most points at the end of the round...",
+	"Match cards in a column to multiply them",
+	"and discarding one will erase",
+	"all cards of the same value on the board...",
+	"The round ends when one person's board is full",
+	"I hope that makes sense to you...",
+	"My brain is awful foggy these days",
 	false],
 	
 	"SpecialCards":
@@ -80,6 +83,7 @@ func readDialouge( dialogueChoice : String ):
 		return
 	else:
 		if isBeingRead == false:
+			GameState.board.read_start()
 			isBeingRead = true
 			for line in dialogueDict[dialogueChoice].size() - 1:
 				speechText.tweenText(dialogueDict[dialogueChoice][line])
@@ -87,3 +91,4 @@ func readDialouge( dialogueChoice : String ):
 			dialogueDict[dialogueChoice][-1] = true
 			isBeingRead = false
 			emit_signal("dialogueComplete")
+			GameState.board.stop_read()

@@ -11,6 +11,7 @@ func _ready():
 		GameState.introPlayed = true
 	player_fade_anim_player.current_animation = "fade_in"
 
+
 func _process(delta: float) -> void:
 	if player_cam_anim_player.is_playing():
 		if player_cam_anim_player.current_animation == "intro":

@@ -78,22 +78,23 @@ func _ready() -> void:
 		"m9": h = 32
 		"m10": h = 33
 		"mk": h = 34
-		"r1": h = 36
-		"r2": h = 37
-		"r3": h = 38
-		"r4": h = 39
-		"r5": h = 40
-		"r6": h = 41
-		"r7": h = 42
-		"r8": h = 43
-		"r9": h = 44
-		"r10": h = 45
-		"rk": h = 46
+		"r1": h = 35
+		"r2": h = 36
+		"r3": h = 37
+		"r4": h = 38
+		"r5": h = 39
+		"r6": h = 40
+		"r7": h = 41
+		"r8": h = 42
+		"r9": h = 43
+		"r10": h = 44
+		"rk": h = 45
 		
 		
-		
-	mesh_instance_3d.set_surface_override_material(0, StandardMaterial3D.new())
-	mesh_instance_3d.get_surface_override_material(0).albedo_texture = Director.textures[h]
+	
+	if Director.textures.size() >= 46:
+		mesh_instance_3d.set_surface_override_material(0, StandardMaterial3D.new())
+		mesh_instance_3d.get_surface_override_material(0).albedo_texture = Director.textures[h]
 
 
 func _physics_process(delta: float) -> void:

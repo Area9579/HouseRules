@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 func set_stop_talk():
 	head_mesh.set_surface_override_material(0, REGULAR)
 	talking = false
+	
 
 func _on_blinktimer_timeout() -> void:
 	blinktimer.start(randf_range(1.0,10.0))

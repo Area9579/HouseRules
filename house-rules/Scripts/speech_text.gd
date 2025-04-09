@@ -5,7 +5,7 @@ extends Node3D
 @onready var subViewport : SubViewport = $Sprite3D/SubViewport
 @onready var richTextLabel : RichTextLabel = $Sprite3D/SubViewport/RichTextLabel
 
-var lineSpeed : float = 5.0
+var lineSpeed : float = 1.5
 var string : String = "The quick brown fox jumped over the lazy dog..."
 
 func _ready() -> void:
