@@ -1,5 +1,6 @@
-extends Node3D
+extends Node3D 
 class_name Card 
+
 
 @onready var text_box: Label3D = $RigidBody3D/Label3D
 @onready var sprite_3d: Sprite3D = $RigidBody3D/Sprite3D

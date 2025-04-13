@@ -518,21 +518,27 @@ func check_winner():
 		if i.card == null: player_full = false
 	if !lady_full and !player_full: return
 	if player_final > lady_final: 
-		GameState.win()
+		
 		if GameState.stage == GameState.Stages.stage_1:
+			GameState.win()
 			GameState.stage = GameState.nextStage
 			DialogueManager.readDialouge("Win")
 			await DialogueManager.dialogueComplete
-			get_tree().reload_current_scene()
+			GameState.state = GameState.States.player_draw
+				
 		elif GameState.stage == GameState.Stages.stage_2:
+			GameState.win()
 			DialogueManager.readDialouge("End")
 			await DialogueManager.dialogueComplete
-			get_tree().reload_current_scene()
+			GameState.state = GameState.States.player_draw
+		get_tree().reload_current_scene()
 	else: 
-		GameState.lose()
 		DialogueManager.readDialouge("Lose")
 		await DialogueManager.dialogueComplete
-		get_tree().reload_current_scene()
+		if get_tree() != null:
+			get_tree().reload_current_scene()
+			GameState.lose()
+			GameState.state = GameState.States.player_draw
 		
 	
 #endregion
