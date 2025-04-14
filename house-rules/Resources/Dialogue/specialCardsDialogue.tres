@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3 uid="uid://deeeoqydncl1u"]
+
+[ext_resource type="Script" uid="uid://urclsjkg6ef1" path="res://Resources/Dialogue/dialogueResource.gd" id="1_m3ygo"]
+
+[resource]
+script = ExtResource("1_m3ygo")
+dialogue = ["This deck was a gift to me", "And it's very special", "It has two special cards", "The King and the Joker", "The King, when discarded will destroy", "All cards of the same suit", "The Joker however,", "Destroys every card of the same color", false]
+metadata/_custom_type_script = "uid://urclsjkg6ef1"

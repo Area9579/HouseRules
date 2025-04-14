@@ -44,9 +44,9 @@ func _process(delta: float) -> void:
 			if !animation_player.is_playing():
 				rigid_body_3d.global_position = lerp( rigid_body_3d.global_position, hand.get_node("ItemPosition").global_position, .1 )
 				if type == "1":
-					DialogueManager.readDialouge("Brick")
+					SignalBus.emit_signal("brickSignal")
 				elif type == "2":
-					DialogueManager.readDialouge("Dentures")
+					SignalBus.emit_signal("denturesSignal")
 
 func remove(): #TODO not right away
 	state = States.falling

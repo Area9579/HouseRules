@@ -10,4 +10,4 @@ func fade_out():
 func _process(delta: float) -> void:
 	if fading: 
 		var tween = get_tree().create_tween()
-		tween.tween_property(label_3d, "modulate", Color(Color.WHITE, 0), 1)
+		tween.tween_property(label_3d, "modulate", Color(Color.WHITE, 0), 1) #fix this

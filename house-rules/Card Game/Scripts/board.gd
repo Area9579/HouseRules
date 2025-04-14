@@ -522,18 +522,18 @@ func check_winner():
 		if GameState.stage == GameState.Stages.stage_1:
 			GameState.win()
 			GameState.stage = GameState.nextStage
-			DialogueManager.readDialouge("Win")
+			SignalBus.emit_signal("winSignal")
 			await DialogueManager.dialogueComplete
 			GameState.state = GameState.States.player_draw
 				
 		elif GameState.stage == GameState.Stages.stage_2:
 			GameState.win()
-			DialogueManager.readDialouge("End")
+			SignalBus.emit_signal("endSignal")
 			await DialogueManager.dialogueComplete
 			GameState.state = GameState.States.player_draw
 		get_tree().reload_current_scene()
 	else: 
-		DialogueManager.readDialouge("Lose")
+		SignalBus.emit_signal("loseSignal")
 		await DialogueManager.dialogueComplete
 		if get_tree() != null:
 			get_tree().reload_current_scene()

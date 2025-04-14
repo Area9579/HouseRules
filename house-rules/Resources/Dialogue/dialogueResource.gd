@@ -1,9 +1,7 @@
-extends Node
+class_name DialogueResource
+extends Resource
 
-signal dialogueComplete
-
-@onready var speechText : SpeechText
-var isBeingRead: bool = false
+@export var dialogue : Array
 
 var dialogueDict: Dictionary = {
 	"Instructions" : 
@@ -76,19 +74,8 @@ var dialogueDict: Dictionary = {
 	false]
 }
 
+func getDialogue():
+	return dialogue
 
-func readDialouge( dialogueChoice : String ):
-	if dialogueDict[dialogueChoice][-1] == true:
-		print("This dialogue has already been read")
-		return
-	else:
-		if isBeingRead == false:
-			GameState.board.read_start()
-			isBeingRead = true
-			for line in dialogueDict[dialogueChoice].size() - 1:
-				speechText.tweenText(dialogueDict[dialogueChoice][line])
-				await get_tree().create_timer(speechText.lineSpeed + 1).timeout
-			dialogueDict[dialogueChoice][-1] = true
-			isBeingRead = false
-			emit_signal("dialogueComplete")
-			GameState.board.stop_read()
+func setRead(read : bool):
+	dialogue[-1] = read

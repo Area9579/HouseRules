@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3 uid="uid://bdwivva82vkwn"]
+
+[ext_resource type="Script" uid="uid://urclsjkg6ef1" path="res://Resources/Dialogue/dialogueResource.gd" id="1_ed4g5"]
+
+[resource]
+script = ExtResource("1_ed4g5")
+dialogue = ["Oh my, it looks like", "We've run out of time!", "I hope I can play with you", "Again sometime", false]
+metadata/_custom_type_script = "uid://urclsjkg6ef1"

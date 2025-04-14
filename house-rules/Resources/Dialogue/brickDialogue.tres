@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3 uid="uid://dc0nauld2gi0a"]
+
+[ext_resource type="Script" uid="uid://urclsjkg6ef1" path="res://Resources/Dialogue/dialogueResource.gd" id="1_dialk"]
+
+[resource]
+script = ExtResource("1_dialk")
+dialogue = ["Oh, I guess we can use that... but", "...what are you going to do with it?", false]
+metadata/_custom_type_script = "uid://urclsjkg6ef1"

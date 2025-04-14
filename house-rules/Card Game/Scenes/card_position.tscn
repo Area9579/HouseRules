@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cbhk6m8pavkcx"]
 
 [ext_resource type="Script" uid="uid://dkfo1gfj06h7l" path="res://Card Game/Scripts/card_placement.gd" id="1_rcdbo"]
-[ext_resource type="Material" uid="uid://cem4l3d3umol4" path="res://outlineMaterial.tres" id="2_20chl"]
+[ext_resource type="Material" uid="uid://cem4l3d3umol4" path="res://Resources/Materials/outlineMaterial.tres" id="2_20chl"]
 [ext_resource type="AudioStream" uid="uid://dadru7wynhtto" path="res://raw_assets/sounds/placecard.wav" id="3_7qjyw"]
 [ext_resource type="Texture2D" uid="uid://bjyifpt5thsgw" path="res://Card Game/Assets/card_placement.png" id="4_e2w3p"]
 

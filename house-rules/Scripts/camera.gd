@@ -4,6 +4,8 @@ extends Camera3D
 @onready var rayCast: RayCast3D = $RayCast3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var previous_collider
+
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -57,4 +59,4 @@ func _input(event: InputEvent) -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "turning":
-		DialogueManager.readDialouge("Instructions")
+		SignalBus.emit_signal("introSignal") #send a signal to the dialogue once the game starts

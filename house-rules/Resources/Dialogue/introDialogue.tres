@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3 uid="uid://civ6sw8j567ix"]
+
+[ext_resource type="Script" uid="uid://urclsjkg6ef1" path="res://Resources/Dialogue/dialogueResource.gd" id="1_mlsyl"]
+
+[resource]
+script = ExtResource("1_mlsyl")
+dialogue = ["Oh, you must be a fellow passenger", "Care to play a game while we ride?", "Yes?", "Well, here is how the game is played", "I use house rules so you may not be familiar...", "Any object that topples onto our table may be used", "Often to your benefit...", "...", "...", "My eyes are up here...", "Anyways...", "Each turn you can play a card using LMB", "Or discard a card with RMB", "The goal is to have the most points at the end of the round...", "Matching cards of the same value in a column will multiply them", "And discarding one will erase", "All cards of the same value on the board...", "The round ends when one of our boards' are full", "I hope that makes sense to you...", "My brain is awful foggy these days...", false]
+metadata/_custom_type_script = "uid://urclsjkg6ef1"

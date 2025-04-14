@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3 uid="uid://dawq6x2el174v"]
+
+[ext_resource type="Script" uid="uid://urclsjkg6ef1" path="res://Resources/Dialogue/dialogueResource.gd" id="1_h8i5n"]
+
+[resource]
+script = ExtResource("1_h8i5n")
+dialogue = ["Well done, well done!", "But how about we spice it up a little, hmm?", false]
+metadata/_custom_type_script = "uid://urclsjkg6ef1"
