@@ -7,3 +7,4 @@ extends Node
 @warning_ignore("unused_signal") signal winSignal
 @warning_ignore("unused_signal") signal loseSignal
 @warning_ignore("unused_signal") signal endSignal
+@warning_ignore("unused_signal") signal dialogueComplete
