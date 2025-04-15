@@ -23,6 +23,7 @@ var lady_final = 0
 
 
 func _ready() -> void:
+	
 	GameState.board = self
 
 	card_generator = CardGenerator.new()
@@ -523,18 +524,18 @@ func check_winner():
 			GameState.win()
 			GameState.stage = GameState.nextStage
 			SignalBus.emit_signal("winSignal")
-			await DialogueManager.dialogueComplete
+			await SignalBus.dialogueComplete
 			GameState.state = GameState.States.player_draw
 				
 		elif GameState.stage == GameState.Stages.stage_2:
 			GameState.win()
 			SignalBus.emit_signal("endSignal")
-			await DialogueManager.dialogueComplete
+			await SignalBus.dialogueComplete
 			GameState.state = GameState.States.player_draw
 		get_tree().reload_current_scene()
 	else: 
 		SignalBus.emit_signal("loseSignal")
-		await DialogueManager.dialogueComplete
+		await SignalBus.dialogueComplete
 		if get_tree() != null:
 			get_tree().reload_current_scene()
 			GameState.lose()
