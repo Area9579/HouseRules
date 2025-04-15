@@ -523,18 +523,18 @@ func check_winner():
 		if GameState.stage == GameState.Stages.stage_1:
 			GameState.win()
 			GameState.stage = GameState.nextStage
-			SignalBus.emit_signal("winSignal")
+			SignalBus.emit_signal("readDialogueSignal", "winDialogue")
 			await SignalBus.dialogueComplete
 			GameState.state = GameState.States.player_draw
 				
 		elif GameState.stage == GameState.Stages.stage_2:
 			GameState.win()
-			SignalBus.emit_signal("endSignal")
+			SignalBus.emit_signal("readDialogueSignal", "endDialogue")
 			await SignalBus.dialogueComplete
 			GameState.state = GameState.States.player_draw
 		get_tree().reload_current_scene()
 	else: 
-		SignalBus.emit_signal("loseSignal")
+		SignalBus.emit_signal("readDialogueSignal", "loseDialogue")
 		await SignalBus.dialogueComplete
 		if get_tree() != null:
 			get_tree().reload_current_scene()

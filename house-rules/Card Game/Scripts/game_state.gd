@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 			
 		States.player_end: #TODO come back and make item event triggered only
 			if bricked_wait == 0:
-				SignalBus.emit_signal("specialCardsSignal")
+				SignalBus.emit_signal("readAnyDialogue", "specialCardsDialogue")
 				
 				next_state = States.lady_draw
 				 #gurentee

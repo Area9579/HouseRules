@@ -1,20 +1,19 @@
 class_name SpeechText
 extends Node3D
 
-@export var dialogueResource: DialogueResource
-
 @onready var sprite3D : Sprite3D = $Sprite3D
 @onready var subViewport : SubViewport = $Sprite3D/SubViewport
 @onready var richTextLabel : RichTextLabel = $Sprite3D/SubViewport/RichTextLabel
 
-@onready var testDialogue = preload("res://Resources/Dialogue/testDialogue.tres")
-@onready var introDialogue = preload("res://Resources/Dialogue/introDialogue.tres")
-@onready var specialCardsDialogue = preload("res://Resources/Dialogue/specialCardsDialogue.tres")
-@onready var denturesDialogue = preload("res://Resources/Dialogue/denturesDialogue.tres")
-@onready var brickDialogue = preload("res://Resources/Dialogue/brickDialogue.tres")
-@onready var winDialogue = preload("res://Resources/Dialogue/winDialogue.tres")
-@onready var loseDialogue = preload("res://Resources/Dialogue/loseDialogue.tres")
-@export var endDialogue = preload("res://Resources/Dialogue/endDialogue.tres")
+@onready var dialogueResources: Dictionary = {
+	"introDialogue" : preload("res://Resources/Dialogue/introDialogue.tres"),
+	"specialCardsDialogue" : preload("res://Resources/Dialogue/specialCardsDialogue.tres"),
+	"denturesDialogue" : preload("res://Resources/Dialogue/denturesDialogue.tres"),
+	"brickDialogue" : preload("res://Resources/Dialogue/brickDialogue.tres"),
+	"winDialogue" : preload("res://Resources/Dialogue/winDialogue.tres"),
+	"loseDialogue" : preload("res://Resources/Dialogue/loseDialogue.tres"),
+	"endDialogue" : preload("res://Resources/Dialogue/endDialogue.tres")
+}
 
 
 var speedPerCharacter: float = 0.08
@@ -24,17 +23,10 @@ var isBeingRead: bool = false
 
 
 func _ready() -> void:
-	SignalBus.connect("testSignal", readTestDialogue)
-	SignalBus.connect("introSignal", readIntroDialogue)
-	SignalBus.connect("specialCardsSignal", readSpecialCardsDialogue)
-	SignalBus.connect("denturesSignal", readDenturesDialogue)
-	SignalBus.connect("brickSignal", readBrickDialogue)
-	SignalBus.connect("winSignal", readWinDialogue)
-	SignalBus.connect("loseSignal", readLoseDialogue)
-	SignalBus.connect("endSignal", readEndDialogue)
+	SignalBus.connect("readDialogueSignal", sendToReadDialogue)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	subViewport.size = Vector2(richTextLabel.size.x,richTextLabel.size.y)
 	richTextLabel.position = Vector2.ZERO
 
@@ -71,33 +63,5 @@ func readDialogue(dialogueChoice : DialogueResource):
 		isBeingRead = false
 
 
-func readTestDialogue():
-	readDialogue(testDialogue)
-
-
-func readIntroDialogue():
-	readDialogue(introDialogue)
-
-
-func readSpecialCardsDialogue():
-	readDialogue(specialCardsDialogue)
-
-
-func readDenturesDialogue():
-	readDialogue(denturesDialogue)
-
-
-func readBrickDialogue():
-	readDialogue(brickDialogue)
-
-
-func readWinDialogue():
-	readDialogue(winDialogue)
-
-
-func readLoseDialogue():
-	readDialogue(loseDialogue)
-
-
-func readEndDialogue():
-	readDialogue(endDialogue)
+func sendToReadDialogue(dialogueString : String):
+	readDialogue(dialogueResources[dialogueString])
