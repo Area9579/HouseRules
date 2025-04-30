@@ -61,6 +61,7 @@ func readDialogue(dialogueChoice : DialogueResource):
 		dialogueChoice.setRead(true) #set the dialogue as having been read
 		
 		isBeingRead = false
+		SignalBus.emit_signal("dialogueCompletedSignal")
 
 
 func sendToReadDialogue(dialogueString : String):
