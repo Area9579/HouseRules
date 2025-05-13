@@ -13,7 +13,7 @@ func _ready() -> void:
 		for card_placement in hand_card_organizer.get_children():
 			card_placement.connect("placement_clicked", board.player_hand_clicked)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if name == "HandRight":
 		if item == null:
 			return

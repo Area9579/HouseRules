@@ -16,7 +16,7 @@ extends Node3D
 }
 
 
-var speedPerCharacter: float = 0.08
+var speedPerCharacter: float = 0.01 #0.08
 var lineSpeed : float
 var string : String
 var isBeingRead: bool = false
@@ -24,6 +24,7 @@ var isBeingRead: bool = false
 
 func _ready() -> void:
 	SignalBus.connect("readDialogueSignal", sendToReadDialogue)
+	SignalBus.connect("resetReadDialogue", resetReadDialogue)
 
 
 func _process(_delta: float) -> void:
@@ -66,3 +67,7 @@ func readDialogue(dialogueChoice : DialogueResource):
 
 func sendToReadDialogue(dialogueString : String):
 	readDialogue(dialogueResources[dialogueString])
+
+
+func resetReadDialogue(dialogueString : String):
+	dialogueResources[dialogueString].setRead(false)

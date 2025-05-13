@@ -519,24 +519,15 @@ func check_winner():
 		if i.card == null: player_full = false
 	if !lady_full and !player_full: return
 	if player_final > lady_final: 
-		
-		if GameState.stage == GameState.Stages.stage_1:
-			GameState.win()
-			GameState.stage = GameState.nextStage
-			SignalBus.emit_signal("readDialogueSignal", "winDialogue")
-			await SignalBus.dialogueCompletedSignal
-			GameState.state = GameState.States.player_draw
-				
-		elif GameState.stage == GameState.Stages.stage_2:
-			GameState.win()
-			SignalBus.emit_signal("readDialogueSignal", "endDialogue")
-			await SignalBus.dialogueCompletedSignal
-			GameState.state = GameState.States.player_draw
-		get_tree().reload_current_scene()
-	else: 
-		SignalBus.emit_signal("readDialogueSignal", "loseDialogue")
-		await SignalBus.dialogueCompletedSignal
-		if get_tree() != null:
+		#send a signal to go to the next scene
+		SignalBus.emit_signal("changeStage")
+
+
+	else: #this plays when you lose
+		SignalBus.emit_signal("readDialogueSignal", "loseDialogue") #read dialogue
+		await SignalBus.dialogueCompletedSignal #wait for dialogue to end
+		SignalBus.emit_signal("resetReadDialogue", "loseDialogue") #reset the dialogue
+		if get_tree() != null: #reload the scene -> this should change 
 			get_tree().reload_current_scene()
 			GameState.lose()
 			GameState.state = GameState.States.player_draw

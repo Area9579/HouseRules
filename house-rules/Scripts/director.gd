@@ -2,8 +2,6 @@ extends Node
 
 @warning_ignore("unused_signal") signal keyPressed(key: String)
 
-@onready var quickTimeEvent = preload("res://Scenes/quick_time_event.tscn")
-
 var fullscreen := false 
 var textures = []
 

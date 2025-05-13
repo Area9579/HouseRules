@@ -3,7 +3,7 @@ extends Node
 @onready var board
 @onready var item_spawner
 
-var introPlayed: bool = false
+var introPlayed: bool = false #get rid of this later
 
 enum States {
 	player_draw, player_main, player_end,
@@ -27,6 +27,7 @@ signal turn_pass
 
 func _ready() -> void:
 	connect("turn_pass", _turn_pass)
+	SignalBus.connect("changeStage", changeStage)
 	
 func _turn_pass(): 
 	return true
@@ -35,6 +36,8 @@ var bricked_wait = 0
 func _process(delta: float) -> void:
 	if board == null or item_spawner == null:
 		return
+
+	#TODO: match state -> needs to be moved to a signal
 	match state:
 		States.player_draw:
 			
@@ -125,16 +128,39 @@ func _process(delta: float) -> void:
 			await self.turn_pass
 			state = States.player_draw
 	
+	
+
+
+func changeStage():
+
 	match stage:
+	
 		Stages.stage_1:
-			item_spawner.threshold = 5
+			win() #change later
+			nextStage = Stages.stage_2
+			item_spawner.threshold = 0
+			
+			SignalBus.emit_signal("readDialogueSignal", "winDialogue")
+			await SignalBus.dialogueCompletedSignal
+			state = States.player_draw
+
 		Stages.stage_2:
-			item_spawner.threshold = 5
+			win() #change later
+			nextStage = Stages.stage_2
+			item_spawner.threshold = 8
+			
+			SignalBus.emit_signal("readDialogueSignal", "endDialogue")
+			await SignalBus.dialogueCompletedSignal
+			SignalBus.emit_signal("resetReadDialogue", "endDialogue")
+			state = States.player_draw
+	
+	stage = nextStage
+	get_tree().reload_current_scene() #this will cause all sorts of problems
 
-
-
+#probably replace both of these
 func win():
 	state = States.win
+
 func lose():
 	state = States.lose
 	

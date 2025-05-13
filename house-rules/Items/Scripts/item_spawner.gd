@@ -6,14 +6,12 @@ extends Node3D
 
 const ITEM = preload("res://Items/Scenes/Item.tscn")
 
-var threshold : int
+var threshold : int = 11
 
 func _ready() -> void:
 	GameState.item_spawner = self
 	timer.start(0.1)
 
-func _process(delta: float) -> void:
-	return
 
 func item_event_triggered():
 	var random_int = randi_range(1, 10)
@@ -21,6 +19,7 @@ func item_event_triggered():
 		return
 	elif random_int > threshold:
 		spawn_item()
+
 
 func spawn_item():
 	
