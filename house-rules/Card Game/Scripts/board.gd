@@ -62,13 +62,16 @@ func _process(delta: float) -> void:
 		#clear_board()
 
 func item_clicked( item : Item ):
-	if GameState.state != GameState.States.player_main: return
+	#if GameState.state != GameState.States.player_main: return
 	match item.type:
 		"dentures": 
-			GameState.state = GameState.States.dentures
+			#GameState.state = GameState.States.dentures
+			SignalBus.emit_signal("changeItemState", "dentures")
+			
 			dent_item = item
 		"brick": 
-			GameState.state = GameState.States.bowling_ball
+			#GameState.state = GameState.States.brick
+			SignalBus.emit_signal("changeItemState", "brick")
 			brick_item = item
 	
 
@@ -126,7 +129,8 @@ func hit_lady():
 func lady_react():
 	$"../BEUASTYYYYY/beautyAnimator".play("react")
 	await $"../BEUASTYYYYY/beautyAnimator".animation_finished
-	GameState.emit_signal("turn_pass")
+	SignalBus.emit_signal("ladyAnimationComplete")
+	#GameState.emit_signal("turn_pass")
 func lady_reset():
 	$"../BEUASTYYYYY/beautyAnimator".play("backup")
 
@@ -147,6 +151,7 @@ func run_dentures_code():
 	for card_placement in arr:
 		if card_placement.has_mouse:
 			hovered_card = card_placement.name
+			print(hovered_card)
 			break
 
 	# get column of hovered card
@@ -166,10 +171,13 @@ func run_dentures_code():
 		else:
 			card_placement.setSelection(false)
 	
-	if !Input.is_action_just_released("left"):
+	#make some kind of await is the hovered card is null
+	if !Input.is_action_just_released("left") or hovered_card == null:
+		print("return")
 		return
+	print("continue")
 #endregion
-	GameState.state = null
+	#GameState.state = null
 	#START HERE AWAIT
 #region nuking
 
@@ -205,7 +213,8 @@ func run_dentures_code():
 	dent_item.remove()
 	dent_item = null
 	column_to_eat = null
-	GameState.state = GameState.next_state
+	#GameState.state = GameState.next_state
+	SignalBus.emit_signal("changePlayerState", "player_end")
 #endregion
 
 ## moving around cards logic
@@ -247,7 +256,8 @@ func switch_cards( desired_placement ):
 	selected_placement.update_text()
 	selected_placement.setSelection(false)
 	selected_placement = null
-	GameState.state = GameState.next_state
+	SignalBus.emit_signal("changePlayerState", "player_end")
+	#GameState.state = GameState.next_state
 	return desired_placement
 
 	
@@ -259,7 +269,7 @@ func lady_card_clicked( card_placement : CardPlacement ):
 	#switch_cards( card_placement )
 
 func player_card_clicked( card_placement : CardPlacement ):
-	if GameState.state != GameState.States.player_main: return
+	#if GameState.state != GameState.States.player_main: return
 	if selected_placement == null:
 		return
 		# add code here to nuke all cards of same suit

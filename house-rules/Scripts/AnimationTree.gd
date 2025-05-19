@@ -11,7 +11,8 @@ func play_draw_grap():
 	beauty_animator.play('grab card')
 	$"../BEUASTYYYYY/LadyDraw".play()
 	await beauty_animator.animation_finished
-	GameState.emit_signal("turn_pass")
+	SignalBus.emit_signal("ladyAnimationComplete")
+	#GameState.emit_signal("turn_pass")
 
 func play_card(card_position : Vector3, card : Card, placement : CardPlacement):
 	var tween = get_tree().create_tween()
@@ -26,10 +27,12 @@ func play_card(card_position : Vector3, card : Card, placement : CardPlacement):
 	tween_2.tween_property(target_right_arm, "global_position", old_pos, .5 ).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	await tween_2.finished
 	
-	GameState.emit_signal("turn_pass")
+	SignalBus.emit_signal("ladyAnimationComplete")
+	#GameState.emit_signal("turn_pass")
 	
 	
 func lady_end():
 	beauty_animator.play("end")
 	await beauty_animator.animation_finished
-	GameState.emit_signal("turn_pass")
+	SignalBus.emit_signal("ladyAnimationComplete")
+	#GameState.emit_signal("turn_pass")

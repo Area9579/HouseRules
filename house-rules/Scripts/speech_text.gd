@@ -16,7 +16,7 @@ extends Node3D
 }
 
 
-var speedPerCharacter: float = 0.01 #0.08
+var speedPerCharacter: float = 0.01 #0.08 -> change back once testing is over
 var lineSpeed : float
 var string : String
 var isBeingRead: bool = false

@@ -6,7 +6,7 @@ extends Node3D
 
 const ITEM = preload("res://Items/Scenes/Item.tscn")
 
-var threshold : int = 11
+var threshold : int = 0
 
 func _ready() -> void:
 	GameState.item_spawner = self
