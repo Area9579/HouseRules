@@ -19,6 +19,9 @@ var player_final = 0
 
 var lady_score = [0,0,0]
 var lady_final = 0
+
+var rowSelectionMode : bool = false
+
 @onready var audio_stream_player: AudioStreamPlayer = $"../AudioStreamPlayer"
 
 
@@ -58,22 +61,22 @@ func _process(delta: float) -> void:
 		for i in 5:
 			draw_card()
 		left_hand.hand_is_initialized = true
-	#if Input.is_action_just_released("reset"):
-		#clear_board()
+
+	if rowSelectionMode: #this is a temperary solution to having the row selection check every frame
+		dentureSelectionMode()
+
 
 func item_clicked( item : Item ):
-	#if GameState.state != GameState.States.player_main: return
+
 	match item.type:
 		"dentures": 
-			#GameState.state = GameState.States.dentures
 			SignalBus.emit_signal("changeItemState", "dentures")
 			
 			dent_item = item
 		"brick": 
-			#GameState.state = GameState.States.brick
 			SignalBus.emit_signal("changeItemState", "brick")
 			brick_item = item
-	
+
 
 func highlight_matched_cards():
 	var hovered_card = null
@@ -136,51 +139,8 @@ func lady_reset():
 
 var dent_item = null
 var column_to_eat = null
-func run_dentures_code():
-	var hovered_card = null
-	
-	
-#region selecting hovering
-	var arr : Array = []
-	
-	for child in lady_card_organizer.get_children():
-		arr.append(child)
-	for child in player_card_organizer.get_children():
-		arr.append(child)
-	
-	for card_placement in arr:
-		if card_placement.has_mouse:
-			hovered_card = card_placement.name
-			print(hovered_card)
-			break
-
-	# get column of hovered card
-	var col
-	if hovered_card != null:
-		col = hovered_card.left(1)
-	else:
-		col = ""
-		
-
-	# highlight all other cards in column
-	for card_placement in arr:
-		if hovered_card != null:
-			if card_placement.name.left(1) == col:
-				card_placement.setSelection(true)
-				column_to_eat = card_placement
-		else:
-			card_placement.setSelection(false)
-	
-	#make some kind of await is the hovered card is null
-	if !Input.is_action_just_released("left") or hovered_card == null:
-		print("return")
-		return
-	print("continue")
-#endregion
-	#GameState.state = null
-	#START HERE AWAIT
-#region nuking
-
+func run_dentures_code(hovered_card, arr : Array, col):
+	# this just runs the nuke portion of the denture code
 	var tween_col = get_tree().create_tween()
 	if column_to_eat != null:
 		tween_col.tween_property(%HandRight, "global_position:z", column_to_eat.global_position.z - .05, .8).set_ease(Tween.EASE_OUT)
@@ -208,14 +168,52 @@ func run_dentures_code():
 		card_placement.setSelection(false)
 	
 	
-	#await $"../PlayerBody/PlayerAnimator".animation_finished
-	
 	dent_item.remove()
 	dent_item = null
 	column_to_eat = null
-	#GameState.state = GameState.next_state
 	SignalBus.emit_signal("changePlayerState", "player_end")
-#endregion
+
+
+func dentureSelectionMode():
+	
+	## this is in charge of updating the highlighted cards
+	## runs the nuke code only on left click and if the row is not null
+	
+	var hovered_card = null
+	
+	var arr : Array = []
+	
+	for child in lady_card_organizer.get_children():
+		arr.append(child)
+	for child in player_card_organizer.get_children():
+		arr.append(child)
+	
+	for card_placement in arr:
+		if card_placement.has_mouse:
+			hovered_card = card_placement.name
+			break
+	
+	# get column of hovered card
+	var col
+	if hovered_card != null:
+		col = hovered_card.left(1)
+	else:
+		col = ""
+		
+
+	# highlight all other cards in column
+	for card_placement in arr:
+		if hovered_card != null:
+			if card_placement.name.left(1) == col:
+				card_placement.setSelection(true)
+				column_to_eat = card_placement
+		else:
+			card_placement.setSelection(false)
+	
+	if Input.is_action_just_released("left") and column_to_eat != null:
+		run_dentures_code(hovered_card, arr, col)
+		rowSelectionMode = false
+
 
 ## moving around cards logic
 func place_card( card_placement : CardPlacement, card = null ):
@@ -539,8 +537,6 @@ func check_winner():
 		SignalBus.emit_signal("resetReadDialogue", "loseDialogue") #reset the dialogue
 		if get_tree() != null: #reload the scene -> this should change 
 			get_tree().reload_current_scene()
-			GameState.lose()
-			GameState.state = GameState.States.player_draw
 		
 	
 #endregion

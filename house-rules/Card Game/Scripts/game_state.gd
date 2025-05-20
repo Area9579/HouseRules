@@ -8,7 +8,7 @@ var introPlayed: bool = false #get rid of this later
 enum States {
 	player_draw, player_main, player_end,
 	lady_draw, lady_main, lady_end,
-	win, lose, item_event, fall_event,
+	idle, item_event, fall_event,
 	dentures, brick, severed_hand
 	}
 
@@ -23,119 +23,19 @@ var currentState
 
 var bricked_wait = 0
 
-@export var state = States.player_draw
-@export var next_state = States.player_main
 @export var ray_pickable_state = false
 
-signal turn_pass
 
 func _ready() -> void:
-	connect("turn_pass", _turn_pass)
+	
+	## connecting all of the signals from the signal bus
+	
 	SignalBus.connect("changeStage", changeStage)
 	SignalBus.connect("changePlayerState", sendToChangePlayerState)
 	SignalBus.connect("changeLadyState", sendToChangeLadyState)
 	SignalBus.connect("changeItemState", sendToChangeItemState)
-	
-func _turn_pass(): 
-	return true
 
 
-func _process(delta: float) -> void:
-	if board == null or item_spawner == null:
-		return
-
-	#TODO: match state -> needs to be moved to a signal
-	#match state:
-		#States.player_draw:
-			#
-			#bricked_wait -= 1
-			#if bricked_wait == 0:
-				#board.lady_reset()
-			#bricked_wait = max(0, bricked_wait)
-			#next_state = States.player_main
-			#
-			#if board.drawing == false:
-				#board.play_draw_sound(.5)
-				#board.draw_card()
-				#state = next_state
-			#
-		#States.player_main:
-			#next_state = States.player_end
-			#
-			#for card_placement in board.left_hand.hand_card_organizer.get_children():
-				#if card_placement.card == null and card_placement:
-					#state = next_state
-					#break
-			#
-			#ray_pickable_state = true
-			#set_ray_pickable_on_card_placements(ray_pickable_state)
-			#ray_pickable_state = false
-			#
-		#States.player_end: #TODO come back and make item event triggered only
-			#if bricked_wait == 0:
-				#SignalBus.emit_signal("readDialogueSignal", "specialCardsDialogue")
-				#
-				#next_state = States.lady_draw
-				 ##gurentee
-				#set_ray_pickable_on_card_placements(ray_pickable_state)
-				#state = next_state
-				#board.check_winner()
-			#else:
-				#next_state = States.player_draw
-				#state = next_state
-		
-		#States.lady_draw:
-			#next_state = States.lady_main
-			#state = null
-			#
-			#board.lady_draw()
-			#await self.turn_pass
-			#
-			#state = next_state
-		#
-		#States.lady_main:
-			#next_state = States.lady_end
-			#state = null
-			#board.lady_main()
-			#await self.turn_pass
-			#state = next_state
-			#item_spawner.item_event_triggered()
-			#
-		#States.lady_end:
-			#state = null
-			#board.lady_end()
-			#next_state = States.player_draw
-			#await self.turn_pass
-			#state = next_state
-			#board.check_winner()
-			
-		
-		#States.win:
-			#next_state = null
-		#States.lose:
-			#next_state = null
-		#
-		#States.item_event:
-			#pass
-		#States.fall_event:
-			#pass
-		#
-		#States.severed_hand:
-			#for i in 5:
-				#board.draw_card()
-			#state = next_state
-		#
-		#States.dentures:
-			#board.run_dentures_code()
-		#
-		#States.brick:
-			#state = null
-			#board.run_brick_code()
-			#bricked_wait = 3
-			#await self.turn_pass
-			#state = States.player_draw
-	
-	
 func changePlayerState(changeState):
 	if board == null or item_spawner == null: #get rid of this once it doesn't need to depend on board
 		return
@@ -157,8 +57,6 @@ func changePlayerState(changeState):
 		States.player_main:
 			currentState = States.player_main
 			
-			#next_state = States.player_end
-			
 			for card_placement in board.left_hand.hand_card_organizer.get_children():
 				if card_placement.card == null and card_placement:
 					changePlayerState(States.player_end)
@@ -168,20 +66,22 @@ func changePlayerState(changeState):
 			set_ray_pickable_on_card_placements(ray_pickable_state)
 			ray_pickable_state = false
 			
-		States.player_end: #TODO come back and make item event triggered only <---- what does this even mean lmao (phoenix)
+		States.player_end:
 			currentState = States.player_end
 			
 			if bricked_wait == 0:
 				SignalBus.emit_signal("readDialogueSignal", "specialCardsDialogue")
 				
-				 #gurentee
 				set_ray_pickable_on_card_placements(ray_pickable_state)
-				#state = next_state
+
 				board.check_winner()
 				
 				changeLadyState(States.lady_draw)
 			else:
 				changePlayerState(States.player_draw)
+			
+		States.idle: # used as a pause or wait state, where nothing is done
+			pass
 
 
 func changeLadyState(changeState):
@@ -191,96 +91,99 @@ func changeLadyState(changeState):
 	match changeState:
 		States.lady_draw:
 			currentState = States.lady_draw
-			#next_state = States.lady_main
-			#state = null
 			
 			board.lady_draw()
 			await SignalBus.ladyAnimationComplete
-			#await self.turn_pass
-			
-			#state = next_state
+
 			changeLadyState(States.lady_main)
 		
 		States.lady_main:
 			currentState = States.lady_main
-			#next_state = States.lady_end
-			#state = null
+
 			board.lady_main()
 			await SignalBus.ladyAnimationComplete
-			#await self.turn_pass
-			#state = next_state
+
 			item_spawner.item_event_triggered()
 			changeLadyState(States.lady_end)
 			
 		States.lady_end:
 			currentState = States.lady_end
-			#state = null
+
 			board.lady_end()
-			#next_state = States.player_draw
+
 			await SignalBus.ladyAnimationComplete
-			#await self.turn_pass
-			#state = next_state
+
 			board.check_winner()
 			changePlayerState(States.player_draw)
 
 
 func changeItemState(changeState):
-	if currentState != States.player_main: return
+	if currentState != States.player_main: return #check to see if you should be able to use an item
 	
 	match changeState:
 		
-		States.severed_hand:
+		States.severed_hand: #this is currently unused
 			for i in 5:
 				board.draw_card()
 			changePlayerState(States.player_end)
 		
 		States.dentures:
-			board.run_dentures_code()
+			board.rowSelectionMode = true # this will set off the selection mode code in board (temperary)
 		
 		States.brick:
-			#state = null
+
 			board.run_brick_code()
 			bricked_wait = 3
-			#await self.turn_pass
-			await SignalBus.ladyAnimationComplete
-			#state = States.player_draw
-			changePlayerState(States.player_draw)
+
+			await SignalBus.ladyAnimationComplete # wait for the lady's animation to finish
+
+			changePlayerState(States.player_draw) # go to the player's draw state
 
 
+## we will likely add some more stages later, so the dialogue and such are subject to change
 func changeStage():
 
 	match stage:
 	
 		Stages.stage_1:
-			win() #change later after states are out of process
+			changePlayerState("idle")
+
 			nextStage = Stages.stage_2
 			item_spawner.threshold = 11 #this doesn't work, have something signal which stage it is on start
 			
-			SignalBus.emit_signal("readDialogueSignal", "winDialogue")
-			await SignalBus.dialogueCompletedSignal
-			state = States.player_draw # these are soon to be outdated, remember to change this
+			SignalBus.emit_signal("readDialogueSignal", "winDialogue") # read dialogue for winning the stage
+			await SignalBus.dialogueCompletedSignal # wait for dialogue to complete
+			
+			changePlayerState("player_draw") # set state for the beginning of the stage
 
 		Stages.stage_2:
-			win() #change later after states are out of process
-			nextStage = Stages.stage_2
+			changePlayerState("idle")
+			
+			nextStage = Stages.stage_2 # this is a temperary measure to allow you to keep replaying the second stage
 			item_spawner.threshold = 8
 			
-			SignalBus.emit_signal("readDialogueSignal", "endDialogue")
-			await SignalBus.dialogueCompletedSignal
-			SignalBus.emit_signal("resetReadDialogue", "endDialogue")
-			state = States.player_draw # these are soon to be outdated, remember to change this
+			SignalBus.emit_signal("readDialogueSignal", "endDialogue") # read current end dialogue
+			await SignalBus.dialogueCompletedSignal # wait for dialogue to complete
+			
+			SignalBus.emit_signal("resetReadDialogue", "endDialogue") # this is a temperary measure to allow you to keep replaying the second stage
+			
+			changePlayerState("player_draw") # set state for the beginning of the stage
 	
 	stage = nextStage
 	get_tree().reload_current_scene() #this will cause all sorts of problems, change this later
 
 
+## this function converts a string into a enum value and then returns it
+
 func stringToEnumValueConverter(enumValueString : String):
 	for enumValue in range(0, States.size()):
 		if States.keys()[enumValue] == enumValueString:
 			return (States.values()[enumValue])
-			changePlayerState(States.values()[enumValue])
-			break
 
+
+
+## the three function below just convert and then send the correct states to thier respective functions
+## there is probably a better way to do this but it works for now
 
 func sendToChangePlayerState(stringToConvert : String):
 	var convertedString = stringToEnumValueConverter(stringToConvert)
@@ -297,13 +200,6 @@ func sendToChangeItemState(stringToConvert : String):
 	changeItemState(convertedString)
 
 
-#probably replace both of these
-func win():
-	state = States.win
-
-func lose():
-	state = States.lose
-	
 func set_ray_pickable_on_card_placements( state ):
 	for clickable_area in board.get_node("LadyCardOrganizer").get_children():
 		clickable_area.get_node("Area3D").set_ray_pickable(state)
@@ -311,4 +207,3 @@ func set_ray_pickable_on_card_placements( state ):
 		clickable_area.get_node("Area3D").set_ray_pickable(state)
 	for clickable_area in board.get_node("PlayerCardOrganizer").get_children():
 		clickable_area.get_node("Area3D").set_ray_pickable(state)
-	#board.get_node("DECK").get_node("Area3D").set_ray_pickable(state)
