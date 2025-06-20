@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 		card.discard()
 	if has_mouse:
 		unhighlight()
+		hideCardToolTip()
 
 
 func set_card( new_card : Card ):
@@ -75,3 +76,13 @@ func unhighlight():
 	has_mouse = false
 	if !is_selected:
 		outline.visible = false
+
+
+func showCardTooltip():
+	if card != null:
+		card.tooltip.showTooltip()
+
+
+func hideCardToolTip():
+	if card != null:
+		card.tooltip.hideTooltip()

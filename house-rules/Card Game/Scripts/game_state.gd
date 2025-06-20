@@ -26,14 +26,19 @@ var bricked_wait = 0
 @export var ray_pickable_state = false
 
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("zoom"):
+		changePlayerState(States.player_draw)
+
 func _ready() -> void:
 	
-	## connecting all of the signals from the signal bus
+	## connect all of the signals from the signal bus
 	
 	SignalBus.connect("changeStage", changeStage)
 	SignalBus.connect("changePlayerState", sendToChangePlayerState)
 	SignalBus.connect("changeLadyState", sendToChangeLadyState)
 	SignalBus.connect("changeItemState", sendToChangeItemState)
+	SignalBus.connect("getPlayerState", sendCurrentPlayerState)
 
 
 func changePlayerState(changeState):
@@ -76,6 +81,7 @@ func changePlayerState(changeState):
 
 				board.check_winner()
 				
+				changePlayerState(States.idle)
 				changeLadyState(States.lady_draw)
 			else:
 				changePlayerState(States.player_draw)
@@ -101,8 +107,9 @@ func changeLadyState(changeState):
 			currentState = States.lady_main
 
 			board.lady_main()
-			await SignalBus.ladyAnimationComplete
 
+			await SignalBus.ladyAnimationComplete
+			
 			item_spawner.item_event_triggered()
 			changeLadyState(States.lady_end)
 			
@@ -114,7 +121,12 @@ func changeLadyState(changeState):
 			await SignalBus.ladyAnimationComplete
 
 			board.check_winner()
+			
+			changeLadyState(States.idle)
 			changePlayerState(States.player_draw)
+		
+		States.idle: # used as a pause or wait state, where nothing is done
+			pass
 
 
 func changeItemState(changeState):
@@ -128,9 +140,11 @@ func changeItemState(changeState):
 			changePlayerState(States.player_end)
 		
 		States.dentures:
+			changePlayerState("idle") #don't allow player to do anything else while the state is playing
 			board.rowSelectionMode = true # this will set off the selection mode code in board (temperary)
 		
 		States.brick:
+			changePlayerState("idle") #don't allow player to do anything else while the state is playing
 
 			board.run_brick_code()
 			bricked_wait = 3
@@ -147,6 +161,7 @@ func changeStage():
 	
 		Stages.stage_1:
 			changePlayerState("idle")
+			changeLadyState("idle")
 
 			nextStage = Stages.stage_2
 			item_spawner.threshold = 11 #this doesn't work, have something signal which stage it is on start
@@ -158,6 +173,7 @@ func changeStage():
 
 		Stages.stage_2:
 			changePlayerState("idle")
+			changeLadyState("idle")
 			
 			nextStage = Stages.stage_2 # this is a temperary measure to allow you to keep replaying the second stage
 			item_spawner.threshold = 8
@@ -169,8 +185,10 @@ func changeStage():
 			
 			changePlayerState("player_draw") # set state for the beginning of the stage
 	
+	board.clear_board()
+	
+	
 	stage = nextStage
-	get_tree().reload_current_scene() #this will cause all sorts of problems, change this later
 
 
 ## this function converts a string into a enum value and then returns it
@@ -180,6 +198,12 @@ func stringToEnumValueConverter(enumValueString : String):
 		if States.keys()[enumValue] == enumValueString:
 			return (States.values()[enumValue])
 
+## this function converts a enum value into a string and then returns it
+
+func enumValueToStringConverter(enumValueInt : int):
+	for enumValue in range(0, States.size()):
+		if States.values()[enumValue] == enumValueInt:
+			return (States.keys()[enumValue])
 
 
 ## the three function below just convert and then send the correct states to thier respective functions
@@ -207,3 +231,7 @@ func set_ray_pickable_on_card_placements( state ):
 		clickable_area.get_node("Area3D").set_ray_pickable(state)
 	for clickable_area in board.get_node("PlayerCardOrganizer").get_children():
 		clickable_area.get_node("Area3D").set_ray_pickable(state)
+
+
+func sendCurrentPlayerState():
+	SignalBus.emit_signal("sendPlayerState", enumValueToStringConverter(currentState))

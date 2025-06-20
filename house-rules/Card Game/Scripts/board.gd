@@ -20,6 +20,7 @@ var player_final = 0
 var lady_score = [0,0,0]
 var lady_final = 0
 
+var playerCanPlay : bool
 var rowSelectionMode : bool = false
 
 @onready var audio_stream_player: AudioStreamPlayer = $"../AudioStreamPlayer"
@@ -43,6 +44,10 @@ func _ready() -> void:
 	
 	right_hand.connect("item_clicked", item_clicked)
 	quad_lady_draw()
+	
+	
+	## put this in whatever manages the player actions
+	SignalBus.connect("sendPlayerState", checkPlayerState)
 
 func read_start():
 	$"../AudioStreamPlayer".play()
@@ -192,6 +197,7 @@ func dentureSelectionMode():
 		if card_placement.has_mouse:
 			hovered_card = card_placement.name
 			break
+		
 	
 	# get column of hovered card
 	var col
@@ -238,8 +244,8 @@ func clear_board():
 		arr.append(child)
 	for child in player_card_organizer.get_children():
 		arr.append(child)
-	for child in left_hand.hand_card_organizer.get_children():
-		arr.append(child)
+	#for child in left_hand.hand_card_organizer.get_children():
+		#arr.append(child)
 	
 	for card_placement in arr:
 		if card_placement.card != null:
@@ -267,7 +273,10 @@ func lady_card_clicked( card_placement : CardPlacement ):
 	#switch_cards( card_placement )
 
 func player_card_clicked( card_placement : CardPlacement ):
-	#if GameState.state != GameState.States.player_main: return
+	SignalBus.emit_signal("getPlayerState")
+
+	if playerCanPlay == false : return
+	
 	if selected_placement == null:
 		return
 		# add code here to nuke all cards of same suit
@@ -297,8 +306,7 @@ func draw_card():
 			new_card.global_position = deck.global_position
 			
 			new_card.rotation = deck.rotation
-			#card_placement.set_card_position()
-			
+			card_placement.set_card_position()
 	drawing = false
 
 func nuke_cards( card ):
@@ -540,3 +548,9 @@ func check_winner():
 		
 	
 #endregion
+
+func checkPlayerState(playerState : String):
+	if playerState == "player_main":
+		playerCanPlay = true
+	else:
+		playerCanPlay = false

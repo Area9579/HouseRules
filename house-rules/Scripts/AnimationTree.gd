@@ -12,7 +12,6 @@ func play_draw_grap():
 	$"../BEUASTYYYYY/LadyDraw".play()
 	await beauty_animator.animation_finished
 	SignalBus.emit_signal("ladyAnimationComplete")
-	#GameState.emit_signal("turn_pass")
 
 func play_card(card_position : Vector3, card : Card, placement : CardPlacement):
 	var tween = get_tree().create_tween()
@@ -28,11 +27,9 @@ func play_card(card_position : Vector3, card : Card, placement : CardPlacement):
 	await tween_2.finished
 	
 	SignalBus.emit_signal("ladyAnimationComplete")
-	#GameState.emit_signal("turn_pass")
 	
 	
 func lady_end():
 	beauty_animator.play("end")
 	await beauty_animator.animation_finished
 	SignalBus.emit_signal("ladyAnimationComplete")
-	#GameState.emit_signal("turn_pass")

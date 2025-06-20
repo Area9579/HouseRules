@@ -10,6 +10,8 @@ extends Node
 @warning_ignore("unused_signal") signal changePlayerState(enumStateName : String)
 @warning_ignore("unused_signal") signal changeLadyState(enumStateName : String)
 @warning_ignore("unused_signal") signal changeItemState(enumStateName : String)
+@warning_ignore("unused_signal") signal getPlayerState
+@warning_ignore("unused_signal") signal sendPlayerState(enumStateName : String)
 
 # signals regarding any of the animations
 @warning_ignore("unused_signal") signal ladyAnimationComplete

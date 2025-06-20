@@ -7,6 +7,8 @@ class_name Card
 @onready var sprite_3d_2: Sprite3D = $RigidBody3D/Sprite3D2
 @onready var rigidBody: RigidBody3D = $RigidBody3D
 @onready var mesh_instance_3d: MeshInstance3D = $RigidBody3D/MeshInstance3D
+@onready var tooltip: Node3D = $RigidBody3D/Tooltip
+
 
 @onready var placement_parent
 var lady_hand = null
@@ -144,18 +146,12 @@ func launchCard():
 	rigidBody.constant_force.x = 20
 	rigidBody.apply_force(Vector3(0,150,30))
 	
-	for i in range(0,3): #random torque generation
-		var randTorque = randi_range(1,5)
-		match i:
-			0:
-				rigidBody.add_constant_torque(Vector3(randTorque, 0, 0))
-			1:
-				rigidBody.add_constant_torque(Vector3(0, randTorque, 0))
-			2:
-				rigidBody.add_constant_torque(Vector3(0, 0, randTorque))
+	
+	rigidBody.add_constant_torque(Vector3(randi_range(1,5), randi_range(1,5), randi_range(1,5))) #random torque generation
 	
 	
 	await get_tree().create_timer(3).timeout
+	print_rich("[shake rate=20.0 level=5 connected=1][pulse freq=2.5 color=darkred ease=-1.0][color=red] !CARD LAUNCHED! [/color][/pulse][/shake]")
 	self.queue_free()
 	
 	
@@ -164,4 +160,4 @@ func discard():
 	get_parent().owner.get_node("Board").nuke_cards(self)
 	get_parent().remove_card()
 	
-	
+	SignalBus.emit_signal("changePlayerState", "player_end")

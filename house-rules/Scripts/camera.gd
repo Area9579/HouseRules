@@ -15,7 +15,11 @@ func _process(_delta):
 	cam_shake(_delta)
 	
 	if rayCast.is_colliding() and rayCast.get_collider().get_parent() is CardPlacement:
-		if rayCast.get_collider().owner.get_parent().name == "HandCardOrganizer" or rayCast.get_collider().owner.get_parent().name == "PlayerCardOrganizer":
+		if rayCast.get_collider().owner.get_parent().name == "HandCardOrganizer":
+			rayCast.get_collider().get_parent().showCardTooltip()
+			rayCast.get_collider().get_parent().highlight()
+		
+		elif rayCast.get_collider().owner.get_parent().name == "PlayerCardOrganizer":
 			rayCast.get_collider().get_parent().highlight()
 		
 	elif rayCast.is_colliding() and rayCast.get_collider().get_parent().get_parent() is Item:
@@ -60,4 +64,4 @@ func _input(event: InputEvent) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "turning":
 		SignalBus.emit_signal("readDialogueSignal", "introDialogue") #send a signal to the dialogue once the game starts
-		SignalBus.emit_signal("changePlayerState", "player_draw")
+		SignalBus.emit_signal("changePlayerState", "player_draw") #start the game by having the player draw

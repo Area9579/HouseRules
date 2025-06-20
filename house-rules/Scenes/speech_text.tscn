@@ -37,3 +37,9 @@ text = "The quick brown fox jumped over the lazy dog... more text more text more
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LineTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="TextTimer" type="Timer" parent="."]
+one_shot = true
