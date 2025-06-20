@@ -45,11 +45,29 @@ func remove_card():
 	if organizer is Organizer:
 		organizer.remove_card(int(String(name)[0]), int(String(name)[1]))
 		$drop.play()
+	
 	if card != null:
 		card.placement_parent = null
 		card.launchCard()
+	
 	card = null
 	update_text()
+	
+func discard_card():
+	var temp_card = card
+	card = null
+	update_text()
+	
+	if organizer is Organizer:
+		organizer.remove_card(int(String(name)[0]), int(String(name)[1]))
+		$drop.play()
+	
+	if temp_card != null:
+		temp_card.placement_parent = null
+		temp_card.launchCard()
+		
+	get_parent().owner.get_node("Board").nuke_cards(temp_card)
+	
 
 func remove_lady_child():
 	card = null
