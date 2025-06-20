@@ -161,7 +161,7 @@ func launchCard():
 	
 
 func discard():
-	get_parent().owner.get_node("Board").nuke_cards(self)
-	get_parent().remove_card()
+	
+	get_parent().discard_card()
 	
 	
