@@ -1,7 +1,9 @@
 extends Node
 
 @onready var board
+@onready var lady
 @onready var item_spawner
+@onready var clickable_areas : Array = []
 
 var introPlayed: bool = false #get rid of this later
 
@@ -28,7 +30,16 @@ signal turn_pass
 func _ready() -> void:
 	connect("turn_pass", _turn_pass)
 	SignalBus.connect("changeStage", changeStage)
-	
+
+func collect_clickable_areas():
+	for clickable_area in board.get_node("LadyCardOrganizer").get_children():
+		clickable_areas.append(clickable_area)
+	for clickable_area in board.get_node("PlayerCardOrganizer").get_children():
+		clickable_areas.append(clickable_area)
+	for clickable_area in board.get_node("PlayerCardOrganizer").get_children():
+		clickable_areas.append(clickable_area)
+
+
 func _turn_pass(): 
 	return true
 
@@ -43,7 +54,7 @@ func _process(delta: float) -> void:
 			
 			bricked_wait -= 1
 			if bricked_wait == 0:
-				board.lady_reset()
+				lady.lady_reset()
 			bricked_wait = max(0, bricked_wait)
 			next_state = States.player_main
 			
@@ -80,8 +91,7 @@ func _process(delta: float) -> void:
 		States.lady_draw:
 			next_state = States.lady_main
 			state = null
-			
-			board.lady_draw()
+			lady.lady_draw()
 			await self.turn_pass
 			
 			state = next_state
@@ -89,14 +99,14 @@ func _process(delta: float) -> void:
 		States.lady_main:
 			next_state = States.lady_end
 			state = null
-			board.lady_main()
+			lady.lady_main()
 			await self.turn_pass
 			state = next_state
 			item_spawner.item_event_triggered()
 			
 		States.lady_end:
 			state = null
-			board.lady_end()
+			lady.lady_end()
 			next_state = States.player_draw
 			await self.turn_pass
 			state = next_state
@@ -165,10 +175,5 @@ func lose():
 	state = States.lose
 	
 func set_ray_pickable_on_card_placements( state ):
-	for clickable_area in board.get_node("LadyCardOrganizer").get_children():
-		clickable_area.get_node("Area3D").set_ray_pickable(state)
-	for clickable_area in board.get_node("PlayerCardOrganizer").get_children():
-		clickable_area.get_node("Area3D").set_ray_pickable(state)
-	for clickable_area in board.get_node("PlayerCardOrganizer").get_children():
-		clickable_area.get_node("Area3D").set_ray_pickable(state)
-	#board.get_node("DECK").get_node("Area3D").set_ray_pickable(state)
+	for area in clickable_areas:
+		area.get_node("Area3D").set_ray_pickable(state)

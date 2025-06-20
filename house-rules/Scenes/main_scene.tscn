@@ -878,8 +878,6 @@ transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, 0.4762
 current = true
 fov = 64.6875
 
-[node name="ItemPosition" type="Marker3D" parent="PlayerBody"]
-
 [node name="Menu" parent="." instance=ExtResource("12_drdnd")]
 transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, -5.66453, 1.40962, -4.3482)
 

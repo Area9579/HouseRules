@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c27iw0ytkgcnm"]
+[gd_scene load_steps=17 format=3 uid="uid://c27iw0ytkgcnm"]
 
 [ext_resource type="Script" uid="uid://hr1obdm6tnyv" path="res://Card Game/Scripts/board.gd" id="1_52vfp"]
 [ext_resource type="PackedScene" uid="uid://cbhk6m8pavkcx" path="res://Card Game/Scenes/card_position.tscn" id="1_bfgrx"]
@@ -8,6 +8,27 @@
 [ext_resource type="AudioStream" uid="uid://ck57upq11ssli" path="res://raw_assets/sounds/cardplace.wav" id="4_irbdl"]
 [ext_resource type="Texture2D" uid="uid://bxlbvp8ql5s45" path="res://Card Game/Assets/score placement.png" id="6_am3um"]
 [ext_resource type="PackedScene" uid="uid://deglo4aemeleu" path="res://raw_assets/deck.blend" id="6_o7va3"]
+[ext_resource type="Script" uid="uid://dkfo1gfj06h7l" path="res://Card Game/Scripts/card_placement.gd" id="6_wa7hi"]
+[ext_resource type="Material" uid="uid://cem4l3d3umol4" path="res://Resources/Materials/outlineMaterial.tres" id="7_m4kin"]
+[ext_resource type="AudioStream" uid="uid://dadru7wynhtto" path="res://raw_assets/sounds/placecard.wav" id="8_h45kk"]
+[ext_resource type="Texture2D" uid="uid://bjyifpt5thsgw" path="res://Card Game/Assets/card_placement.png" id="9_gkelf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mxad6"]
+size = Vector3(0.057, 0.005, 0.087)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7qjyw"]
+material = ExtResource("7_m4kin")
+size = Vector3(0.06, 0.002, 0.09)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e2w3p"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("8_h45kk")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7qjyw"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("8_h45kk")
 
 [node name="Board" type="Node3D"]
 script = ExtResource("1_52vfp")
@@ -82,8 +103,41 @@ transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 6.43133, 0, -3.90719)
 [node name="22" parent="PlayerCardOrganizer" instance=ExtResource("1_bfgrx")]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 6.43133, 0, 0)
 
-[node name="DECK" parent="." instance=ExtResource("1_bfgrx")]
-transform = Transform3D(-39.9771, -1.35481, 0, 1.35481, -39.9771, 0, 0, 0, 40, -8.45054, 0, 0.681127)
+[node name="DECK" type="Node3D" parent="."]
+transform = Transform3D(-39.9771, -1.35481, 0, 1.35481, -39.9771, 0, 0, 0, 40, -8.18847, 0, 0.681127)
+script = ExtResource("6_wa7hi")
+
+[node name="Area3D" type="Area3D" parent="DECK"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DECK/Area3D"]
+shape = SubResource("BoxShape3D_mxad6")
+debug_color = Color(0, 0.6, 0.701961, 1)
+
+[node name="Label3D" type="Label3D" parent="DECK"]
+transform = Transform3D(0.025, 0, 0, 0, 0.00054232, 0.0249941, 0, -0.0249941, 0.00054232, 0, 0, 0)
+visible = false
+pixel_size = 0.025
+text = "wiz"
+
+[node name="Outline" type="MeshInstance3D" parent="DECK"]
+visible = false
+mesh = SubResource("BoxMesh_7qjyw")
+
+[node name="Place" type="AudioStreamPlayer" parent="DECK"]
+stream = SubResource("AudioStreamRandomizer_e2w3p")
+
+[node name="drop" type="AudioStreamPlayer" parent="DECK"]
+stream = SubResource("AudioStreamRandomizer_7qjyw")
+pitch_scale = 0.5
+
+[node name="Sprite3D" type="Sprite3D" parent="DECK"]
+transform = Transform3D(0.02, 0, 0, 0, 0.000677407, 0.0199885, 0, -0.0199885, 0.000677407, 0, 0, 0)
+modulate = Color(0.443137, 0.443137, 0.443137, 0.27451)
+texture = ExtResource("9_gkelf")
+
+[node name="deck" parent="DECK" instance=ExtResource("6_o7va3")]
+transform = Transform3D(-0.000174531, 1.74839e-09, 0.0199992, 0, -0.02, 1.74846e-09, 0.0199992, 1.52579e-11, 0.000174531, 0.00118569, 0.000149965, 0.00415235)
 
 [node name="MainCardDirector" parent="." instance=ExtResource("3_m0mw3")]
 
@@ -166,6 +220,10 @@ texture = ExtResource("6_am3um")
 
 [node name="deck" parent="." instance=ExtResource("6_o7va3")]
 transform = Transform3D(-0.00719939, 0, -0.824969, 0, 0.825, 0, 0.824969, 0, -0.00719939, -8.50044, 0, 0.772486)
+visible = false
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true
+
+[connection signal="mouse_entered" from="DECK/Area3D" to="DECK" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="DECK/Area3D" to="DECK" method="_on_area_3d_mouse_exited"]
