@@ -26,9 +26,10 @@ func set_card( new_card : Card ):
 	self.card = new_card
 	
 	card.placement_parent = self
-	if !has_node("Card"):
-		if card.get_parent(): card.get_parent().remove_child(card)
-		self.add_child(card)
+	#if !has_node("Card"):
+	if card.get_parent(): 
+		card.get_parent().remove_child(card)
+	self.add_child(card)
 	card.update_text()
 	if text != null:
 		text.text = "" 
@@ -97,10 +98,12 @@ func unhighlight():
 
 
 func showCardTooltip():
-	if card != null:
-		card.tooltip.showTooltip()
+	if card == null or card.tooltip == null: return
+	
+	card.tooltip.showTooltip()
 
 
 func hideCardToolTip():
-	if card != null:
-		card.tooltip.hideTooltip()
+	if card == null or card.tooltip == null: return
+	
+	card.tooltip.hideTooltip()
