@@ -7,6 +7,7 @@ class_name Item
 @onready var hand = null
 @onready var has_mouse : bool = false
 @onready var rigidBody: RigidBody3D = $RigidBody3D
+@onready var itemTooltip = $RigidBody3D/Tooltip
 var type : String
 
 enum States { falling, spawning, in_hand, empty}
@@ -28,7 +29,13 @@ func verify():
 	if type == 'brick':
 		$RigidBody3D/brick.show()
 	
+	SignalBus.emit_signal("sendItemType")
+	
 func _process(delta: float) -> void:
+	if has_mouse:
+		itemTooltip.showTooltip()
+	else:
+		itemTooltip.hideTooltip()
 	
 	match state:
 		States.falling:
@@ -72,6 +79,10 @@ func launchItem():
 				rigidBody.add_constant_torque(Vector3(0, randTorque, 0))
 			2:
 				rigidBody.add_constant_torque(Vector3(0, 0, randTorque))
+
+
+func getType():
+	return type
 
 
 func _on_timer_timeout() -> void:

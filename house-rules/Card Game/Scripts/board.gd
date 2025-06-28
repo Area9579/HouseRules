@@ -215,10 +215,14 @@ func dentureSelectionMode():
 				column_to_eat = card_placement
 		else:
 			card_placement.setSelection(false)
+			column_to_eat = null
 	
-	if Input.is_action_just_released("left") and column_to_eat != null:
-		run_dentures_code(hovered_card, arr, col)
-		rowSelectionMode = false
+	if Input.is_action_just_released("left"):
+		if column_to_eat != null:
+			run_dentures_code(hovered_card, arr, col)
+			rowSelectionMode = false
+		else:
+			rowSelectionMode = false
 
 
 ## moving around cards logic
@@ -313,10 +317,10 @@ func nuke_cards( card ):
 	var value
 	if card.value_name == "joker":
 		value = card.color
-	elif card.value_name == "king":
+	elif card.value_name == "k":
 		value = card.suit
 	else:
-		value = card.value_name
+		value = str(card.value)
 	
 	var arr : Array = []
 	
@@ -327,7 +331,7 @@ func nuke_cards( card ):
 	
 	for card_placement in arr:
 		if card_placement.card != null:
-			if card_placement.card.value_name == value:
+			if str(card_placement.card.value) == value:
 				card_placement.remove_card()
 			elif card_placement.card.suit == value:
 				card_placement.remove_card()

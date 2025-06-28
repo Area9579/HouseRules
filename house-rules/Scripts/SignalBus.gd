@@ -15,3 +15,6 @@ extends Node
 
 # signals regarding any of the animations
 @warning_ignore("unused_signal") signal ladyAnimationComplete
+
+#signals regarding items
+@warning_ignore("unused_signal") signal sendItemType()

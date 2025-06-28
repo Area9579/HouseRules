@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=4 uid="uid://vf3hehc00p3o"]
+[gd_scene load_steps=18 format=4 uid="uid://vf3hehc00p3o"]
 
 [ext_resource type="Script" uid="uid://cbk3keikb7k51" path="res://Items/Scripts/item.gd" id="1_b6pr5"]
 [ext_resource type="Texture2D" uid="uid://b5ln30dqqirma" path="res://raw_assets/textures/denture.png" id="2_8wu7t"]
 [ext_resource type="AudioStream" uid="uid://ddi6g5krn4v0v" path="res://raw_assets/sounds/denture1.wav" id="3_vtx5h"]
 [ext_resource type="PackedScene" uid="uid://d31p4cpd40y8h" path="res://raw_assets/brick.blend" id="3_xhafu"]
 [ext_resource type="AudioStream" uid="uid://bdt5jjl7siico" path="res://raw_assets/sounds/denture2.wav" id="4_3kklm"]
+[ext_resource type="PackedScene" uid="uid://df38wiynxu0ql" path="res://Card Game/Scenes/tooltip.tscn" id="6_vtx5h"]
 
 [sub_resource type="Animation" id="Animation_mhc50"]
 resource_name = "RESET"
@@ -215,21 +216,21 @@ bones/0/parent = -1
 bones/0/rest = Transform3D(0.999396, -0.0344244, 0.00477011, 0.0347072, 0.981546, -0.188048, 0.00179137, 0.1881, 0.982148, -3.25963e-09, -4.07454e-09, -4.42378e-09)
 bones/0/enabled = true
 bones/0/position = Vector3(-3.25963e-09, -4.07454e-09, -4.42378e-09)
-bones/0/rotation = Quaternion(0.0939071, -0.00093135, 0.0192062, 0.995395)
+bones/0/rotation = Quaternion(0.094474, 0.000748141, 0.0173632, 0.995376)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "top"
 bones/1/parent = 0
 bones/1/rest = Transform3D(0.717216, 0.580642, 0.385301, -0.567325, 0.807602, -0.161, -0.404653, -0.103119, 0.908638, 0.070016, -0.00376875, 0.010556)
 bones/1/enabled = true
 bones/1/position = Vector3(0.070016, -0.00376875, 0.010556)
-bones/1/rotation = Quaternion(-0.0371116, 0.191833, -0.176939, 0.964632)
+bones/1/rotation = Quaternion(0.0254744, 0.221006, -0.332031, 0.916658)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "twist"
 bones/2/parent = 0
 bones/2/rest = Transform3D(0.99895, 0.0347148, 0.0299033, -0.0324061, 0.0739276, 0.996737, 0.0323908, -0.996659, 0.074975, -0.100963, 0.311874, -0.916228)
 bones/2/enabled = true
 bones/2/position = Vector3(-0.100963, 0.311874, -0.916228)
-bones/2/rotation = Quaternion(-0.379021, 0.594004, -0.565136, 0.429096)
+bones/2/rotation = Quaternion(-0.680082, -0.000848668, -0.0228995, 0.732778)
 bones/2/scale = Vector3(1, 1, 1)
 
 [node name="denture" type="MeshInstance3D" parent="RigidBody3D/dentures/bottom/Skeleton3D"]
@@ -250,6 +251,9 @@ stream = ExtResource("4_3kklm")
 [node name="brick" parent="RigidBody3D" instance=ExtResource("3_xhafu")]
 transform = Transform3D(-0.0388251, 0, 9.84287e-08, 0, 0.0388251, 0, -9.84287e-08, 0, -0.0388251, 0, 0, 0)
 visible = false
+
+[node name="Tooltip" parent="RigidBody3D" instance=ExtResource("6_vtx5h")]
+transform = Transform3D(0.0500003, -0.0866023, 3.78551e-09, 0, -4.37114e-09, -0.1, 0.0866023, 0.0500003, -2.18558e-09, 0, 0.13, 0)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

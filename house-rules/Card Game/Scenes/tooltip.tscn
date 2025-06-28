@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://df38wiynxu0ql"]
+
+[ext_resource type="Script" uid="uid://cb1wndwwx5j0u" path="res://Card Game/Scripts/tooltip.gd" id="1_n48f4"]
+[ext_resource type="FontFile" uid="uid://dg6gaeyq0780c" path="res://Card Game/Assets/SpecialElite-Regular.ttf" id="2_8adr0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qk0t"]
+transparency = 4
+albedo_color = Color(0, 0, 0, 0.784314)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7yydh"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_2qk0t")
+size = Vector2(0.9, 0.6)
+
+[node name="Tooltip" type="Node3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_n48f4")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, -3.0598e-08, 0.7, 0, -0.7, -3.0598e-08, 0, 0.0157671, 0)
+text = "Use: left click
+
+Eats an entire row of cards"
+font = ExtResource("2_8adr0")
+autowrap_mode = 2
+width = 260.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22045e-15, 1.78814e-07)
+mesh = SubResource("PlaneMesh_7yydh")
