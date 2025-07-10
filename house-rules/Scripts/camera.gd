@@ -26,6 +26,10 @@ func _process(_delta):
 		rayCast.get_collider().owner.has_mouse = true
 		previous_collider = rayCast.get_collider()
 	
+	elif rayCast.is_colliding() and rayCast.get_collider().get_parent() is RuleSheet:
+		rayCast.get_collider().get_parent().has_mouse = true
+		previous_collider = rayCast.get_collider()
+	
 	if rayCast.is_colliding() == false and previous_collider != null:
 		previous_collider.owner.has_mouse = false
 		previous_collider = null

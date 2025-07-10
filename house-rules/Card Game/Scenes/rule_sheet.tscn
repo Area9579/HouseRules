@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7273sd1d5q78"]
+
+[ext_resource type="Script" uid="uid://msiu8wvno5q5" path="res://Card Game/Scripts/rule_sheet.gd" id="1_757ow"]
+[ext_resource type="Material" uid="uid://cem4l3d3umol4" path="res://Resources/Materials/outlineMaterial.tres" id="2_u561d"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xi8t7"]
+material = ExtResource("2_u561d")
+size = Vector3(1.1, 0.2, 1.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iw41c"]
+size = Vector3(1, 0.1, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u561d"]
+size = Vector3(1, 0.1, 1.5)
+
+[node name="RuleSheet" type="Node3D"]
+script = ExtResource("1_757ow")
+
+[node name="Outline" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_xi8t7")
+
+[node name="Paper" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_iw41c")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_u561d")

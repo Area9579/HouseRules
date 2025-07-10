@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cxddpve567luf"]
+[gd_scene load_steps=40 format=3 uid="uid://cxddpve567luf"]
 
 [ext_resource type="PackedScene" uid="uid://foaj3o556i88" path="res://raw_assets/TrainBase.blend" id="1_52fb6"]
 [ext_resource type="Script" uid="uid://dieo8wand5g3b" path="res://Scripts/main_scene.gd" id="1_drdnd"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b1m5iaasfpavd" path="res://TitleScrene/Scenes/menu.tscn" id="12_drdnd"]
 [ext_resource type="PackedScene" uid="uid://b01dgcxrxgo05" path="res://raw_assets/realhand.blend" id="12_gnsmo"]
 [ext_resource type="PackedScene" uid="uid://cm2wnl7bl5fa0" path="res://Scenes/speech_text.tscn" id="17_psl12"]
+[ext_resource type="PackedScene" uid="uid://c7273sd1d5q78" path="res://Card Game/Scenes/rule_sheet.tscn" id="22_8edxt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_52fb6"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -885,6 +886,9 @@ transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, -5.66453, 1.40962
 
 [node name="Speech Text" parent="." instance=ExtResource("17_psl12")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.77444, 1.28869, -2.69264)
+
+[node name="RuleSheet" parent="." instance=ExtResource("22_8edxt")]
+transform = Transform3D(-8.74228e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-09, -4.6, 1.015, -3.34)
 
 [connection signal="timeout" from="BEUASTYYYYY/blinktimer" to="BEUASTYYYYY" method="_on_blinktimer_timeout"]
 
