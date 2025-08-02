@@ -30,8 +30,6 @@ func activePosition():
 	rotTween = get_tree().create_tween()
 	posTween.tween_property(self, "position", Vector3(-4.687, 1.415, -2.979), 0.5)
 	rotTween.tween_property(self, "rotation_degrees", Vector3(-90, 145, 0), 0.5)
-	#rotation_degrees = lerp(rotation_degrees, Vector3(-90, 145, 0), 1)
-	#position = lerp(position, Vector3(-4.687, 1.415, -2.979), 1)
 
 
 func idlePosition():
@@ -39,8 +37,6 @@ func idlePosition():
 	rotTween = get_tree().create_tween()
 	posTween.tween_property(self, "position", Vector3(-4.6, 1.015, -3.34), 0.5)
 	rotTween.tween_property(self, "rotation_degrees", Vector3(0, 90, 0), 0.5)
-	#rotation_degrees = lerp(rotation_degrees, Vector3(0, 90, 0), 1)
-	#position = lerp(position, Vector3(-4.6, 1.015, -3.34), 1)
 
 
 func highlight():
